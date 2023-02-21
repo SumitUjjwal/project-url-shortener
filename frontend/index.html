@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <style>
+        body{
+            background-color: #0c0032;
+        }
+        #basic_intro{
+            width: 80%;
+            margin: auto;
+            display: flex;
+            /* justify-content: center;
+            text-align: center; */
+            margin-top: 100px;
+            
+        }
+        #basic_intro>img{
+            width: 50%;
+        }
+       #write_div{
+        width: 50%;
+        text-align: center;
+        padding-top: 10%;
+    
+       }
+       #write_div>button{
+        padding: 15px;
+        font-size: 25px;
+        border-radius: 10px;
+        color: white;
+        background-color: #3500d3;
+       }
+       #write_div>h1{
+        color: white;
+        font-family: cursive;
+       }
+       #write_div>button:hover{
+        cursor: pointer;
+        background-color: #240090;
+       }
+       
+       #con{
+        width: 60%;
+        text-align: center;
+        margin: auto;
+        padding: 100px;
+        color: white;
+       }
+       #con>h1{
+        font-size: 40px;
+       }
+       #con>p{
+        font-size: 20px;
+       }
+       #platform_container{
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 25px;
+       }
+       #platform>div{
+        display: flex;
+        gap: 5px;
+       }
+       #platform{
+        border: 1px solid gray;
+        padding: 25px;
+        background-color:282828;
+        color: white;
+        border-radius: 10px;
+        background-color: #190061;
+       }
+       #platform>button{
+        width: 100%;
+        padding: 15px;
+        font-size: 20px;
+        background-color:#3500d3;
+        color: white;
+        border-radius: 10px;
+        border: 0px;
+       }
+       #platform>button:hover{
+        cursor: pointer;
+        background-color: #240090;
+       }
+       #shinput{
+        width: 95%;
+        background-color: #fc4445;
+        padding: 25px;
+        border-radius: 10px;
+        margin: auto;
+        margin-top: 100px;
+       }
+       #shortenlink{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+       }
+       #input_link{
+        width: 80%;
+        height: 40px;
+        border: 1px solid #0c0c0c;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 25px;
+       }
+       #stort_link{
+        width: 100%;
+        height: 40px;
+        border: 1px solid #0c0c0c;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 25px;
+       }
+       #shortenlink>button{
+        width: 15%;
+        height: 55px;
+        font-size: 25px;
+        border-radius: 10px;
+        border: 0px;
+        background-color: #3500d3;
+        color: white;
+       }
+       #shortenlink>button:hover{
+        cursor: pointer;
+        background-color: #240090;
+       }
+       #net_container{
+        width: 80%;
+        display: flex;
+        gap: 25px;
+        margin: auto;
+        margin-top: 100px;
+       }
+       #net_img{
+        width: 50%;
+        background-color: white;
+        border-radius: 25px;
+       }
+       #net_write{
+        width: 40%;
+        border: 5px solid #3500d3;
+        padding-left: 50px;
+        background-color: #190061;
+        color: white;
+        border-radius: 25px;
+       }
+       #net_write>div{
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        gap: 10px;
+       }
+       #customer{
+        text-align: center;
+        margin-top: 100px;
+       }
+       #customer>h1{
+        font-size: 40px;
+        color: white;
+       }
+       #cus_container{
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:25px
+       }
+       #cus_container>div:nth-child(1){
+        width: 8%;
+        background-color: #3500d3;
+        color: white;
+        border-radius: 20px;
+       }
+       #cus_container>div:nth-child(2){
+        width: 80%;
+        border: 1px solid black;
+       }
+       #cus_container>div:nth-child(3){
+        width: 8%;
+        background-color: #3500d3;
+        color: white;
+        border-radius: 20px;
+       }
+       #customer_div>img{
+        width: 100%;
+        border-radius: 20px;
+       }
+       #companie{
+        margin-top: 100px;
+        text-align: center;
+    
+       }
+       #companie>h1{
+        color: white;
+        font-size: 40px;
+       }
+       #companies{
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+    
+       }
+       #companies>img{
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: #3500d3 0px 54px 55px, #3500d3 0px -12px 30px, #3500d3 0px 4px 6px,#3500d3 0px 12px 13px, #3500d3 0px -3px 5px;;
+       }
+       #questions{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        background-color: #190061;
+        color: white;
+        margin-top: 100px;
+        padding: 25px;
+        border-radius: 20px;
+        border: 5px solid #3500d3;
+       }
+       #questions>h1{
+        font-size: 40px;
+       }
+       #morethen{
+        margin-top: 100px;
+        text-align: center;
+        background-color: #fc4445;
+        padding: 40px;
+       }
+       #morethen>h1{
+        font-size: 40px;
+        color: white;
+       }
+       #morethen>button{
+        padding: 20px;
+        font-size: 20px;
+        border: 0px;
+        border-radius: 10px;
+        color: white;
+        background-color: #3500d3;
+       }
+       #morethen>button:hover{
+        cursor: pointer;
+        background-color: #240090;
+       }
+       #next>h1:hover{
+        cursor: pointer;
+       }
+       #prev>h1:hover{
+        cursor: pointer;
+       }
+       @media all and (min-width:380px) and (max-width: 900px) {
+        #basic_intro{
+           display: grid;
+           grid-template-columns: repeat(1,1fr);
+           grid-template-rows: repeat(2,1fr);
+        }
+        #write_div{
+            width: 100%;
+        }
+        #basic_intro>img{
+            width: 100%;
+            padding-top:10px;
+        }
+        #con{
+            width: 100%;
+            padding-top: 10px;
+            padding: 0px;
+        }
+        #platform_container{
+        width: 90%;
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: repeat(3,auto);
+       }
+       #input_link{
+        width: 100%;
+       }
+       #shortenlink>button{
+        width: 100%;
+        margin-top: 10px;
+       }
+       #net_container{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: repeat(2,auto);
+       }
+       #net_img{
+        width: 100%;
+       }
+       #net_write{
+        width: 90%;
+       }
+       #companies{
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(3,auto);
+        column-gap: 2px;
+       }
+       #questions{
+        width: 90%;
+       }
+       }
+       @media all and (min-width:900px) and (max-width: 1100px){
+        #platform_container{
+        width: 90%;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(2,auto);
+       }
+       #net_img>img{
+        width: 100%;
+       }
+       #companies{
+        width: 70%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(2,auto);
+        column-gap: 2px;
+       }
+       #questions{
+        width: 70%;
+       }
+       }
+    </style>
+</head>
+<body>
+   <div id="basic_intro">
+    <div id="write_div">
+        <h1>We’ve expanded!</h1>
+        <h1>Shorten URLs. Generate QR Codes.</h1>
+        <h1>And now, create Link-in-bios.</h1>
+        <button id="get_stated">Get Stated For Free</button>
+    </div>
+    <img src="https://www.linqup.in/assets/images/features/features-img-2.png" alt="">
+   </div>
+   <div id="con">
+    <h1>Lilliput Connections Platform</h1>
+    <p>All the products you need to build brand connections, manage links and QR Codes, and connect with audiences everywhere, in a single unified platform.</p>
+   </div>
+   <div id="platform_container">
+    <div id="platform">
+        <div>
+            <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/link-mngt-3.svg" alt="">
+            <h1>Link Management</h1>
+        </div>
+        <p>A comprehensive solution to help make every point of connection between your content and your audience more powerful.</p>
+        <h4>Popular Link Management Features</h4>
+        <p>URL shortening at scale</p>
+        <p>Custom links with your brand</p>
+        <p>URL redirects</p>
+        <p>Advanced analytics & tracking</p>
+        <button>Get Stated For Free</button>
+        <p>Learn more</p>
+    </div>
+    <div id="platform">
+        <div>
+            <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/qr-code.svg" alt="">
+            <h1>QR Codes</h1>
+        </div>
+        <p>QR Code solutions for every customer, business and brand experience.</p>
+        <h4>Popular QR Code Features</h4>
+        <p>Fully customizable QR Codes</p>
+        <p>Dynamic QR Codes</p>
+        <p>QR Code types & destination options</p>
+        <p>Advanced analytics & tracking</p>
+        <button>Get Stated For Free</button>
+        <p>Learn more</p>
+    </div>
+    <div id="platform">
+        <div>
+            <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/link-in-bio-1.svg" alt="">
+            <h1>Link-in-bio</h1>
+        </div>
+        <p>Bitly Link-in-bio, powered by Bitly Link Management, to help you curate, package and track your best links.</p>
+        <h4>Popular Link-in-bio Features</h4>
+        <p>Custom URLs for social media</p>
+        <p>Customizable landing page</p>
+        <p>Easy-to-manage links</p>
+        <p>Link and landing page tracking</p>
+        <button>Get Stated For Free</button>
+        <p>Learn more</p>
+    </div>
+   </div>
+   <div id="shinput">
+    <div id="shortenlink">
+        <input id="input_link"  type="text" placeholder="Shorten Your Link">
+        <button>Shorten</button>
+        <p>By clicking SHORTEN, you are agreeing to Lilliput’s Terms of Service, Privacy Policy, and Acceptable Use Policy</p>
+        <input id="stort_link" type="text" placeholder="Your Shorter Link">
+        <h3>Please Login or Signup First For Better User Experience!</h4>
+    </div>
+   </div>
+   <div id="net_container">
+    <div id="net_img">
+        <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/globe.png" alt="">
+    </div>
+    <div id="net_write">
+        <div> 
+            <h1>500K</h1>
+            <p>global paying customers</p>
+        </div>
+        <div> 
+            <h1>5.7M</h1>
+            <p>monthly active users</p>
+        </div>
+        <div> 
+            <h1>256M</h1>
+            <p>links & QR codes created monthly</p>
+        </div>
+        <div> 
+            <h1>10B</h1>
+            <p>connections (clicks & scans) monthly</p>
+        </div>
+        <div> 
+            <h1>800+</h1>
+            <p>app integrations</p>
+        </div>
+    </div>
+   </div>
+
+   <div id="customer">
+    <h1>What Lilliput customers are saying</h1>
+    <div id="cus_container">
+        <div id="prev"><h1><</h1></div>
+        <div id="customer_div"></div>
+        <div id="next"><h1>></h1></div>
+       </div>
+   </div>
+   <div id="companie">
+    <h1>Loved by big and small brands everywhere</h1>
+    <div id="companies">
+        <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/novasol.svg" alt="">
+        <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/big-fish.svg" alt="">
+        <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/marriott.svg" alt="">
+        <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/new-york-times.svg" alt="">
+        <img src="https://docrdsfx76ssb.cloudfront.net/static/1675956644/pages/wp-content/uploads/2022/06/electronic-arts.svg" alt="">
+    </div>
+   </div>
+   <div id="questions">
+    <h1>Frequently asked questions</h1>
+    <h3>What is a URL shortener?</h3>
+    <h3>Benefits of a short URL</h3>
+    <h3>What is a custom URL shortener?</h3>
+    <h3>What is a QR Code?</h3>
+    <h3>What can a QR Code do?</h3>
+    <h3>What is a Link-in-bio?</h3>
+    <h3>Why choose Lilliput?</h3>
+    <p>All the above Questions will get ans once you starts</p>
+   </div>
+   <div id="morethen">
+    <h1>More than a free link shortener</h1>
+    <button>Get Started</button>
+   </div>
+</body>
+</html>
+<script src="./index.js"></script>
