@@ -16,6 +16,17 @@ const shortUrlSchema = mongoose.Schema({
     regions: [{
         type: String,
         default: "all"
+    }],
+    userId: {
+        type: String
+    },
+    devices: [{
+        type: String,
+        default: "all"
+    }], 
+    platform: [{
+        type: String,
+        default: "all"
     }]
 
 })
