@@ -1,15 +1,17 @@
-const redis = require('redis');
+const redis=require('redis');
+
+
+
+require("dotenv").config();
 
 const client = redis.createClient({
-    password: 'Qp29D1v2mSAtvQsuQPMZsgqo1FKAN8JA',
+    password: process.env.pass,
     socket: {
-        host: 'redis-14258.c305.ap-south-1-1.ec2.cloud.redislabs.com',
-        port: 14258
+        host: 'redis-14486.c264.ap-south-1-1.ec2.cloud.redislabs.com',
+        port: process.env.redPort
     }
 });
 client.on('error', err => console.log('Redis Client Error', err));
 client.connect();
 
-module.exports = {
-    client
-}
+module.exports = {client};
