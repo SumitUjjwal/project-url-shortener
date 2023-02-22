@@ -34,3 +34,8 @@ function prev(){
        carousel(i);
     }
 }
+document.getElementById("nav_img").addEventListener("click",nav_img);
+
+function nav_img(){
+    window.location.replace("./index.html");
+}
