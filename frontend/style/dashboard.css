@@ -1,0 +1,44 @@
+/* main */
+main {
+    border: 1px solid black;
+    width: 100%;
+    margin: auto;
+}
+
+/* overview */
+.main-overview {
+    border: 1px solid blue;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.overview-card {
+    border: 1px solid red;
+    width: 20%;
+    align-items: flex-start;
+    border-radius: 8px;
+    color: #2f3a4c;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px 25px;
+    text-align: left;
+}
+
+.main-overview>:nth-child(1){
+    background-color: #f8f9fa;
+}
+
+.main-overview>:nth-child(2){
+    background-color: #f1fdf8;
+}
+
+.main-overview>:nth-child(3){
+    background-color: #f0f8ff;
+}
+
+.main-overview>:nth-child(4){
+    background-color: #f7e8e7;
+}
