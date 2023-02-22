@@ -47,15 +47,15 @@ shortRouter.get("/:short", async (req, res) => {
         try {
             const data = result.unwrap();
             console.log(data.addressRegion);
-            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion  } });
-            // res.send(data.addressRegion);
+            // await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion  } });
+            res.send(data.addressRegion || null);
         } catch (error) {
             console.error(error);
         }
 
 
-        res.redirect(fullurl.full);
-        // res.json({ "msg": `getting full url: ${fullurl.full}` });
+        // res.redirect(fullurl.full);
+        res.json({ "msg": `getting full url: ${fullurl.full}` });
     } catch (error) {
         console.error(error);
         res.json({ "msg": "error getting short route" });
