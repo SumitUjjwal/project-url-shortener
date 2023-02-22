@@ -11,17 +11,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@superfaceai/one-sdk": "^2.3.1",
-    "axios": "^1.3.3",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "ip-info-finder": "^2.0.7",
-    "ip-location": "^1.0.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.2",
+    "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
-    "redis": "^4.6.4",
-    "request-ip": "^3.3.0",
+    "redis": "^4.6.4"
+    "@superfaceai/one-sdk": "^2.3.1",
     "shortid": "^2.2.16"
   }
 }
