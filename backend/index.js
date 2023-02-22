@@ -1,4 +1,3 @@
-
 const express = require('express');
 const { connection } = require("./config/db");
 const {shortRouter} = require("./routes/shortener.route")
@@ -7,16 +6,21 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 const cors = require("cors");//
+const clientDevice = require("express-device");
+const useragent = require('express-useragent');
 
 const app = express();//
 app.use(cors());//
 const cookieParser=require('cookie-parser')
 app.use(cookieParser())
 app.use(express.json())
+app.use(clientDevice.capture());
+app.use(useragent.express());
 
-app.get('/', (req, res) => { res.json({ "msg": "Welcome to Lylliput!" }) });
 
-// /////////////////////////////////////////////////////////
+
+app.get('/', (req, res) => { console.log(req.device); res.json({ "msg": "Welcome to Lylliput! on your " + req.device.type.toUpperCase() }) });
+
 const {userRouter}=require("./routes/user.route")
 app.use("/users",userRouter)
 
@@ -26,7 +30,7 @@ app.use("/short", shortRouter);
 const {gitAuth}=require("./middlewares/git.auth")
 app.use("/",gitAuth)
 
-// const {authenticate}=require("./middlewares/authenticate.middle")
+const {authenticate}=require("./middlewares/authenticate.middle")
 // app.use(authenticate)
 
 

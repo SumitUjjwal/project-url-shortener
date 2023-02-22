@@ -3,18 +3,23 @@ const { client } = require("../services/redis-client");
 const { ShortUrlModel } = require("../models/short.model");
 const { SuperfaceClient } = require('@superfaceai/one-sdk');
 const sdk = new SuperfaceClient();
+
 require("dotenv").config();
 
 const shortRouter = express.Router();
 shortRouter.use(express.json());
 
 shortRouter.post("/", async (req, res) => {
+    console.log(req);
     const full = req.body.full;
+    const userId = res.locals.userId;
+    console.log(userId);
     try {
-        const shorturl = new ShortUrlModel({ full });
+        const shorturl = new ShortUrlModel({ full, userId });
         await shorturl.save();
         const data = await ShortUrlModel.findOne({ full });
-        res.json({ "msg": `short url created successfully: baseUrl/${data.short}` });
+        console.log(data);
+        res.json({ "msg": `short url created successfully: baseUrl/${data.short}`, "response": "ok" });
     } catch (error) {
         console.error(error);
         res.json({ "msg": "error getting short route" });
@@ -23,11 +28,29 @@ shortRouter.post("/", async (req, res) => {
 
 shortRouter.get("/:short", async (req, res) => {
     const short = req.params.short;
+    const clientDevice = req.device.type.toLowerCase();
+    const clientPlatform = req.useragent.platform
+    console.log(req.useragent.platform)
     try {
         const clientIp = req.ip;
-        const fullurl = await ShortUrlModel.findOne({ short });
-        const count = fullurl.clicks;
-        const id = fullurl._id;
+        const urlData = await ShortUrlModel.findOne({ short });
+        const count = urlData.clicks;
+        const id = urlData._id;
+        // if(clientDevice == urlData.devices.desktop){
+        // urlData.devices.desktop+1;
+        // }
+        // else if(clientDevice == urlData.devices.phone){
+        // urlData.devices.phone+1;
+        // }
+        // else if(clientDevice == urlData.devices.tv){
+        // urlData.devices.tv+1;
+        // }
+        // else{
+        // urlData.devices.other+1;
+        // }
+        // urlData.devices+1
+        console.log(urlData.devices);
+
         const updateCount = await ShortUrlModel.findByIdAndUpdate(id, { clicks: count + 1 });
 
         // location from IP
@@ -35,7 +58,7 @@ shortRouter.get("/:short", async (req, res) => {
         const result = await profile
             .getUseCase('IpGeolocation')
             .perform({
-                ipAddress: `${clientIp}`
+                ipAddress: "2405:201:3:811e:6478:423b:3922:4966" //`${clientIp}` 
             }, {
                 provider: 'ipdata',
                 security: {
@@ -46,19 +69,21 @@ shortRouter.get("/:short", async (req, res) => {
             });
         try {
             const data = result.unwrap();
-            console.log(data.addressRegion);
-            // await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion  } });
-            res.send(data.addressRegion || null);
+            // data.addressRegion = "private";
+            console.log(data.addressRegion, id);
+            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform} });
+            // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
+            console.log("Updated")
+            // res.send(data.addressRegion || null);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
-
-
-        // res.redirect(fullurl.full);
-        res.json({ "msg": `getting full url: ${fullurl.full}` });
+        // res.redirect(urlData.full);
+        const data = await ShortUrlModel.findOne({ id });
+        res.json({ "msg": `getting full url: ${data}`, "response": "ok" });
     } catch (error) {
         console.error(error);
-        res.json({ "msg": "error getting short route" });
+        res.json({ "msg": "error getting full url" });
     }
 })
 

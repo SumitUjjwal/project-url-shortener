@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+      body{
+        background-color: #240090;
+      }
+      #nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 70px 0px 70px;
+            background-color: #3500d3;
+            border-radius: 10px;
+            position: fixed; 
+            top: 0; 
+            width: 90%;
+            height: 60px;
+        }
+        #nav>div{
+            display: flex;
+            gap: 20px;
+        }
+        #nav>div>h1{
+            color: white;
+        }
+        #nav>div>h1:hover{
+            cursor: pointer;
+        }
+        #nav>img{
+            width: 10%;
+            height: 40px;
+            border-radius: 10px 100px / 120px;
+        }
+        #nav>img:hover{
+            cursor: pointer;
+        }
+        #signup_container{
+         width: 80%;
+         display: grid;
+         grid-template-columns: repeat(2,1fr);
+         grid-template-rows: 600px;
+         margin: auto;
+         margin-top: 100px;
+         border-radius: 20px;
+         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        #signup_container>div:nth-child(2){
+            
+            border-radius: 0px 20px 20px 0px;
+        }
+        #signup_container>div:nth-child(1){
+            
+            border-radius: 20px 0px 0px 20px;
+        }
+        #signup_img{
+            text-align: center;
+            background-color: #0c0032;
+        }
+        #signup_img>img{
+            margin-top: 80px;
+            width: 80%;
+            height: 60%;
+            border-radius: 25px;
+        }
+        #signup_img>h1{
+            font-size: 40px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        #signup_form{
+            padding: 50px;
+            background-color: white;
+        }
+        #signup_form>input{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+        #fp{
+            display: flex;
+            justify-content: space-between;
+        }
+        #fp>p{
+            color: #03a9f4;
+        }
+        #fp>p:hover{
+            cursor: pointer;
+            text-decoration: underline #03a9f4;
+        }
+        #signup_btn{
+            width: 100%;
+            padding: 15px;
+            font-size: 20px;
+            background-color: #3500d3;
+            color: white;
+            border: 0px;
+            border-radius: 10px;
+        }
+        #signup_btn:hover{
+            cursor: pointer;
+            background-color: white;
+            color: #0c0032;
+            border: 1px solid #0c0032;
+        }
+        #continue_div{
+            width: 100%;
+            text-align: center;
+        }
+        #continue_div>h3:nth-child(2){
+            margin-top: -15px;
+        }
+        #auth{
+            width: 50%;
+            height: 40px;
+            display: flex;
+            justify-content: space-around;
+            margin: auto;
+        }
+        #auth>img{
+            width: 20px;
+            background-color: white;
+            border: 2px solid lightgray;
+            padding: 7px;
+            border-radius: 5px;
+        }
+        #auth>img:hover{
+            cursor: pointer;
+            background-color: lightblue;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        }
+        @media all and (min-width:380px) and (max-width:700px){
+            body{
+                background-color: #190061;
+            }
+            #signup_img{
+                display: none;
+            }
+            #signup_container>div:nth-child(1){
+            
+            border-radius: 20px 20px 20px 20px;
+        }
+            #signup_container{
+                grid-template-columns: repeat(1,1fr);
+            }
+            #nav{
+            width: 80%;
+        }
+        #nav>div>h1{
+            font-size: 18px;
+        }
+        #nav>img{
+            height: 20px;
+        }
+        }
+        @media all and (min-width:700px) and (max-width: 1100px){
+            #nav{
+            width: 85%;
+        }
+        #nav>div>h1{
+            font-size: 25px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <img id="nav_img" src="./images/logo.png" alt=""> 
+         <div>
+             <h1 id="signup_page">Signup</h1>
+             <h1 id="login_page">Login</h1>
+             <h1>Logout</h1>
+         </div>
+     </div>
+    <div id="signup_container">
+        <div id="signup_form">
+            <h1>Sign Up</h1>
+            <label for="">User Name</label><br>
+            <input id="signup_name" type="text" placeholder="Enter Your Name"><br><br>
+            <label for="">Email</label><br>
+            <input id="signup_email" type="text" placeholder="Enter Your Email"><br><br>
+            <label for="">Password</label><br>
+            <input id="signup_password" type="password" placeholder="Enter Your Password"><br>
+            <div id="fp">
+                <p><input type="checkbox" onclick="myFunction()">Show Password</p>
+                <p>Forget Password?</p>
+            </div>
+            <button id="signup_btn">Sign Up</button>
+            <div id="continue_div">
+                <p>or</p>
+                <h3>Continue With</h3>
+                <div id="auth"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png" alt="">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="signup_img">
+            <img src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?w=2000" alt="">
+            <h1>Sign Up</h1>
+        </div>
+    </div>
+</body>
+</html>
+<script src="./signup.js"></script>
