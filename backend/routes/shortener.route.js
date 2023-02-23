@@ -10,19 +10,111 @@ const shortRouter = express.Router();
 shortRouter.use(express.json());
 
 shortRouter.post("/", async (req, res) => {
-    console.log(req);
+    // console.log(req.headers);
     const full = req.body.full;
-    const userId = res.locals.userId;
-    console.log(userId);
+    // const userId = res.locals.userId;
+    const userId = req.headers.userid;
+    console.log(userId, full);
+    // res.json({userId, full});
     try {
         const shorturl = new ShortUrlModel({ full, userId });
         await shorturl.save();
         const data = await ShortUrlModel.findOne({ full });
-        console.log(data);
+        // console.log(data);
         res.json({ "msg": `short url created successfully: baseUrl/${data.short}`, "response": "ok" });
     } catch (error) {
         console.error(error);
         res.json({ "msg": "error getting short route" });
+    }
+})
+
+shortRouter.get("/user/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const data = await ShortUrlModel.find({ userId });
+
+        const clicks = await ShortUrlModel.aggregate([
+            { $match : { userId : userId } },
+            {
+                $unwind: '$clicks'
+            },
+            {
+                $group: {
+                    _id: '$clicks',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        const fullLinks = await ShortUrlModel.aggregate([
+            { $match : { userId : userId } },
+            {
+                $unwind: '$full'
+            },
+            {
+                $group: {
+                    _id: '$full',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        const links = await ShortUrlModel.aggregate([
+            { $match : { userId : userId } },
+            {
+                $unwind: '$short'
+            },
+            {
+                $group: {
+                    _id: '$short',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        const devices = await ShortUrlModel.aggregate([
+            { $match : { userId : userId } },
+            {
+                $unwind: '$devices'
+            },
+            {
+                $group: {
+                    _id: '$devices',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        const location = await ShortUrlModel.aggregate([
+            { $match : { userId : userId } },
+            {
+                $unwind: '$regions'
+            },
+            {
+                $group: {
+                    _id: '$regions',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        const system = await ShortUrlModel.aggregate([
+            { $match : { userId : userId } },
+            {
+                $unwind: '$platform'
+            },
+            {
+                $group: {
+                    _id: '$platform',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+        res.json({data, links, fullLinks, clicks, devices, location, system});
+        // res.json(data);
+    } catch (error) {
+        console.error(error);
+        res.json({ "msg": "error getting user details" });
     }
 })
 
@@ -36,19 +128,6 @@ shortRouter.get("/:short", async (req, res) => {
         const urlData = await ShortUrlModel.findOne({ short });
         const count = urlData.clicks;
         const id = urlData._id;
-        // if(clientDevice == urlData.devices.desktop){
-        // urlData.devices.desktop+1;
-        // }
-        // else if(clientDevice == urlData.devices.phone){
-        // urlData.devices.phone+1;
-        // }
-        // else if(clientDevice == urlData.devices.tv){
-        // urlData.devices.tv+1;
-        // }
-        // else{
-        // urlData.devices.other+1;
-        // }
-        // urlData.devices+1
         console.log(urlData.devices);
 
         const updateCount = await ShortUrlModel.findByIdAndUpdate(id, { clicks: count + 1 });
@@ -71,19 +150,30 @@ shortRouter.get("/:short", async (req, res) => {
             const data = result.unwrap();
             // data.addressRegion = "private";
             console.log(data.addressRegion, id);
-            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform} });
+            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform } });
             // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
             console.log("Updated")
             // res.send(data.addressRegion || null);
         } catch (error) {
             // console.error(error);
         }
-        // res.redirect(urlData.full);
-        const data = await ShortUrlModel.findOne({ id });
-        res.json({ "msg": `getting full url: ${data}`, "response": "ok" });
+        res.redirect(urlData.full);
+        // const data = await ShortUrlModel.findOne({ id });
+        // res.json({ "msg": `getting full url: ${data}`, "response": "ok" });
     } catch (error) {
         console.error(error);
         res.json({ "msg": "error getting full url" });
+    }
+})
+
+shortRouter.delete("/delete/:id", async(req,res) => {
+    const _id = req.params.id;
+    try {
+        const delete_link = await ShortUrlModel.findByIdAndDelete({_id});
+        res.json({ "msg": "link deleted sucessfully", "response": "ok" });
+    } catch (error) {
+        console.log(error);
+        res.json({"msg": "error in deleting link " + error.message})
     }
 })
 
