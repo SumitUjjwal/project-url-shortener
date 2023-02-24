@@ -1,7 +1,7 @@
 const express = require('express');
 const { connection } = require("./config/db");
 const {shortRouter} = require("./routes/shortener.route")
-
+const {passport} = require("./config/google-oauth")
 require("dotenv").config();
 
 const PORT = process.env.PORT;
@@ -21,6 +21,18 @@ app.use(useragent.express());
 
 app.get('/', (req, res) => { console.log(req.device); res.json({ "msg": "Welcome to Lylliput! on your " + req.device.type.toUpperCase() }) });
 
+///////////////////////////////////////////////
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+  /////////////////////////////////////////////////
+
 const {userRouter}=require("./routes/user.route")
 app.use("/users",userRouter)
 
@@ -30,7 +42,9 @@ app.use("/short", shortRouter);
 const {gitAuth}=require("./middlewares/git.auth")
 app.use("/",gitAuth)
 
-const {authenticate}=require("./middlewares/authenticate.middle")
+const {authenticate}=require("./middlewares/authenticate.middle");
+// const passport = require('passport');
+// const { Passport } = require('passport');
 // app.use(authenticate)
 
 
