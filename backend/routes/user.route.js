@@ -16,41 +16,43 @@ userRouter.use(cookieParser())
 
 
 userRouter.post("/otp", mailfun, async (req, res) => {
-    const { name, email, pass, role } = req.body
-    const user = await UserModel.findOne({ email })
-    if (user) {
-        res.send("already exists")
-    } else {
-        res.send("otp generated")
-    }
+    // const { name, email, pass } = req.body
+    // const user = await UserModel.findOne({ email })
+    // if (user) {
+    //     res.json("already exists")
+    // } else {
+    //     res.json("otp generated")
+    // }
 })
 
 
 userRouter.post("/signup", async (req, res) => {
     try {
-        const cotp = req.cookies.otp;
+        // const cotp = req.cookies.otp;
+        // const ootp=res.locals.otp
         const { name, pass, email, otp } = req.body
-        console.log(otp, cotp)
+        // console.log(otp)
+        // console.log(req.cookies)
         const already = await UserModel.findOne({ email })
         console.log(already)
         if (already) {
-            res.send("user already exists")
+            res.json("user already exists")
         }
         else {
-            if (otp == cotp.otp) {
+            // if (true) {
                 bcrypt.hash(pass, 5, async (err, hashpass) => {
                     if (err) {
-                        res.send("error while hashing password")
+                        res.json("error while hashing password")
                     } else {
                         const user = await UserModel.insertMany({ name, pass: hashpass, email })
                         // user.save()
-                        res.send("registered successfully")
+                        res.json("registered successfully")
                         // console.log(user)
                     }
                 })
-            } else {
-                res.send("wrong otp")
-            }
+            // } else {
+            //     res.json("wrong otp")
+            // }
         }
     } catch (error) {
         console.log(error)
@@ -60,20 +62,20 @@ userRouter.post("/login", async (req, res) => {
     const { name, pass, email } = req.body
     const user = await UserModel.findOne({ email })
     if (!user) {
-        res.json("user does not exist")
+        res.json({ "msg": "user does not exist" })
     } else {
         bcrypt.compare(pass, user.pass, async (err, result) => {
             if (err) {
-                res.json("wrong credentials")
+                res.json({ "msg": "wrong credential" })
             } else {
                 if (result) {
                     var normaltoken = jwt.sign({ userId: user._id }, process.env.normalkey, { expiresIn: "1h" });
                     var refreshtoken = jwt.sign({ userId: user._id }, process.env.refreshkey, { expiresIn: "7d" });
                     res.cookie("normaltoken", normaltoken, { httpOnly: true, maxAge: 1000000 }).cookie("refreshtoken", refreshtoken, { httpOnly: true, maxAge: 100000 })
-                    res.json({ "msg": "logged in successfully", normaltoken })
+                    res.json({ "msg": "logged in successfully" })
 
                 } else {
-                    res.json("wrong credential")
+                    res.json({ "msg": "wrong credential" })
                 }
             }
         })
@@ -85,16 +87,16 @@ userRouter.post("/newtoken", (req, res) => {
         // console.log(newtoken)
 
         if (!newtoken) {
-            res.send("no token")
+            res.json("no token")
         } else {
             jwt.verify(newtoken, process.env.refreshkey, (err, decoded) => {
                 if (err) {
-                    res.send("invalid token")
+                    res.json("invalid token")
                 } else {
 
                     var normaltoken = jwt.sign({ userId: decoded.userId }, process.env.normalkey, { expiresIn: "1h" });
                     res.cookie("normaltoken", normaltoken, { httpOnly: true, maxAge: 1000000 }).cookie("refreshtoken", newtoken, { httpOnly: true, maxAge: 100000 })
-                    res.send("new token generated successfully")
+                    res.json("new token generated successfully")
                 }
             })
         }
@@ -114,7 +116,7 @@ userRouter.get('/logout', (req, res) => {
     fs.writeFileSync("./blacklist.json", JSON.stringify(data))
 
     res.clearCookie("normaltoken").clearCookie("refreshtoken")
-    res.send("logout successfully")
+    res.json("logout successfully")
 })
 
 
@@ -122,10 +124,10 @@ userRouter.post("/otppass", mailfun, async (req, res) => {
     const { name, email, pass, role } = req.body
     const user = await UserModel.findOne({ email })
     if (user) {
-        res.send("otp generated")
+        res.json("otp generated")
 
     } else {
-        res.send("already exists")
+        res.json("already exists")
     }
 })
 
