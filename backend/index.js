@@ -6,16 +6,16 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 const cors = require("cors");//
-const clientDevice = require("express-device");
-const useragent = require('express-useragent');
+// const clientDevice = require("express-device");
+// const useragent = require('express-useragent');
 
 const app = express();//
 app.use(cors());//
 const cookieParser=require('cookie-parser')
 app.use(cookieParser())
 app.use(express.json())
-app.use(clientDevice.capture());
-app.use(useragent.express());
+// app.use(clientDevice.capture());
+// app.use(useragent.express());
 
 
 
