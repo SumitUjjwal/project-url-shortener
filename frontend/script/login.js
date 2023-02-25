@@ -75,3 +75,36 @@ async function func(event) {
     alert("Something went wrong. Please try again later.");
   }
 }
+
+
+////////////////////////////////////////////////
+const forgot = document.querySelector("#forpass");
+forgot.addEventListener("click", funct);
+async function funct(event) {
+  try {
+    let email = document.querySelector("#login_email").value;
+    // let pass = document.querySelector("#login_password").value;
+    let userObj = {
+      email
+    };
+   
+    let register_request = await fetch(`${baseUrl}/users/otp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userObj)
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert("verify your otp")
+        localStorage.setItem("keys", JSON.stringify(userObj));
+        localStorage.setItem("back", JSON.stringify(data))
+        window.location.href = "../html/otpforgetpass.html"
+        // alert(data)      
+      })
+      .catch(err => console.log(err))
+  } catch (error) {
+    alert("Something went wrong. Please try again later.");
+  }
+}
