@@ -135,36 +135,41 @@ userRouter.post("/otppass", mailfun, async (req, res) => {
 
 
 
-userRouter.patch("/update/:Id", async (req, res) => {
+userRouter.patch("/update", async (req, res) => {
 
-    const cotp = req.cookies.otp
-    const { Id } = req.params
-    // const data = req.body
-    const newtoken = req.cookies.normaltoken
-    const note = await UserModel.findOne({ _id: Id })
-    const { name, pass, email, otp } = req.body
-    console.log(req.cookies)
-    console.log(otp, cotp)
+    // const cotp = req.cookies.otp
+    // const { Id } = req.params
+    const {email,pass} = req.body
+    // const newtoken = req.cookies.normaltoken
+    const data = await UserModel.findOne({ email:email })
+    // const { name, pass, email } = req.body
+    console.log(pass)
+    // console.log(otp, cotp)
     try {
-        if (cotp != otp) {
-            res.json("wrong otp")
-        } else if (cotp == otp) {
+        // if (cotp != otp) {
+        //     res.json("wrong otp")
+        // } 
+        // else if (cotp == otp) {
+            // /////////////////////////////////////////////////////////////////////////////////////////////////////
             bcrypt.hash(pass, 5, async (err, hashpass) => {
                 if (err) {
-                    res.json("error while hashing password")
+                    // res.json("error while hashing password")
+                    res.json(err)
+                    console.log(err)
                 } else {
-                    let noteData = await UserModel.findByIdAndUpdate({ _id: Id }, { name, pass: hashpass, email })
+                    let noteData = await UserModel.findByIdAndUpdate({ _id: data._id }, {  pass: hashpass })
                     console.log(noteData)
                     res.json("password updated")
                 }
             })
-        }
+            ////////////////////////////////////////////////////////////////////////////
+        // }
     } catch (error) {
         console.log(error)
         console.log("something went wrong")
     }
 })
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // userRouter.get('/logout', (req, res) => {
 
