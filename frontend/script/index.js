@@ -1,4 +1,4 @@
-let img_arr = ["./images/proj3img1.png","./images/proj3img2.png","./images/proj3img3.png","./images/proj3img4.png","./images/proj3img2.png"];
+let img_arr = ["./resources/images/proj3img1.png","./resources/images/proj3img2.png","./resources/images/proj3img3.png","./resources/images/proj3img4.png","./resources/images/proj3img2.png"];
 
  
 let i = 0;
@@ -43,11 +43,11 @@ function nav_img(){
 document.getElementById("signup_page").addEventListener("click",signup_page);
 
 function signup_page(){
-    window.location.replace("./signup.html");
+    window.location.replace("./html/signup.html");
 }
 
 document.getElementById("login_page").addEventListener("click",login_page);
 
 function login_page(){
-    window.location.replace("./login.html");
+    window.location.replace("./html/login.html");
 }

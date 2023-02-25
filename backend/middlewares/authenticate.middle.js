@@ -7,8 +7,8 @@ const fs = require('fs');
 // const { client } = require('../services/redis-client');
 const authenticate = async (req, res, next) => {
     try {
-        const token = req.cookies.normaltoken || req.headers.authorization
-        // console.log(token)
+        const token = res.locals.normaltoken || req.cookies.normaltoken || req.headers.authorization
+        console.log(token)
         const data = JSON.parse(fs.readFileSync("./blacklist.json", "utf-8"))
         // const data= await client.LRANGE("blacktok",0,-1)
         if (data.includes(token)) {

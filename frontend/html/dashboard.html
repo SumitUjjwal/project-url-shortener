@@ -8,14 +8,15 @@
     <title>Dashboard</title>
     <!-- stylesheet -->
     <link rel="stylesheet" href="../style/dashboard.css">
-
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;1,400&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <header>
         <div class="nav-bar" id="nav-bar">
-            <a href="./dashboard.html"><img src="../resources/nav-bar/lylliput-logo-rmbg.png" alt="" class="nav-logo" id="nav-logo"></a>
+            <a href="./dashboard.html"><img src="../resources/nav-bar/lylliput-logo-rmbg-2.png" alt="" class="nav-logo" id="nav-logo"></a>
             <div>
                 <!-- <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Shrink</a>
                 <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Stats</a> -->
@@ -37,11 +38,11 @@
             </div>
             <div class="overview-card" id="overview-card3">
                 <h2>Links added This Month</h2>
-                <p><strong>3</strong><span><img src="../resources/dashboard/overview/chain.png" alt=""></span></p>
+                <p><strong id="this-month">0</strong><span><img src="../resources/dashboard/overview/chain.png" alt=""></span></p>
             </div>
             <div class="overview-card" id="overview-card4">
-                <h2>Link Incremented in Feb 2023</h2>
-                <p><strong>3</strong><span><img src="../resources/dashboard/overview/bar-chart.png" alt=""></span></p>
+                <h2>Incremented in Feb 2023</h2>
+                <p><strong id="inc-this-month">0</strong><span><img src="../resources/dashboard/overview/bar-chart.png" alt=""></span></p>
             </div>
         </div>
         <div class="main-shortener-box" id="main-shortener-box">
@@ -50,7 +51,7 @@
                 <button type="submit" , class="full-url-btn" , id="full-url-btn">Shrink</button>
             </form>
             <div class="url-list-box" id="url-list-box">
-                <div class="url-list" id="url-list">
+                <!-- <div class="url-list" id="url-list">
                     <a target="_blank" class="fullUrl" id="fullUrl" href="https://blog.apify.com/how-to-make-a-scrolling-gif-of-a-web-page/">https://blog.apify.com/how-to-make-a-scrolling-gif-of-a-web-page/</a>
                     <hr>
                     <div class="shortUrl-box" id="shortUrl-box">
@@ -65,7 +66,7 @@
                             <p>15</p>Clicks
                         </button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="main-graph-chart" id="main-graph-chart">

@@ -31,6 +31,7 @@ let mailfun=(req,res,next)=>{
         //  html:"<h1>hii</h1>"
     }).then(()=>{
         console.log("mail sent successfully")
+        console.log(otp)
         res.cookie("otp",otp)
         res.json(otp)
         // res.locals["otp"] =otp

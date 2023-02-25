@@ -13,6 +13,9 @@ const shortUrlSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    date: [{
+        type: String
+    }],
     regions: [{
         type: String,
         default: "all"
@@ -23,8 +26,12 @@ const shortUrlSchema = mongoose.Schema({
     devices: [{
         type: String,
         default: "all"
-    }], 
+    }],
     platform: [{
+        type: String,
+        default: "all"
+    }],
+    browser: [{
         type: String,
         default: "all"
     }]

@@ -82,7 +82,7 @@ let fourth=document.querySelector("#fourth").value;
       // console.log(data)
       if(bag==otparr){
         alert("registered successfully")
-        window.location.href="../login.html"
+        window.location.href="../html/login.html"
         localStorage.clear()
       }
     //     else if(data==="registered successfully"){
@@ -91,10 +91,10 @@ let fourth=document.querySelector("#fourth").value;
     //   }
       else if(bag!=otparr){
         alert("wrong otp")
-window.location.href="./otp.html"
+window.location.href="../html/otp.html"
 
       }else{
-        window.location.href="../signup.html"
+        window.location.href="../html/signup.html"
       }
 
     //   else if(data==="registered successfully"){
