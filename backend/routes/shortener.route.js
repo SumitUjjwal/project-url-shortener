@@ -1,9 +1,9 @@
 const express = require('express');
-const { client } = require("../services/redis-client");
+// const { client } = require("../services/redis-client");
 const { ShortUrlModel } = require("../models/short.model");
 const { SuperfaceClient } = require('@superfaceai/one-sdk');
 const sdk = new SuperfaceClient();
-
+const p = require('ua-parser');
 require("dotenv").config();
 
 const shortRouter = express.Router();
@@ -30,11 +30,25 @@ shortRouter.post("/", async (req, res) => {
 
 shortRouter.get("/user/:userId", async (req, res) => {
     const userId = req.params.userId;
+    // const userId = res.locals.userId;
     try {
         const data = await ShortUrlModel.find({ userId });
 
+        const browsers = await ShortUrlModel.aggregate([
+            { $match: { userId: userId } },
+            {
+                $unwind: '$browser'
+            },
+            {
+                $group: {
+                    _id: '$browser',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
         const clicks = await ShortUrlModel.aggregate([
-            { $match : { userId : userId } },
+            { $match: { userId: userId } },
             {
                 $unwind: '$clicks'
             },
@@ -46,8 +60,21 @@ shortRouter.get("/user/:userId", async (req, res) => {
             }
         ]);
 
+        const date = await ShortUrlModel.aggregate([
+            { $match: { userId: userId } },
+            {
+                $unwind: '$date'
+            },
+            {
+                $group: {
+                    _id: '$date',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
         const fullLinks = await ShortUrlModel.aggregate([
-            { $match : { userId : userId } },
+            { $match: { userId: userId } },
             {
                 $unwind: '$full'
             },
@@ -60,7 +87,7 @@ shortRouter.get("/user/:userId", async (req, res) => {
         ]);
 
         const links = await ShortUrlModel.aggregate([
-            { $match : { userId : userId } },
+            { $match: { userId: userId } },
             {
                 $unwind: '$short'
             },
@@ -73,7 +100,7 @@ shortRouter.get("/user/:userId", async (req, res) => {
         ]);
 
         const devices = await ShortUrlModel.aggregate([
-            { $match : { userId : userId } },
+            { $match: { userId: userId } },
             {
                 $unwind: '$devices'
             },
@@ -86,7 +113,7 @@ shortRouter.get("/user/:userId", async (req, res) => {
         ]);
 
         const location = await ShortUrlModel.aggregate([
-            { $match : { userId : userId } },
+            { $match: { userId: userId } },
             {
                 $unwind: '$regions'
             },
@@ -99,7 +126,7 @@ shortRouter.get("/user/:userId", async (req, res) => {
         ]);
 
         const system = await ShortUrlModel.aggregate([
-            { $match : { userId : userId } },
+            { $match: { userId: userId } },
             {
                 $unwind: '$platform'
             },
@@ -110,7 +137,8 @@ shortRouter.get("/user/:userId", async (req, res) => {
                 }
             }
         ]);
-        res.json({data, links, fullLinks, clicks, devices, location, system});
+        console.log(date)
+        res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers });
         // res.json(data);
     } catch (error) {
         console.error(error);
@@ -119,16 +147,20 @@ shortRouter.get("/user/:userId", async (req, res) => {
 })
 
 shortRouter.get("/:short", async (req, res) => {
+    const userAgent = req.headers['user-agent'];
+    const browser = p.parseUA(userAgent).toString().split(" ")[0];
     const short = req.params.short;
     const clientDevice = req.device.type.toLowerCase();
-    const clientPlatform = req.useragent.platform
-    console.log(req.useragent.platform)
+    const clientPlatform = p.parseOS(userAgent).toString() || req.useragent.platform
+    const date = new Date();
+    const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' };
+    const dateString = date.toLocaleDateString('en-IN', options);
     try {
         const clientIp = req.ip;
         const urlData = await ShortUrlModel.findOne({ short });
         const count = urlData.clicks;
         const id = urlData._id;
-        console.log(urlData.devices);
+        // console.log(urlData.devices);
 
         const updateCount = await ShortUrlModel.findByIdAndUpdate(id, { clicks: count + 1 });
 
@@ -150,7 +182,7 @@ shortRouter.get("/:short", async (req, res) => {
             const data = result.unwrap();
             // data.addressRegion = "private";
             console.log(data.addressRegion, id);
-            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform } });
+            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform, date: dateString, browser: browser } });
             // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
             console.log("Updated")
             // res.send(data.addressRegion || null);
@@ -166,14 +198,14 @@ shortRouter.get("/:short", async (req, res) => {
     }
 })
 
-shortRouter.delete("/delete/:id", async(req,res) => {
+shortRouter.delete("/delete/:id", async (req, res) => {
     const _id = req.params.id;
     try {
-        const delete_link = await ShortUrlModel.findByIdAndDelete({_id});
+        const delete_link = await ShortUrlModel.findByIdAndDelete({ _id });
         res.json({ "msg": "link deleted sucessfully", "response": "ok" });
     } catch (error) {
         console.log(error);
-        res.json({"msg": "error in deleting link " + error.message})
+        res.json({ "msg": "error in deleting link " + error.message })
     }
 })
 
