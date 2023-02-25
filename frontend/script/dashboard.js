@@ -69,15 +69,21 @@ function displayStats(userInfo) {
 
     for (let i = 0; i < userInfo.location.length; i++) { locations.push(userInfo.location[i]._id); locations_wise_clicks.push(userInfo.location[i].count); }
 
-    for(let i = 0; i < userInfo.browsers.length; i++) {browsers.push(userInfo.browsers[i]._id); browsers_wise_clicks.push(userInfo.browsers[i].count);}
+    for (let i = 0; i < userInfo.browsers.length; i++) { browsers.push(userInfo.browsers[i]._id); browsers_wise_clicks.push(userInfo.browsers[i].count); }
 
     // overview elements
     all_links.innerText = userInfo.links.length;
+
     let clickCount = 0;
     for (let i = 0; i < userInfo.clicks.length; i++) {
         clickCount += userInfo.clicks[i]._id;
     }
     all_clicks.innerText = clickCount;
+
+    if (!clickCount) {
+        url_list.style.display = "block";
+        stats.style.display = "none";
+    }
 
     let thisMonth = date;
     const d = new Date();
@@ -86,15 +92,17 @@ function displayStats(userInfo) {
     thisMonth.forEach((date) => {
         let month = date.split("/");
         console.log(month[1], d)
-        if (month[1] == m+1){
+        if (month[1] == m + 1) {
             count++;
         }
-        else if(month[1]-1 == m){
+        else if (month[1] - 1 == m) {
             lastCount++;
         }
     })
     this_month.innerText = count;
-    inc_this_month.innerText = count-lastCount;
+    inc_this_month.innerText = count - lastCount;
+
+
 
 
     // console.log(userInfo.system[0]._id)
