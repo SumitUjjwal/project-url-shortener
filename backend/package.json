@@ -24,6 +24,7 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
     "redis": "^4.6.4",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "ua-parser": "^0.3.5"
   }
 }

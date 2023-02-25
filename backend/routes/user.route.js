@@ -71,8 +71,10 @@ userRouter.post("/login", async (req, res) => {
                 if (result) {
                     var normaltoken = jwt.sign({ userId: user._id }, process.env.normalkey, { expiresIn: "1h" });
                     var refreshtoken = jwt.sign({ userId: user._id }, process.env.refreshkey, { expiresIn: "7d" });
-                    res.cookie("normaltoken", normaltoken, { httpOnly: true, maxAge: 1000000 }).cookie("refreshtoken", refreshtoken, { httpOnly: true, maxAge: 100000 })
-                    res.json({ "msg": "logged in successfully" })
+                    // res.cookie("normaltoken", normaltoken, { httpOnly: true, maxAge: 1000000 }).cookie("refreshtoken", refreshtoken, { httpOnly: true, maxAge: 100000 })
+                    // res.locals.normaltoken = normaltoken;
+                    // console.log(user._id)
+                    res.json({ "msg": "logged in successfully", "id": user._id })
 
                 } else {
                     res.json({ "msg": "wrong credential" })
