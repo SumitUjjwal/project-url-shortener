@@ -15,8 +15,8 @@ let mailfun=(req,res,next)=>{
             rejectUnauthorized: false
         }
     });
-    let p=Math.floor(Math.random()*10000)
-    let otp
+    let p=Math.floor(Math.random() * 9000 + 1000);
+    let otp=8787
     if(p<10000 || p>999){
         otp=p
     }else{
