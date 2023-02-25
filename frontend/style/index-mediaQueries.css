@@ -1,0 +1,157 @@
+@media (max-width: 700px) {
+    #nav>div {
+        width: 96%;
+    }
+    
+    #nav>div>div {
+        width: 40%;
+        padding: 0px 10px;
+    }
+    
+    #nav>div>div>p {
+        font-size: 18px;
+    }
+    
+    #nav>div>img {
+        width: 120px;
+    }
+
+    #basic_intro {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    #write_div {
+        width: 100%;
+    }
+
+    #basic_intro>img {
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    #con {
+        width: 100%;
+        padding-top: 10px;
+        padding: 0px;
+    }
+
+    #platform_container {
+        width: 90%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, auto);
+    }
+
+    #shinput {
+        width: 100%;
+        background-color: #f778a1;
+        /* padding: 25px; */
+        /* border-radius: 10px; */
+        margin: auto;
+        margin-top: 100px;
+        text-align: center;
+    }
+
+    #input_link {
+        width: 100%;
+    }
+
+    #shortenlink>button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #net_container {
+        flex-direction: column;
+        /* display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, auto); */
+    }
+
+    #net_container>div{
+        width: 100%;
+    }
+
+    #net_img>img{
+        width: 100%;
+    }
+
+    #companies {
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+        column-gap: 2px;
+    }
+
+    #questions {
+        width: 90%;
+    }
+
+    #footer {
+        width: 100%;
+        background-color: #190061;
+    }
+
+    #footer>div {
+        padding: 10px;
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        /* grid-template-rows: repeat(3, auto) */
+    }
+}
+
+@media all and (min-width:700px) and (max-width: 1100px) {
+    #nav>div {
+        width: 96%;
+    }
+    
+    #nav>div>div {
+        width: 20%;
+        padding: 0px 10px;
+    }
+    
+    #nav>div>div>p {
+        font-size: 18px;
+    }
+    
+    #nav>div>img {
+        width: 120px;
+    }
+    #platform_container {
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+
+    #net_img>img {
+        width: 100%;
+    }
+
+    #companies {
+        width: 70%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        column-gap: 2px;
+    }
+
+    #questions {
+        width: 70%;
+    }
+
+    /* #nav {
+        width: 85%;
+    }
+
+    #nav>div>h1 {
+        font-size: 25px;
+    } */
+
+    #footer {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto)
+    }
+}
