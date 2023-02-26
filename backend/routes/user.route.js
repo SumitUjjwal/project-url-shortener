@@ -40,16 +40,16 @@ userRouter.post("/signup", async (req, res) => {
         }
         else {
             // if (true) {
-                bcrypt.hash(pass, 5, async (err, hashpass) => {
-                    if (err) {
-                        res.json("error while hashing password")
-                    } else {
-                        const user = await UserModel.insertMany({ name, pass: hashpass, email })
-                        // user.save()
-                        res.json("registered successfully")
-                        // console.log(user)
-                    }
-                })
+            bcrypt.hash(pass, 5, async (err, hashpass) => {
+                if (err) {
+                    res.json("error while hashing password")
+                } else {
+                    const user = await UserModel.insertMany({ name, pass: hashpass, email })
+                    // user.save()
+                    res.json("registered successfully")
+                    // console.log(user)
+                }
+            })
             // } else {
             //     res.json("wrong otp")
             // }
@@ -135,30 +135,33 @@ userRouter.post("/otppass", mailfun, async (req, res) => {
 
 
 
-userRouter.patch("/update/:Id", async (req, res) => {
+userRouter.patch("/update/", mailfun, async (req, res) => {
 
-    const cotp = req.cookies.otp
-    const { Id } = req.params
+    // const cotp = req.cookies.otp
+    // const Id = req.params.email
     // const data = req.body
-    const newtoken = req.cookies.normaltoken
-    const note = await UserModel.findOne({ _id: Id })
-    const { name, pass, email, otp } = req.body
-    console.log(req.cookies)
-    console.log(otp, cotp)
+    // const user
+    // const newtoken = req.cookies.normaltoken
+    const {pass, email } = req.body
+    const user = await UserModel.findOne({ email: email });
+
+    
+    // console.log(req.cookies)
+    // console.log(otp, cotp)
     try {
-        if (cotp != otp) {
-            res.json("wrong otp")
-        } else if (cotp == otp) {
-            bcrypt.hash(pass, 5, async (err, hashpass) => {
-                if (err) {
-                    res.json("error while hashing password")
-                } else {
-                    let noteData = await UserModel.findByIdAndUpdate({ _id: Id }, { name, pass: hashpass, email })
-                    console.log(noteData)
-                    res.json("password updated")
-                }
-            })
-        }
+        // if (cotp != otp) {
+        // res.json("wrong otp")
+        // } else if (cotp == otp) {
+        bcrypt.hash(pass, 5, async (err, hashpass) => {
+            if (err) {
+                res.json("error while hashing password")
+            } else {
+                let noteData = await UserModel.findByIdAndUpdate({ _id: user._id }, { pass: hashpass })
+                console.log(noteData)
+                res.json("password updated")
+            }
+        })
+        // }
     } catch (error) {
         console.log(error)
         console.log("something went wrong")
