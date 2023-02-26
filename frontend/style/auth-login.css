@@ -79,7 +79,8 @@ hr {
 }
 
 
-#login_form>input {
+#login_form>input,
+#update-password>input {
     width: 90%;
     height: 40px;
     border-radius: 5px;
@@ -87,7 +88,8 @@ hr {
     border: 1px solid grey;
 }
 
-#login_form>input:focus {
+#login_form>input:focus,
+#update-password>input:focus {
     outline: none;
 }
 
@@ -108,7 +110,9 @@ hr {
     text-decoration: underline #03a9f4;
 }
 
-#login_btn, #admin_login_btn {
+#login_btn,
+#admin_login_btn,
+#update-password>button {
     width: 93.2%;
     height: 50px;
     font-size: 20px;
@@ -124,25 +128,27 @@ hr {
     padding-left: 5px;
 }
 
-#login_btn:hover, #admin_login_btn:hover {
+#login_btn:hover,
+#admin_login_btn:hover,
+#update-password>button:hover {
     cursor: pointer;
     background-color: #ffffff;
     color: #00AEF0;
     border: 1px solid #00AEF0;
 }
 
-#options-div{
+#options-div {
     width: 93%;
     display: flex;
     justify-content: space-between;
 }
 
-#options-div>a{
+#options-div>a {
     text-decoration: none;
     color: #00AEF0;
 }
 
-#options-div>:nth-child(2){
+#options-div>:nth-child(2) {
     color: #5A7194;
     text-decoration: underline;
 }
@@ -176,6 +182,17 @@ hr {
     cursor: pointer;
     background-color: lightblue;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#update-password {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+    padding: 30px 65px;
+    border-radius: 12px;
+    row-gap: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width:700px) {
@@ -230,6 +247,7 @@ hr {
     #login_container>div {
         grid-template-columns: repeat(1, 1fr);
     }
+
     #nav {
         width: 85%;
     }

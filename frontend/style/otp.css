@@ -1,17 +1,18 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"); */
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-}
-body {
-  min-height: 100vh;
+} */
+#login_form {
+  /* min-height: 100vh; */
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #4070f4;
+  /* background: #00AEF0; */
 }
 :where(.container, form, .input-field, header) {
   display: flex;
@@ -29,7 +30,7 @@ body {
 .container header {
   height: 65px;
   width: 65px;
-  background: #4070f4;
+  background: #00AEF0;
   color: #fff;
   font-size: 2.5rem;
   border-radius: 50%;
@@ -69,13 +70,13 @@ form button {
   cursor: pointer;
   border-radius: 6px;
   pointer-events: none;
-  background: #6e93f7;
+  background: #00AEF0;
   transition: all 0.2s ease;
 }
 form button.active {
-  background: #4070f4;
+  background: #00AEF0;
   pointer-events: auto;
 }
 form button:hover {
-  background: #0e4bf1;
+  background: #00AEF0;
 }

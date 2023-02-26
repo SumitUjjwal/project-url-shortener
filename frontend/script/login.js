@@ -59,7 +59,7 @@ async function func(event) {
         } else {
           alert(data.msg)
           window.location.href = "../html/login.html"
-        }    
+        }
       })
       .catch(err => console.log(err))
   } catch (error) {
@@ -70,28 +70,173 @@ async function func(event) {
 
 const forgot = document.getElementById("forpass");
 forgot.addEventListener("click", async () => {
+  forgot.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
   try {
     let email = document.querySelector("#login_email").value;
-    let userObj = {
-      email
-    };
+    if (!email) {
+      alert("Please enter a valid email");
+      forgot.innerHTML = `Forgot Password?`;
+    }
+    else {
+      let userObj = {
+        email
+      };
 
-    let register_request = await fetch(`${baseUrl}/users/otp`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userObj)
-    })
-      .then(res => res.json())
-      .then(data => {
-        alert("verify your otp")
-        localStorage.setItem("keys", JSON.stringify(userObj));
-        localStorage.setItem("back", JSON.stringify(data))
-        window.location.href = "../html/otpforgetpass.html"
+      let register_request = await fetch(`${baseUrl}/users/otp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userObj)
       })
-      .catch(err => console.log(err))
+        .then(res => res.json())
+        .then(data => {
+          alert("verify your otp")
+          localStorage.setItem("keys", JSON.stringify(userObj));
+          localStorage.setItem("back", JSON.stringify(data));
+          const login_form = document.getElementById("login_form");
+          login_form.innerHTML = "";
+          login_form.innerHTML = `
+          <div class="container">
+          <header>
+            <i class="bx bxs-check-shield"></i>
+          </header>
+          <h4>Enter OTP Code</h4>
+          <form action="#">
+            <div class="input-field">
+              <input id="first" type="number" />
+              <input id="second" type="number" disabled />
+              <input id="third" type="number" disabled />
+              <input id="fourth" type="number" disabled />
+            </div>
+            <button id="otpbutton">Verify OTP</button>
+          </form>
+        </div>
+          `
+          // document.head.innerHTML += '<script src="../script/otp.js" defer></script>';
+          document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
+          let url = "http://localhost:2020"
+          const inputs = document.querySelectorAll("input"),
+            button = document.querySelector("button");
+
+
+          inputs.forEach((input, index1) => {
+            input.addEventListener("keyup", (e) => {
+              const currentInput = input,
+                nextInput = input.nextElementSibling,
+                prevInput = input.previousElementSibling;
+              if (currentInput.value.length > 1) {
+                currentInput.value = "";
+                return;
+              }
+              if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+                nextInput.removeAttribute("disabled");
+                nextInput.focus();
+              }
+
+              if (e.key === "Backspace") {
+
+                inputs.forEach((input, index2) => {
+                  if (index1 <= index2 && prevInput) {
+                    input.setAttribute("disabled", true);
+                    input.value = "";
+                    prevInput.focus();
+                  }
+                });
+              }
+              if (!inputs[3].disabled && inputs[3].value !== "") {
+                button.classList.add("active");
+                return;
+              }
+              button.classList.remove("active");
+            });
+          });
+          window.addEventListener("load", () => inputs[0].focus());
+
+          // //////////////
+          const otpbutton = document.querySelector("#otpbutton");
+          otpbutton.addEventListener("click", fun);
+          async function fun(event) {
+            console.log("pressed")
+            try {
+              event.preventDefault();
+              let first = document.querySelector("#first").value;
+              let second = document.querySelector("#second").value;
+              let third = document.querySelector("#third").value;
+              let fourth = document.querySelector("#fourth").value;
+              let bag = ""
+              bag += first + second + third + fourth
+              let jhola = (bag)
+
+              let otparr = localStorage.getItem("back")
+              console.log(otparr)
+              if (bag == otparr) {
+                // $('link[rel=stylesheet][href~="../style/otp.css"]').remove();
+                login_form.innerHTML = "";
+                login_form.innerHTML = ` 
+                <div id="update-password">
+                  <input id="upass"  type="password" placeholder="Enter New Password" />
+                  <input id="cpass"  type="text" placeholder="Confirm Password" />
+                  <button  id="update">Update</button>
+                  </div>
+                `
+                const forpass = document.querySelector("#update");
+                forpass.addEventListener("click", funs)
+              } else {
+                alert("wrong otp")
+
+              }
+
+
+            } catch (error) {
+              alert("Something went wrong. Please try again later.");
+              console.log(error);
+            }
+          }
+
+          async function funs(event) {
+            try {
+              event.preventDefault();
+              let arr = localStorage.getItem("keys")
+              let d = JSON.parse(arr)
+
+              let updatedpass = document.querySelector("#upass").value;
+              let confirmPass = document.querySelector("#cpass").value;
+              if(updatedpass != confirmPass) {
+                alert("Password mismatch. Please try again.");
+              }else{
+                let obj = {
+                  email: d.email,
+                  pass: updatedpass
+                };
+                console.log(obj)
+                let req = await fetch(`${url}/users/update`, {
+                  method: "PATCH",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(obj)
+                })
+                  .then(res => res.json())
+                  .then(data => {
+                    alert(data)
+                    window.location.href = "../html/login.html";
+                    localStorage.clear();
+                  })
+                  .catch(err => console.log(err))
+              }
+              
+            } catch (error) {
+              alert("Something went wrong. Please try again later.");
+              console.log(error);
+            }
+          }
+          // window.location.href = "../html/otpforgetpass.html"
+        })
+        .catch(err => console.log(err))
+    }
   } catch (error) {
     alert("Something went wrong. Please try again later.");
   }
+  forgot.innerHTML = `Forgot Password?`;
 });
