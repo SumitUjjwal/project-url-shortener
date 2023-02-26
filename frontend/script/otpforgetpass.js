@@ -109,6 +109,8 @@ console.log(obj)
     .then(data=>  {
       // console.log(data)
       alert(data)
+      window.location.href ="../html/login.html"
+      localStorage.clear()
      
     
 })
