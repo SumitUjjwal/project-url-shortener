@@ -7,7 +7,10 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const cors = require("cors");//
 const clientDevice = require("express-device");           //temporary commented by [Saurabh Singh]     & in shortened.js
-const useragent = require('express-useragent');             //temporary commented by [Saurabh Singh]
+const useragent = require('express-useragent');    
+
+
+//temporary commented by [Saurabh Singh]
 
 const app = express();//
 app.use(cors());//
