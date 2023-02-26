@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="../style/client-page.css">
+    <link rel="stylesheet" href="../style/dashboard-mediaqueries.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;1,400&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar" id="nav-bar">
+            <a href="../admin-dashboard.html"><img src="../resources/nav-bar/lylliput-logo-rmbg-3.png" alt="" class="nav-logo"
+                    id="nav-logo"></a>
+            <div>
+                <!-- <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Shrink</a>
+                <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Stats</a> -->
+                <p class="nav-element" id="nav-element-urls">Clients</p>
+                <p class="nav-element" id="nav-element-stats">Stats</p>
+                <p class="nav-element dropbtn" id="nav-element" onclick="dropdown_menu()">Admin</p>
+            </div>
+
+        </div>
+        <div class="dropdown">
+            <div class="dropdown-content" id="dropdown-content">
+                <a href="#" id="nav-edit-btn"><span class="material-symbols-outlined">
+                    edit
+                    </span>Add Account</a>
+                <hr>
+                <a href="#" id="nav-logout-btn"><span class="material-symbols-outlined">
+                    logout
+                    </span>Log out</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main-overview" id="main-overview">
+            <div class="overview-card" id="overview-card1">
+                <p>All Urls</p>
+                <p><strong id="all-links">0</strong><span><img src="../resources/dashboard/overview/link.png"
+                            alt=""></span></p>
+            </div>
+            <div class="overview-card" id="overview-card2">
+                <p>Total Clicks</p>
+                <p><strong id="all-clicks">0</strong><span><img src="../resources/dashboard/overview/tap.png"
+                            alt=""></span></p>
+            </div>
+            <div class="overview-card" id="overview-card3">
+                <p>Links added This Month</p>
+                <p><strong id="this-month">0</strong><span><img src="../resources/dashboard/overview/chain.png"
+                            alt=""></span></p>
+            </div>
+            <div class="overview-card" id="overview-card4">
+                <p>Incremented in Feb 2023</p>
+                <p><strong id="inc-this-month">0</strong><span><img src="../resources/dashboard/overview/bar-chart.png"
+                            alt=""></span></p>
+            </div>
+        </div>
+        <div class="main-shortener-box" id="main-shortener-box">
+            <!-- <form action="" class="shortener-input" id="shortener-input">
+                <input type="text" class="full-url" id="full-url" placeholder="Paste long url and shrink it" required>
+                <button type="submit" , class="full-url-btn" , id="full-url-btn">Shrink</button>
+            </form> -->
+            <div class="url-list-box" id="url-list-box">
+                <!-- <div class="url-list" id="url-list">
+                    <a target="_blank" class="fullUrl" id="fullUrl" href="https://blog.apify.com/how-to-make-a-scrolling-gif-of-a-web-page/">https://blog.apify.com/how-to-make-a-scrolling-gif-of-a-web-page/</a>
+                    <hr>
+                    <div class="shortUrl-box" id="shortUrl-box">
+                        <div>
+                            <a target="_blank" class="shortUrl" id="shortUrl" href="http://localhost:2020/short/ZEJXcbioL">http://localhost:2020/short/ZEJXcbioL</a>
+                            <div>
+                                <img id="shortUrl-clipboard" src="../resources/dashboard/url-list/copy.png" alt="copy"> 
+                                <img src="../resources/dashboard/url-list/delete.png" alt="">
+                            </div>
+                        </div>
+                        <button><span><img src="../resources/dashboard/overview/link.png" alt=""></span>
+                            <p>15</p>Clicks
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="main-graph-chart" id="main-graph-chart">
+            <div>
+                <div><span>Total Clicks</span><canvas id="total-click-chart" class="total-click-chart"></canvas></div>
+                <div><span>Geo Location clicks</span><canvas id="location-click-chart"
+                        class="location-click-chart"></canvas></div>
+            </div>
+            <div>
+                <div><span>Devices clicks</span><canvas id="devices-click-chart" class="devices-click-chart"></canvas>
+                </div>
+                <div><span>System (OS) clicks</span><canvas id="platform-click-chart"
+                        class="platform-click-chart"></canvas></div>
+                <div><span>Browsers clicks</span><canvas id="browser-click-chart" class="browser-click-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+<!-- chart.js cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="../script/client-page.js"></script>
+
+</html>
