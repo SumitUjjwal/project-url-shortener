@@ -170,6 +170,7 @@ shortRouter.get("/:short", async (req, res) => {
     const date = new Date();
     const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' };
     const dateString = date.toLocaleDateString('en-IN', options);
+    console.log(browser, dateString, clientDevice, clientPlatform);
     try {
         const clientIp = req.ip;
         const urlData = await ShortUrlModel.findOne({ short });
@@ -196,7 +197,7 @@ shortRouter.get("/:short", async (req, res) => {
         try {
             const data = result.unwrap();
             // data.addressRegion = "private";
-            console.log(data.addressRegion, id);
+            console.log(data.addressRegion, browser, dateString, clientDevice, clientPlatform);
             await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform, date: dateString, browser: browser } });
             // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
             console.log("Updated")
