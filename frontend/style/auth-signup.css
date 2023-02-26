@@ -32,11 +32,6 @@ body {
     border-radius: 0px 20px 20px 0px;
 }
 
-#signup_container>div>div:nth-child(1) {
-
-    /* border-radius: 20px 0px 0px 20px; */
-}
-
 label{
     color: #5A7194;
 }
