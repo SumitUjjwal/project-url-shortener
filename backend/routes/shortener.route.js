@@ -173,12 +173,13 @@ shortRouter.get("/:short", async (req, res) => {
     try {
         const clientIp = req.ip;
         console.log(clientIp);
+        console.log(req.headers['x-real-ip'] || req.connection.remoteAddress);
         const urlData = await ShortUrlModel.findOne({ short: `${short}` });
         const count = urlData.clicks;
         const id = urlData._id;
 
         const updateCount = await ShortUrlModel.findByIdAndUpdate(id, { clicks: count + 1 });
-
+        await ShortUrlModel.findByIdAndUpdate(id, { $push: {devices: clientDevice, platform: clientPlatform, date: dateString, browser: browser } });
         // location from IP
         const profile = await sdk.getProfile('address/ip-geolocation@1.0.1');
         const result = await profile
@@ -197,7 +198,7 @@ shortRouter.get("/:short", async (req, res) => {
             const data = result.unwrap();
             // data.addressRegion = "private";
             console.log(clientIp, data.addressRegion, browser, dateString, clientDevice, clientPlatform);
-            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform, date: dateString, browser: browser } });
+            await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion } });
             // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
             console.log("Updated")
             // res.send(data.addressRegion || null);
