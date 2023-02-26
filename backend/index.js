@@ -9,19 +9,16 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 const cors = require("cors");//
-const clientDevice = require("express-device");           //temporary commented by [Saurabh Singh]     & in shortened.js
+const clientDevice = require("express-device");
 const useragent = require('express-useragent');    
-
-
-//temporary commented by [Saurabh Singh]
 
 const app = express();//
 app.use(cors());//
 const cookieParser=require('cookie-parser')
 app.use(cookieParser())
 app.use(express.json())
-app.use(clientDevice.capture());                        //temporary commented by [Saurabh Singh]
-app.use(useragent.express());                              //temporary commented by [Saurabh Singh]
+app.use(clientDevice.capture());
+app.use(useragent.express());
 
 
 
@@ -31,7 +28,6 @@ const {userRouter}=require("./routes/user.route")
 app.use("/users",userRouter)
 
 app.use("/short", shortRouter);
-//////////////////////////////////////////////
 
 const {gitAuth}=require("./middlewares/git.auth")
 app.use("/",gitAuth)
