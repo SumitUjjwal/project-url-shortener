@@ -1,6 +1,7 @@
 const express = require('express');
 // const { client } = require("../services/redis-client");
 const { ShortUrlModel } = require("../models/short.model");
+const ip = require('ip');
 const { SuperfaceClient } = require('@superfaceai/one-sdk');
 const sdk = new SuperfaceClient();
 const p = require('ua-parser');
@@ -171,7 +172,8 @@ shortRouter.get("/:short", async (req, res) => {
     const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' };
     const dateString = date.toLocaleDateString('en-IN', options);
     try {
-        const clientIp = req.headers['x-real-ip'] || req.connection.remoteAddress;
+        // const clientIp = req.headers['x-real-ip'] || req.connection.remoteAddress;
+        const clientIp = ip.address();
         console.log(clientIp);
         // console.log(req.headers['x-real-ip'] || req.connection.remoteAddress);
         const urlData = await ShortUrlModel.findOne({ short: `${short}` });
