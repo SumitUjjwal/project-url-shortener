@@ -95,6 +95,7 @@ async function funs(event) {
       .then(data => {
         alert(data)
         window.location.href = "../html/login.html";
+        localStorage.clear();
       })
       .catch(err => console.log(err))
   } catch (error) {
