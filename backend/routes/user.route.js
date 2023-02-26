@@ -135,39 +135,42 @@ userRouter.post("/otppass", mailfun, async (req, res) => {
 
 
 
-userRouter.patch("/update/", mailfun, async (req, res) => {
+
+userRouter.patch("/update", async (req, res) => {
 
     // const cotp = req.cookies.otp
-    // const Id = req.params.email
-    // const data = req.body
-    // const user
+    // const { Id } = req.params
+    const {email,pass} = req.body
     // const newtoken = req.cookies.normaltoken
-    const {pass, email } = req.body
-    const user = await UserModel.findOne({ email: email });
-
-    
-    // console.log(req.cookies)
+    const data = await UserModel.findOne({ email:email })
+    // const { name, pass, email } = req.body
+    console.log(pass)
     // console.log(otp, cotp)
     try {
         // if (cotp != otp) {
-        // res.json("wrong otp")
-        // } else if (cotp == otp) {
-        bcrypt.hash(pass, 5, async (err, hashpass) => {
-            if (err) {
-                res.json("error while hashing password")
-            } else {
-                let noteData = await UserModel.findByIdAndUpdate({ _id: user._id }, { pass: hashpass })
-                console.log(noteData)
-                res.json("password updated")
-            }
-        })
+        //     res.json("wrong otp")
+        // } 
+        // else if (cotp == otp) {
+            // /////////////////////////////////////////////////////////////////////////////////////////////////////
+            bcrypt.hash(pass, 5, async (err, hashpass) => {
+                if (err) {
+                    // res.json("error while hashing password")
+                    res.json(err)
+                    console.log(err)
+                } else {
+                    let noteData = await UserModel.findByIdAndUpdate({ _id: data._id }, {  pass: hashpass })
+                    console.log(noteData)
+                    res.json("password updated")
+                }
+            })
+            ////////////////////////////////////////////////////////////////////////////
         // }
     } catch (error) {
         console.log(error)
         console.log("something went wrong")
     }
 })
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // userRouter.get('/logout', (req, res) => {
 

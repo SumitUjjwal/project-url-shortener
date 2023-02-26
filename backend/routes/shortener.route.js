@@ -3,7 +3,7 @@ const express = require('express');
 const { ShortUrlModel } = require("../models/short.model");
 const { SuperfaceClient } = require('@superfaceai/one-sdk');
 const sdk = new SuperfaceClient();
-const p = require('ua-parser');
+// const p = require('ua-parser');  // temporary commented by [Saurabh Singh] & in index.js
 require("dotenv").config();
 
 const shortRouter = express.Router();
