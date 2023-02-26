@@ -1,4 +1,3 @@
-
 // base url
 const baseUrl = "http://localhost:2020";
 const userId = localStorage.getItem("user");
@@ -8,6 +7,8 @@ const url_list_btn = document.getElementById("nav-element-urls");
 const stats_btn = document.getElementById("nav-element-stats");
 const url_list = document.getElementById("main-shortener-box");
 const stats = document.getElementById("main-graph-chart");
+const dropdown_content = document.getElementById("dropdown-content");
+const logout_btn = document.getElementById("nav-logout-btn");
 
 // overview elements
 const all_links = document.getElementById("all-links");
@@ -48,6 +49,16 @@ url_list_btn.addEventListener("click", () => {
 stats_btn.addEventListener("click", () => {
     url_list.style.display = "none";
     stats.style.display = "flex";
+})
+
+function dropdown_menu(){
+    dropdown_content.style.display = "block";
+}
+
+logout_btn.addEventListener("click", async() => {
+    // const response = await fetch(`${baseUrl}/users/logout`);
+    localStorage.clear();
+    window.location.href = "../index.html";
 })
 
 // display data
@@ -222,8 +233,8 @@ function displayStats(userInfo) {
                             <img id="shortUrl-delete" src="../resources/dashboard/url-list/delete.png" alt=${element._id}>
                         </div>
                     </div>
-                    <button><span><img src="../resources/dashboard/overview/link.png" alt=""></span>
-                        <p>${element.clicks}</p>Clicks
+                    <button id=${element._id}><span><img id=${element._id} src="../resources/dashboard/overview/link.png" alt=""></span>
+                        <p id=${element._id}>${element.clicks}</p>Clicks
                     </button>
                 </div>
             </div>
@@ -267,7 +278,7 @@ function displayStats(userInfo) {
                 box.appendChild(div);
 
                 box.style.position = "fixed";
-                box.style.left = (window.innerWidth / 2) - 100;
+                box.style.right = "0px"
                 box.style.top = "200px";
                 document.body.appendChild(box);
             }
@@ -307,6 +318,16 @@ function displayStats(userInfo) {
             // }
         })
     });
+    
+    // // get insights of a particular link
+    // const click_btn = document.querySelector("#url-list button");
+    // click_btn.addEventListener("click", async(e) => {
+    //     let shortId = e.target.id;
+    //     const response = await fetch(`${baseUrl}/short/user/link/${shortId}`);
+    //     const userInfo = await response.json();
+    //     console.log(userInfo);
+    //     // displayStats(userInfo);  
+    // })
 }
 
 // shrink url
@@ -353,7 +374,8 @@ function alertWindow(msg) {
     box.appendChild(div);
 
     box.style.position = "fixed";
-    box.style.left = (window.innerWidth / 2) - 100;
+    // box.style.right = (window.innerWidth / 2);
+    box.style.right = "0px"
     box.style.top = "200px";
     document.body.appendChild(box);
 }

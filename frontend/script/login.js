@@ -32,6 +32,7 @@ function login_page() {
 const login = document.querySelector("#login_btn");
 login.addEventListener("click", func);
 async function func(event) {
+  login.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
   try {
     // event.preventDefault();
     // let all_input_tags = document.querySelectorAll("#register input");
@@ -74,4 +75,5 @@ async function func(event) {
   } catch (error) {
     alert("Something went wrong. Please try again later.");
   }
+  login.innerHTML = `Login`;
 }

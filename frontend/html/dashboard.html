@@ -8,41 +8,64 @@
     <title>Dashboard</title>
     <!-- stylesheet -->
     <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/dashboard-mediaqueries.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;1,400&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
     <header>
         <div class="nav-bar" id="nav-bar">
-            <a href="./dashboard.html"><img src="../resources/nav-bar/lylliput-logo-rmbg-2.png" alt="" class="nav-logo" id="nav-logo"></a>
+            <a href="./dashboard.html"><img src="../resources/nav-bar/lylliput-logo-rmbg-2.png" alt="" class="nav-logo"
+                    id="nav-logo"></a>
             <div>
                 <!-- <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Shrink</a>
                 <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Stats</a> -->
                 <p class="nav-element" id="nav-element-urls">Shrink</p>
                 <p class="nav-element" id="nav-element-stats">Stats</p>
-                <p class="nav-element" id="nav-element">My Account </p>
+                <p class="nav-element dropbtn" id="nav-element" onclick="dropdown_menu()">My Account </p>
+            </div>
+
+        </div>
+        <div class="dropdown">
+            <div class="dropdown-content" id="dropdown-content">
+                <a href="#" id="nav-edit-btn"><span class="material-symbols-outlined">
+                    edit
+                    </span>Edit Account</a>
+                <hr>
+                <a href="#" id="nav-delete-btn"><span class="material-symbols-outlined">
+                    delete_forever
+                    </span>Delete Account</a>
+                <hr>
+                <a href="#" id="nav-logout-btn"><span class="material-symbols-outlined">
+                    logout
+                    </span>Log out</a>
             </div>
         </div>
     </header>
     <main>
         <div class="main-overview" id="main-overview">
             <div class="overview-card" id="overview-card1">
-                <h2>All Urls</h2>
-                <p><strong id="all-links">0</strong><span><img src="../resources/dashboard/overview/link.png" alt=""></span></p>
+                <p>All Urls</p>
+                <p><strong id="all-links">0</strong><span><img src="../resources/dashboard/overview/link.png"
+                            alt=""></span></p>
             </div>
             <div class="overview-card" id="overview-card2">
-                <h2>Total Clicks</h2>
-                <p><strong id="all-clicks">0</strong><span><img src="../resources/dashboard/overview/tap.png" alt=""></span></p>
+                <p>Total Clicks</p>
+                <p><strong id="all-clicks">0</strong><span><img src="../resources/dashboard/overview/tap.png"
+                            alt=""></span></p>
             </div>
             <div class="overview-card" id="overview-card3">
-                <h2>Links added This Month</h2>
-                <p><strong id="this-month">0</strong><span><img src="../resources/dashboard/overview/chain.png" alt=""></span></p>
+                <p>Links added This Month</p>
+                <p><strong id="this-month">0</strong><span><img src="../resources/dashboard/overview/chain.png"
+                            alt=""></span></p>
             </div>
             <div class="overview-card" id="overview-card4">
-                <h2>Incremented in Feb 2023</h2>
-                <p><strong id="inc-this-month">0</strong><span><img src="../resources/dashboard/overview/bar-chart.png" alt=""></span></p>
+                <p>Incremented in Feb 2023</p>
+                <p><strong id="inc-this-month">0</strong><span><img src="../resources/dashboard/overview/bar-chart.png"
+                            alt=""></span></p>
             </div>
         </div>
         <div class="main-shortener-box" id="main-shortener-box">

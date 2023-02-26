@@ -108,7 +108,7 @@ hr {
     text-decoration: underline #03a9f4;
 }
 
-#login_btn {
+#login_btn, #admin_login_btn {
     width: 93.2%;
     height: 50px;
     font-size: 20px;
@@ -124,11 +124,27 @@ hr {
     padding-left: 5px;
 }
 
-#login_btn:hover {
+#login_btn:hover, #admin_login_btn:hover {
     cursor: pointer;
     background-color: #ffffff;
     color: #00AEF0;
     border: 1px solid #00AEF0;
+}
+
+#options-div{
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#options-div>a{
+    text-decoration: none;
+    color: #00AEF0;
+}
+
+#options-div>:nth-child(2){
+    color: #5A7194;
+    text-decoration: underline;
 }
 
 #continue_div_login {
@@ -162,9 +178,14 @@ hr {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-@media all and (min-width:380px) and (max-width:700px) {
+@media (max-width:700px) {
     body {
         background-color: #06aedf;
+    }
+
+    #login_form {
+        width: 100%;
+        margin: auto 5px;
     }
 
     #login_img {
@@ -175,7 +196,7 @@ hr {
         border-radius: 20px 20px 20px 20px;
     }
 
-    #login_container {
+    #login_container>div {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -193,6 +214,22 @@ hr {
 }
 
 @media all and (min-width:700px) and (max-width: 1100px) {
+    #login_form {
+        width: 100%;
+        margin: auto 25px;
+    }
+
+    #login_img {
+        display: none;
+    }
+
+    #login_container>div:nth-child(2) {
+        border-radius: 20px 20px 20px 20px;
+    }
+
+    #login_container>div {
+        grid-template-columns: repeat(1, 1fr);
+    }
     #nav {
         width: 85%;
     }
