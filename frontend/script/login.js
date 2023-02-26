@@ -1,4 +1,4 @@
-let baseUrl = "http://localhost:2020";
+let baseUrl = "https://lillyput.onrender.com";
 
 function myFunctionlogin() {
   var x = document.getElementById("login_password");
@@ -137,7 +137,7 @@ forgot.addEventListener("click", async () => {
           `
           // document.head.innerHTML += '<script src="../script/otp.js" defer></script>';
           document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
-          let url = "http://localhost:2020"
+          let url = "https://lillyput.onrender.com"
           const inputs = document.querySelectorAll("input"),
             button = document.querySelector("button");
 

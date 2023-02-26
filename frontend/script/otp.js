@@ -1,4 +1,4 @@
-let url="http://localhost:2020"
+let url="https://lillyput.onrender.com"
 const inputs = document.querySelectorAll("input"),
 button = document.querySelector("button");
 

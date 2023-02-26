@@ -1,5 +1,5 @@
 // base url
-const baseUrl = "http://localhost:2020";
+const baseUrl = "https://lillyput.onrender.com";
 const userId = localStorage.getItem("user");
 
 // navigation elements
