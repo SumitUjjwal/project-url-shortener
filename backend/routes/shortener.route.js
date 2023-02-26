@@ -197,7 +197,7 @@ shortRouter.get("/:short", async (req, res) => {
         try {
             const data = result.unwrap();
             // data.addressRegion = "private";
-            console.log(data.addressRegion, browser, dateString, clientDevice, clientPlatform);
+            console.log(clientIp ,data.addressRegion, browser, dateString, clientDevice, clientPlatform);
             await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform, date: dateString, browser: browser } });
             // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
             console.log("Updated")
