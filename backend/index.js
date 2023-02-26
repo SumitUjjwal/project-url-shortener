@@ -22,7 +22,7 @@ app.use(useragent.express());
 
 
 
-app.get('/', (req, res) => { console.log(req.device); res.json({ "msg": "Welcome to Lylliput! on your " + req.device.type.toUpperCase() }) });
+app.get('/', (req, res) => { console.log(req.ip); res.json({ "msg": "Welcome to Lylliput! on your " + req.device.type.toUpperCase() }) });
 
 const {userRouter}=require("./routes/user.route")
 app.use("/users",userRouter)
