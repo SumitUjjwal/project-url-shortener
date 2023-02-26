@@ -172,7 +172,6 @@ shortRouter.get("/:short", async (req, res) => {
     const dateString = date.toLocaleDateString('en-IN', options);
     try {
         const clientIp = req.ip;
-        console.log(clientIp)
         const urlData = await ShortUrlModel.findOne({ short });
         const count = urlData.clicks;
         const id = urlData._id;
