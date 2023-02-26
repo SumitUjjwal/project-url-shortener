@@ -173,7 +173,11 @@ shortRouter.get("/:short", async (req, res) => {
     const dateString = date.toLocaleDateString('en-IN', options);
     try {
         // const clientIp = req.headers['x-real-ip'] || req.connection.remoteAddress;
-        const clientIp = ip.address();
+        // const clientIp = ip.address();
+        const clientIp = req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        (req.connection.socket ? req.connection.socket.remoteAddress : null);
         console.log(clientIp);
         // console.log(req.headers['x-real-ip'] || req.connection.remoteAddress);
         const urlData = await ShortUrlModel.findOne({ short: `${short}` });
