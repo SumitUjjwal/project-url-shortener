@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;1,400&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -33,15 +34,18 @@
                 <h1>Login</h1>
                 <hr>
                 <label for="">Email</label><br>
-                <input id="login_email" type="text" placeholder="Enter Your Email"><br><br>
+                <input id="login_email" type="text" placeholder="Enter Your Email" required><br><br>
                 <label for="">Password</label><br>
-                <input id="login_password" type="password" placeholder="Enter Your Password"><br>
+                <input id="login_password" type="password" placeholder="Enter Your Password" required><br>
                 <div id="lfp">
                     <p><input type="checkbox" onclick="myFunctionlogin()">Show Password</p>
                     <p id="forpass">Forget Password?</p>
                 </div>
                 <button id="login_btn">login</button>
-                <a href="./signup.html">Create An Account</a>
+                <div id="options-div">
+                    <a href="./signup.html">Create An Account</a>
+                    <a href="./admin-login.html">Admin</a>
+                </div>
                 <div id="continue_div_login">
                     <p>or</p>
                     <h3>Continue With</h3>

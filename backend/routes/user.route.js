@@ -40,16 +40,16 @@ userRouter.post("/signup", async (req, res) => {
         }
         else {
             // if (true) {
-                bcrypt.hash(pass, 5, async (err, hashpass) => {
-                    if (err) {
-                        res.json("error while hashing password")
-                    } else {
-                        const user = await UserModel.insertMany({ name, pass: hashpass, email })
-                        // user.save()
-                        res.json("registered successfully")
-                        // console.log(user)
-                    }
-                })
+            bcrypt.hash(pass, 5, async (err, hashpass) => {
+                if (err) {
+                    res.json("error while hashing password")
+                } else {
+                    const user = await UserModel.insertMany({ name, pass: hashpass, email })
+                    // user.save()
+                    res.json("registered successfully")
+                    // console.log(user)
+                }
+            })
             // } else {
             //     res.json("wrong otp")
             // }
@@ -132,6 +132,7 @@ userRouter.post("/otppass", mailfun, async (req, res) => {
         res.json("already exists")
     }
 })
+
 
 
 

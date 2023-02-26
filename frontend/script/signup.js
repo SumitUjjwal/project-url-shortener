@@ -30,6 +30,7 @@ function login_page(){
 const Register_btn = document.querySelector("#signup_btn");
 Register_btn.addEventListener("click", RegisterFunction);
 async function RegisterFunction(event) {
+  Register_btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
   try {
     // event.preventDefault();
     // let all_input_tags = document.querySelectorAll("#register input");
@@ -63,4 +64,5 @@ async function RegisterFunction(event) {
   } catch (error) {
     alert("Something went wrong. Please try again later.");
   }
+  Register_btn.innerHTML = "Sign Up";
 }

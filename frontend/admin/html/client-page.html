@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <!-- stylesheet -->
-    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/client-page.css">
     <link rel="stylesheet" href="../style/dashboard-mediaqueries.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;1,400&display=swap"
@@ -18,14 +18,14 @@
 <body>
     <header>
         <div class="nav-bar" id="nav-bar">
-            <a href="./dashboard.html"><img src="../resources/nav-bar/lylliput-logo-rmbg-2.png" alt="" class="nav-logo"
+            <a href="../admin-dashboard.html"><img src="../resources/nav-bar/lylliput-logo-rmbg-3.png" alt="" class="nav-logo"
                     id="nav-logo"></a>
             <div>
                 <!-- <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Shrink</a>
                 <a target="_blank" href="#main-shortener-box" class="nav-element" id="nav-element">Stats</a> -->
-                <p class="nav-element" id="nav-element-urls">Shrink</p>
+                <p class="nav-element" id="nav-element-urls">Clients</p>
                 <p class="nav-element" id="nav-element-stats">Stats</p>
-                <p class="nav-element dropbtn" id="nav-element" onclick="dropdown_menu()">My Account </p>
+                <p class="nav-element dropbtn" id="nav-element" onclick="dropdown_menu()">Admin</p>
             </div>
 
         </div>
@@ -33,11 +33,7 @@
             <div class="dropdown-content" id="dropdown-content">
                 <a href="#" id="nav-edit-btn"><span class="material-symbols-outlined">
                     edit
-                    </span>Edit Account</a>
-                <hr>
-                <a href="#" id="nav-delete-btn"><span class="material-symbols-outlined">
-                    delete_forever
-                    </span>Delete Account</a>
+                    </span>Add Account</a>
                 <hr>
                 <a href="#" id="nav-logout-btn"><span class="material-symbols-outlined">
                     logout
@@ -69,10 +65,10 @@
             </div>
         </div>
         <div class="main-shortener-box" id="main-shortener-box">
-            <form action="" class="shortener-input" id="shortener-input">
+            <!-- <form action="" class="shortener-input" id="shortener-input">
                 <input type="text" class="full-url" id="full-url" placeholder="Paste long url and shrink it" required>
                 <button type="submit" , class="full-url-btn" , id="full-url-btn">Shrink</button>
-            </form>
+            </form> -->
             <div class="url-list-box" id="url-list-box">
                 <!-- <div class="url-list" id="url-list">
                     <a target="_blank" class="fullUrl" id="fullUrl" href="https://blog.apify.com/how-to-make-a-scrolling-gif-of-a-web-page/">https://blog.apify.com/how-to-make-a-scrolling-gif-of-a-web-page/</a>
@@ -112,6 +108,6 @@
 </body>
 <!-- chart.js cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="../script/dashboard.js"></script>
+<script src="../script/client-page.js"></script>
 
 </html>

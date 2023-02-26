@@ -44,23 +44,18 @@
     }
 
     #shinput {
-        width: 100%;
-        background-color: #f778a1;
-        /* padding: 25px; */
-        /* border-radius: 10px; */
-        margin: auto;
-        margin-top: 100px;
-        text-align: center;
+        /* width: 100%; */
+        margin: 100px auto;
     }
 
     #input_link {
-        width: 100%;
+        /* width: 100%; */
     }
 
-    #shortenlink>button {
+    /* #shortenlink>button {
         width: 100%;
         margin-top: 10px;
-    }
+    } */
 
     #net_container {
         flex-direction: column;
@@ -91,7 +86,7 @@
 
     #footer {
         width: 100%;
-        background-color: #190061;
+        /* background-color: #190061; */
     }
 
     #footer>div {

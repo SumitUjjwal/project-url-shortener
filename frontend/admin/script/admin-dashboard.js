@@ -19,6 +19,8 @@ const inc_this_month = document.getElementById("inc-this-month");
 // shrink form
 const shrink_form = document.getElementById("shortener-input");
 const shrink_full_url = document.getElementById("full-url");
+const search_category = document.getElementById("search-options");
+const full_url_btn = document.getElementById("full-url-btn");
 
 // stats elements
 const total_click = document.getElementById("total-click-chart");
@@ -32,13 +34,12 @@ const url_list_box = document.getElementById("url-list-box");
 
 // making a get request to server for getting user information
 async function getUserInfo() {
-    const response = await fetch(`${baseUrl}/short/user/${userId}`);
+    const response = await fetch(`${baseUrl}/admin/getUsersInfo/`);
     const userInfo = await response.json();
     console.log(userInfo);
     displayStats(userInfo);
 }
 getUserInfo();
-
 
 // navigaiton events
 url_list_btn.addEventListener("click", () => {
@@ -51,11 +52,11 @@ stats_btn.addEventListener("click", () => {
     stats.style.display = "flex";
 })
 
-function dropdown_menu(){
+function dropdown_menu() {
     dropdown_content.style.display = "block";
 }
 
-logout_btn.addEventListener("click", async() => {
+logout_btn.addEventListener("click", async () => {
     // const response = await fetch(`${baseUrl}/users/logout`);
     localStorage.clear();
     window.location.href = "../index.html";
@@ -110,7 +111,7 @@ function displayStats(userInfo) {
             lastCount++;
         }
     })
-    this_month.innerText = count;
+    this_month.innerText = userInfo.data.length;
     inc_this_month.innerText = count - lastCount;
 
 
@@ -220,134 +221,70 @@ function displayStats(userInfo) {
     });
 
     // links
+    // url_list_box.innerHTML = userInfo.data.map(element => {
+    //     return `
+    //         <div class="url-list" id="url-list">
+    //             <a target="_blank" class="fullUrl" id="fullUrl" href=${element.full}>${element.full}</a>
+    //             <hr>
+    //             <div class="shortUrl-box" id="shortUrl-box">
+    //                 <div>
+    //                     <a target="_blank" class="shortUrl" id="shortUrl" href=${baseUrl}/short/${element.short}>${baseUrl}/short/${element.short}</a>
+    //                     <div>
+    //                         <img id="shortUrl-clipboard" src="../resources/dashboard/url-list/copy.png" alt=${baseUrl}/short/${element.short}>
+    //                         <img id="shortUrl-delete" src="../resources/dashboard/url-list/delete.png" alt=${element._id}>
+    //                     </div>
+    //                 </div>
+    //                 <button id=${element._id}><span><img id=${element._id} src="../resources/dashboard/overview/link.png" alt=""></span>
+    //                     <p id=${element._id}>${element.clicks}</p>Clicks
+    //                 </button>
+    //             </div>
+    //         </div>
+    //     `
+    // }).join("")
+
     url_list_box.innerHTML = userInfo.data.map(element => {
         return `
             <div class="url-list" id="url-list">
-                <a target="_blank" class="fullUrl" id="fullUrl" href=${element.full}>${element.full}</a>
-                <hr>
-                <div class="shortUrl-box" id="shortUrl-box">
-                    <div>
-                        <a target="_blank" class="shortUrl" id="shortUrl" href=${baseUrl}/short/${element.short}>${baseUrl}/short/${element.short}</a>
-                        <div>
-                            <img id="shortUrl-clipboard" src="../resources/dashboard/url-list/copy.png" alt=${baseUrl}/short/${element.short}>
-                            <img id="shortUrl-delete" src="../resources/dashboard/url-list/delete.png" alt=${element._id}>
-                        </div>
-                    </div>
-                    <button id=${element._id}><span><img id=${element._id} src="../resources/dashboard/overview/link.png" alt=""></span>
-                        <p id=${element._id}>${element.clicks}</p>Clicks
-                    </button>
-                </div>
+                <p id="client-id" ><strong>Client ID: </strong>${element._id}</p>
+                <p><strong>Name: </strong>${element.name}</p>
+                <p><strong>Email ID: </strong>${element.email}</p>
+                <button id=${element._id} >Client Info</button>
             </div>
         `
     }).join("")
 
-    // copy url to clipboard
-    let copy_url_btn_arr = document.querySelectorAll('#shortUrl-clipboard')
-    copy_url_btn_arr.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            navigator.clipboard.writeText(e.target.alt);
-            alertWindow("Link copied to clipboard")
+    const client_btn_arr = document.querySelectorAll("#url-list button");
+    client_btn_arr.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const clientID = e.target.id;
+            localStorage.setItem("clientID", clientID);
+            window.location.href = "./html/client-page.html";
         })
     });
-
-    // delete the link
-    let delete_url_btn_arr = document.querySelectorAll('#shortUrl-delete')
-    delete_url_btn_arr.forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-            console.log(e.target.alt);
-            const id = e.target.alt;
-            function confirmWindow() {
-                var box = document.createElement("div");
-                box.className = "prompt-box";
-                var div = document.createElement("div");
-                var ok = document.createElement("button");
-                var cancel = document.createElement("button");
-                ok.innerHTML = "OK";
-                cancel.innerHTML = "Cancel";
-                ok.onclick = function () {
-                    sureDelete();
-                    document.body.removeChild(box);
-                };
-                cancel.onclick = function () { document.body.removeChild(box) }
-                var text = document.createTextNode("Are you sure you want to delete this link?");
-                // var input = document.createElement("textarea");
-                box.appendChild(text);
-                // box.appendChild(input);
-                div.appendChild(ok);
-                div.appendChild(cancel);
-                box.appendChild(div);
-
-                box.style.position = "fixed";
-                box.style.right = "0px"
-                box.style.top = "200px";
-                document.body.appendChild(box);
-            }
-            // let confirmation = confirm("Are you sure you want to delete this link?");
-            let confirmation = confirmWindow();
-            async function sureDelete() {
-                console.log(confirmation);
-                console.log("sure to delete");
-                const request = await fetch(`${baseUrl}/short/delete/${id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "userId": userId
-                    }
-                })
-                const response = await request.json();
-                console.log(response);
-                alertWindow("Link deleted successfully!!");
-                // alert("Link deleted successfully");
-                // window.location.reload();
-            }
-            // if (confirmation) {
-            //     console.log("sure to delete");
-            //     const request = await fetch(`${baseUrl}/short/delete/${id}`, {
-            //         method: "DELETE",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //             "userId": userId
-            //         }
-            //     })
-            //     const response = await request.json();
-            //     console.log(response);
-            //     alert("Link deleted successfully");
-            //     window.location.reload();
-            // } else {
-            //     console.log("Not sure");
-            // }
-        })
-    });
-    
-    // // get insights of a particular link
-    // const click_btn = document.querySelector("#url-list button");
-    // click_btn.addEventListener("click", async(e) => {
-    //     let shortId = e.target.id;
-    //     const response = await fetch(`${baseUrl}/short/user/link/${shortId}`);
-    //     const userInfo = await response.json();
-    //     console.log(userInfo);
-    //     // displayStats(userInfo);  
-    // })
 }
 
 // shrink url
 shrink_form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const full = shrink_full_url.value;
-    console.log(full);
+    full_url_btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
+    const category = search_category.value || "name";
+    const searchValue = shrink_full_url.value;
+    // console.log(full);
 
-    const request = await fetch(`${baseUrl}/short`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "userId": userId
-        },
-        body: JSON.stringify({ full })
-    })
+    const request = await fetch(`${baseUrl}/admin?category=${category}&term=${searchValue}`)
     const response = await request.json();
-    console.log(response);
-    // window.location.reload();
-    alertWindow("URL shrinked Successfully!!")
+    url_list_box.innerHTML = null;
+    url_list_box.innerHTML = response.map(element => {
+        return `
+            <div class="url-list" id="url-list">
+                <p id="client-id" ><strong>Client ID: </strong>${element._id}</p>
+                <p><strong>Name: </strong>${element.name}</p>
+                <p><strong>Email ID: </strong>${element.email}</p>
+                <button id=${element._id} >Client Info</button>
+            </div>
+        `
+    }).join("")
+    full_url_btn.innerHTML = `Search`;
 })
 
 // alert box
