@@ -195,6 +195,10 @@ hr {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
+label{
+    color: #5A7194;
+}
+
 @media (max-width:700px) {
     body {
         background-color: #06aedf;

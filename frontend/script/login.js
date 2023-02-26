@@ -36,32 +36,50 @@ async function func(event) {
   try {
     let email = document.querySelector("#login_email").value;
     let pass = document.querySelector("#login_password").value;
-    let userObj = {
-      email,
-      pass
-    };
-
-    let register_request = await fetch(`${baseUrl}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userObj)
-    })
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data)
-
-        if (data.msg == "logged in successfully") {
-          alert(data.msg)
-          localStorage.setItem("user", data.id);
-          window.location.href = "../html/dashboard.html"
-        } else {
-          alert(data.msg)
-          window.location.href = "../html/login.html"
-        }
+    let labels = document.querySelectorAll("#login_form label");
+    labels.forEach(label => {
+      label.style.color = "grey";
+    });
+    if (!email && !pass) {
+      // alert("Please fill all fields")
+      labels.forEach(label => {
+        label.style.color = "red";
+      });
+    }
+    else if (!email) {
+      labels[0].style.color = "red";
+    }
+    else if (!pass) {
+      labels[1].style.color = "red";
+    }
+    else{
+      let userObj = {
+        email,
+        pass
+      };
+  
+      let register_request = await fetch(`${baseUrl}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userObj)
       })
-      .catch(err => console.log(err))
+        .then(res => res.json())
+        .then(data => {
+          // console.log(data)
+  
+          if (data.msg == "logged in successfully") {
+            alert(data.msg)
+            localStorage.setItem("user", data.id);
+            window.location.href = "../html/dashboard.html"
+          } else {
+            alert(data.msg)
+            window.location.href = "../html/login.html"
+          }
+        })
+        .catch(err => console.log(err))
+    }
   } catch (error) {
     alert("Something went wrong. Please try again later.");
   }
@@ -73,11 +91,15 @@ forgot.addEventListener("click", async () => {
   forgot.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
   try {
     let email = document.querySelector("#login_email").value;
+    let labels = document.querySelectorAll("#login_form label");
     if (!email) {
-      alert("Please enter a valid email");
+      labels[0].innerText = "Please enter an registered email*";
+      labels[0].style.color = "red";
       forgot.innerHTML = `Forgot Password?`;
     }
     else {
+      labels[0].innerText = "Email*";
+      labels[0].style.color = "#5A7194";
       let userObj = {
         email
       };

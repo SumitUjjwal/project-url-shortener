@@ -80,6 +80,9 @@ hr {
     /* margin-bottom: 80px; */
 }
 
+label{
+    color: #5A7194;
+}
 
 #login_form>input {
     width: 90%;

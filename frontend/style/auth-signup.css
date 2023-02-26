@@ -37,7 +37,9 @@ body {
     /* border-radius: 20px 0px 0px 20px; */
 }
 
-
+label{
+    color: #5A7194;
+}
 
 #signup_img {
     display: flex;
