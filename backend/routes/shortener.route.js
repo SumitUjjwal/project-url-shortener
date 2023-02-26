@@ -170,13 +170,12 @@ shortRouter.get("/:short", async (req, res) => {
     const date = new Date();
     const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' };
     const dateString = date.toLocaleDateString('en-IN', options);
-    console.log(browser, dateString, clientDevice, clientPlatform);
     try {
         const clientIp = req.ip;
-        const urlData = await ShortUrlModel.findOne({ short });
+        console.log(clientIp);
+        const urlData = await ShortUrlModel.findOne({ short: `${short}` });
         const count = urlData.clicks;
         const id = urlData._id;
-        // console.log(urlData.devices);
 
         const updateCount = await ShortUrlModel.findByIdAndUpdate(id, { clicks: count + 1 });
 
@@ -185,7 +184,7 @@ shortRouter.get("/:short", async (req, res) => {
         const result = await profile
             .getUseCase('IpGeolocation')
             .perform({
-                ipAddress: `${clientIp}` 
+                ipAddress: `${clientIp}`
             }, {
                 provider: 'ipdata',
                 security: {
@@ -197,20 +196,20 @@ shortRouter.get("/:short", async (req, res) => {
         try {
             const data = result.unwrap();
             // data.addressRegion = "private";
-            console.log(clientIp ,data.addressRegion, browser, dateString, clientDevice, clientPlatform);
+            console.log(clientIp, data.addressRegion, browser, dateString, clientDevice, clientPlatform);
             await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion, devices: clientDevice, platform: clientPlatform, date: dateString, browser: browser } });
             // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
             console.log("Updated")
             // res.send(data.addressRegion || null);
         } catch (error) {
-            // console.error(error);
+            console.log(error);
         }
         res.redirect(urlData.full);
         // const data = await ShortUrlModel.findOne({ id });
         // res.json({ "msg": `getting full url: ${data}`, "response": "ok" });
     } catch (error) {
         console.error(error);
-        res.json({ "msg": "error getting full url" });
+        res.json({ "msg": "error getting full url", error: error.message });
     }
 })
 
