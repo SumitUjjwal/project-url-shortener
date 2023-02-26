@@ -1,0 +1,244 @@
+body {
+    background-color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='600' y1='25' x2='600' y2='777'%3E%3Cstop offset='0' stop-color='%23FFFFFF'/%3E%3Cstop offset='1' stop-color='%235A7194'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='650' y1='25' x2='650' y2='777'%3E%3Cstop offset='0' stop-color='%23f0f2f6'/%3E%3Cstop offset='1' stop-color='%23657da1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='700' y1='25' x2='700' y2='777'%3E%3Cstop offset='0' stop-color='%23e0e5ec'/%3E%3Cstop offset='1' stop-color='%23758aab'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' gradientUnits='userSpaceOnUse' x1='750' y1='25' x2='750' y2='777'%3E%3Cstop offset='0' stop-color='%23d1d8e3'/%3E%3Cstop offset='1' stop-color='%238497b4'/%3E%3C/linearGradient%3E%3ClinearGradient id='e' gradientUnits='userSpaceOnUse' x1='800' y1='25' x2='800' y2='777'%3E%3Cstop offset='0' stop-color='%23c1cbda'/%3E%3Cstop offset='1' stop-color='%2393a4be'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='850' y1='25' x2='850' y2='777'%3E%3Cstop offset='0' stop-color='%23b2bed0'/%3E%3Cstop offset='1' stop-color='%23a3b1c7'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='900' y1='25' x2='900' y2='777'%3E%3Cstop offset='0' stop-color='%23a3b1c7'/%3E%3Cstop offset='1' stop-color='%23b2bed0'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' gradientUnits='userSpaceOnUse' x1='950' y1='25' x2='950' y2='777'%3E%3Cstop offset='0' stop-color='%2393a4be'/%3E%3Cstop offset='1' stop-color='%23c1cbda'/%3E%3C/linearGradient%3E%3ClinearGradient id='i' gradientUnits='userSpaceOnUse' x1='1000' y1='25' x2='1000' y2='777'%3E%3Cstop offset='0' stop-color='%238497b4'/%3E%3Cstop offset='1' stop-color='%23d1d8e3'/%3E%3C/linearGradient%3E%3ClinearGradient id='j' gradientUnits='userSpaceOnUse' x1='1050' y1='25' x2='1050' y2='777'%3E%3Cstop offset='0' stop-color='%23758aab'/%3E%3Cstop offset='1' stop-color='%23e0e5ec'/%3E%3C/linearGradient%3E%3ClinearGradient id='k' gradientUnits='userSpaceOnUse' x1='1100' y1='25' x2='1100' y2='777'%3E%3Cstop offset='0' stop-color='%23657da1'/%3E%3Cstop offset='1' stop-color='%23f0f2f6'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' gradientUnits='userSpaceOnUse' x1='1150' y1='25' x2='1150' y2='777'%3E%3Cstop offset='0' stop-color='%235A7194'/%3E%3Cstop offset='1' stop-color='%23FFFFFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg %3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' x='100' width='1100' height='800'/%3E%3Crect fill='url(%23c)' x='200' width='1000' height='800'/%3E%3Crect fill='url(%23d)' x='300' width='900' height='800'/%3E%3Crect fill='url(%23e)' x='400' width='800' height='800'/%3E%3Crect fill='url(%23f)' x='500' width='700' height='800'/%3E%3Crect fill='url(%23g)' x='600' width='600' height='800'/%3E%3Crect fill='url(%23h)' x='700' width='500' height='800'/%3E%3Crect fill='url(%23i)' x='800' width='400' height='800'/%3E%3Crect fill='url(%23j)' x='900' width='300' height='800'/%3E%3Crect fill='url(%23k)' x='1000' width='200' height='800'/%3E%3Crect fill='url(%23l)' x='1100' width='100' height='800'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#nav p{
+    color: #5A7194;
+}
+
+#login_container {
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+#login_container>div {
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 600px;
+    margin: auto;
+    /* margin-top: 100px; */
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+}
+
+#login_container>div>div:nth-child(2) {
+    border-radius: 0px 20px 20px 0px;
+}
+
+#login_container>div>div:nth-child(1) {
+
+    border-radius: 20px 0px 0px 20px;
+}
+
+#login_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: #0c0032; */
+    /* background-color: ; */
+}
+
+#login_img>img {
+    /* margin-top: 80px; */
+    width: 80%;
+    /* height: 60%; */
+    border-radius: 25px;
+}
+
+#login_img>h1 {
+    font-size: 40px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#login_form {
+    width: 50%;
+    /* padding: 50px; */
+    /* background-color: white; */
+    margin: auto;
+}
+
+#login_form>h1 {
+    text-align: center;
+    margin: 0%;
+}
+
+hr {
+    height: 5px;
+    border-radius: 10px;
+    width: 100px;
+    border: none;
+    background-color: #5A7194;
+    /* margin-bottom: 80px; */
+}
+
+
+#login_form>input {
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 10px;
+    border: 1px solid grey;
+}
+
+#login_form>input:focus {
+    outline: none;
+}
+
+#lfp {
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#lfp>p,
+#login_btn+a {
+    /* border: 1px solid grey; */
+    color: #5A7194;
+}
+
+#lfp>p:hover {
+    cursor: pointer;
+    text-decoration: underline #5A7194;
+}
+
+#login_btn, #admin_login_btn {
+    width: 93.2%;
+    height: 50px;
+    font-size: 20px;
+    background-color: #5A7194;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#login_btn+a {
+    text-decoration: none;
+    padding-left: 5px;
+}
+
+#login_btn:hover, #admin_login_btn:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #5A7194;
+    border: 1px solid #5A7194;
+}
+
+#options-div{
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#options-div>a{
+    text-decoration: none;
+    color: #5A7194;
+}
+
+#options-div>:nth-child(2){
+    color: #5A7194;
+    text-decoration: underline;
+}
+
+#continue_div_login {
+    width: 100%;
+    text-align: center;
+}
+
+#continue_div_login>h3:nth-child(2) {
+    margin-top: -15px;
+}
+
+#auth_login {
+    width: 50%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+#auth_login>img {
+    width: 20px;
+    background-color: white;
+    border: 2px solid lightgray;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+#auth_login>img:hover {
+    cursor: pointer;
+    background-color: lightblue;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+@media (max-width:700px) {
+    body {
+        background-color: #06aedf;
+    }
+
+    #login_form {
+        width: 100%;
+        margin: auto 5px;
+    }
+
+    #login_img {
+        display: none;
+    }
+
+    #login_container>div:nth-child(2) {
+        border-radius: 20px 20px 20px 20px;
+    }
+
+    #login_container>div {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #nav {
+        width: 80%;
+    }
+
+    #nav>div>h1 {
+        font-size: 18px;
+    }
+
+    #nav>img {
+        height: 20px;
+    }
+}
+
+@media all and (min-width:700px) and (max-width: 1100px) {
+    #login_form {
+        width: 100%;
+        margin: auto 25px;
+    }
+
+    #login_img {
+        display: none;
+    }
+
+    #login_container>div:nth-child(2) {
+        border-radius: 20px 20px 20px 20px;
+    }
+
+    #login_container>div {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #nav {
+        width: 85%;
+    }
+
+    #nav>div>h1 {
+        font-size: 25px;
+    }
+}
