@@ -1,6 +1,7 @@
 const express = require('express');
 const { connection } = require("./config/db");
-const {shortRouter} = require("./routes/shortener.route")
+const {shortRouter} = require("./routes/shortener.route");
+const {adminRouter} = require("./routes/admin.route");
 
 require("dotenv").config();
 
@@ -38,6 +39,7 @@ app.use("/",gitAuth)
 const {authenticate}=require("./middlewares/authenticate.middle")
 // app.use(authenticate)
 app.use("/short", shortRouter);
+app.use("/admin", adminRouter);
 
 // ///////////////////////////////
 // const express=require("express")

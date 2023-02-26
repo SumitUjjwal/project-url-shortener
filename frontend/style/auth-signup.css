@@ -5,42 +5,6 @@ body {
     background-size: cover;
 }
 
-/* #nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 70px 0px 70px;
-    background-color: #3500d3;
-    border-radius: 10px;
-    position: fixed;
-    top: 0;
-    width: 90%;
-    height: 60px;
-}
-
-#nav>div {
-    display: flex;
-    gap: 20px;
-}
-
-#nav>div>h1 {
-    color: white;
-}
-
-#nav>div>h1:hover {
-    cursor: pointer;
-}
-
-#nav>img {
-    width: 10%;
-    height: 40px;
-    border-radius: 10px 100px / 120px;
-}
-
-#nav>img:hover {
-    cursor: pointer;
-} */
-
 #signup_container {
     /* border: 1px solid black; */
     height: 100vh;
@@ -205,7 +169,7 @@ hr {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-@media all and (min-width:380px) and (max-width:700px) {
+@media (max-width:700px) {
     body {
         background-color: #190061;
     }
@@ -215,12 +179,16 @@ hr {
     }
 
     #signup_container>div:nth-child(1) {
-
         border-radius: 20px 20px 20px 20px;
     }
 
-    #signup_container {
+    #signup_container>div {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    #signup_form {
+        width: 100%;
+        margin: auto 5px;
     }
 
     #nav {
@@ -243,5 +211,22 @@ hr {
 
     #nav>div>h1 {
         font-size: 25px;
+    }
+
+    #signup_img {
+        display: none;
+    }
+
+    #signup_container>div:nth-child(1) {
+        border-radius: 20px 20px 20px 20px;
+    }
+
+    #signup_container>div {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #signup_form {
+        width: 100%;
+        margin: auto 5px;
     }
 }

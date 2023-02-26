@@ -1,6 +1,6 @@
 // base url
 const baseUrl = "http://localhost:2020";
-const userId = localStorage.getItem("user");
+const userId = localStorage.getItem("clientID");
 
 // navigation elements
 const url_list_btn = document.getElementById("nav-element-urls");
@@ -58,7 +58,7 @@ function dropdown_menu(){
 logout_btn.addEventListener("click", async() => {
     // const response = await fetch(`${baseUrl}/users/logout`);
     localStorage.clear();
-    window.location.href = "../index.html";
+    window.location.href = "../../index.html";
 })
 
 // display data
@@ -319,15 +319,15 @@ function displayStats(userInfo) {
         })
     });
     
-    // // get insights of a particular link
-    // const click_btn = document.querySelector("#url-list button");
-    // click_btn.addEventListener("click", async(e) => {
-    //     let shortId = e.target.id;
-    //     const response = await fetch(`${baseUrl}/short/user/link/${shortId}`);
-    //     const userInfo = await response.json();
-    //     console.log(userInfo);
-    //     // displayStats(userInfo);  
-    // })
+    // get insights of a particular link
+    const click_btn = document.querySelector("#url-list button");
+    click_btn.addEventListener("click", async(e) => {
+        let shortId = e.target.id;
+        const response = await fetch(`${baseUrl}/short/user/link/${shortId}`);
+        const userInfo = await response.json();
+        console.log(userInfo);
+        // displayStats(userInfo);  
+    })
 }
 
 // shrink url
