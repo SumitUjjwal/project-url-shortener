@@ -3,7 +3,7 @@ const express = require('express');
 const { ShortUrlModel } = require("../models/short.model");
 const { SuperfaceClient } = require('@superfaceai/one-sdk');
 const sdk = new SuperfaceClient();
-const p = require('ua-parser');  // temporary commented by [Saurabh Singh] & in index.js
+const p = require('ua-parser');
 require("dotenv").config();
 
 const shortRouter = express.Router();
@@ -172,6 +172,7 @@ shortRouter.get("/:short", async (req, res) => {
     const dateString = date.toLocaleDateString('en-IN', options);
     try {
         const clientIp = req.ip;
+        console.log(clientIp)
         const urlData = await ShortUrlModel.findOne({ short });
         const count = urlData.clicks;
         const id = urlData._id;
@@ -184,7 +185,7 @@ shortRouter.get("/:short", async (req, res) => {
         const result = await profile
             .getUseCase('IpGeolocation')
             .perform({
-                ipAddress: "2405:201:3:811e:6478:423b:3922:4966" //`${clientIp}` 
+                ipAddress: `${clientIp}` 
             }, {
                 provider: 'ipdata',
                 security: {
