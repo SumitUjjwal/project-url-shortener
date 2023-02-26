@@ -172,13 +172,13 @@ shortRouter.get("/:short", async (req, res) => {
     const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' };
     const dateString = date.toLocaleDateString('en-IN', options);
     try {
-        // const clientIp = req.headers['x-real-ip'] || req.connection.remoteAddress;
-        // const clientIp = ip.address();
-        const clientIp = req.headers['x-forwarded-for'] ||
+        const Ip = req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
         (req.connection.socket ? req.connection.socket.remoteAddress : null);
-        console.log(typeof(clientIp), clientIp);
+        console.log(typeof(Ip), Ip);
+        const clientIp = Ip.split(",");
+        console.log(clientIp);
         // console.log(req.headers['x-real-ip'] || req.connection.remoteAddress);
         const urlData = await ShortUrlModel.findOne({ short: `${short}` });
         const count = urlData.clicks;
