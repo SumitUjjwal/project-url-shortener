@@ -5,7 +5,7 @@ body {
     padding: 0;
     /* background-color: #F8F9FA; */
     background-color: #FFFFFF;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2300AEF0'/%3E%3Cstop offset='1' stop-color='%23FFFFFF'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.19'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='600' y1='25' x2='600' y2='777'%3E%3Cstop offset='0' stop-color='%23FFFFFF'/%3E%3Cstop offset='1' stop-color='%235A7194'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='650' y1='25' x2='650' y2='777'%3E%3Cstop offset='0' stop-color='%23f0f2f6'/%3E%3Cstop offset='1' stop-color='%23657da1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='700' y1='25' x2='700' y2='777'%3E%3Cstop offset='0' stop-color='%23e0e5ec'/%3E%3Cstop offset='1' stop-color='%23758aab'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' gradientUnits='userSpaceOnUse' x1='750' y1='25' x2='750' y2='777'%3E%3Cstop offset='0' stop-color='%23d1d8e3'/%3E%3Cstop offset='1' stop-color='%238497b4'/%3E%3C/linearGradient%3E%3ClinearGradient id='e' gradientUnits='userSpaceOnUse' x1='800' y1='25' x2='800' y2='777'%3E%3Cstop offset='0' stop-color='%23c1cbda'/%3E%3Cstop offset='1' stop-color='%2393a4be'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='850' y1='25' x2='850' y2='777'%3E%3Cstop offset='0' stop-color='%23b2bed0'/%3E%3Cstop offset='1' stop-color='%23a3b1c7'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='900' y1='25' x2='900' y2='777'%3E%3Cstop offset='0' stop-color='%23a3b1c7'/%3E%3Cstop offset='1' stop-color='%23b2bed0'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' gradientUnits='userSpaceOnUse' x1='950' y1='25' x2='950' y2='777'%3E%3Cstop offset='0' stop-color='%2393a4be'/%3E%3Cstop offset='1' stop-color='%23c1cbda'/%3E%3C/linearGradient%3E%3ClinearGradient id='i' gradientUnits='userSpaceOnUse' x1='1000' y1='25' x2='1000' y2='777'%3E%3Cstop offset='0' stop-color='%238497b4'/%3E%3Cstop offset='1' stop-color='%23d1d8e3'/%3E%3C/linearGradient%3E%3ClinearGradient id='j' gradientUnits='userSpaceOnUse' x1='1050' y1='25' x2='1050' y2='777'%3E%3Cstop offset='0' stop-color='%23758aab'/%3E%3Cstop offset='1' stop-color='%23e0e5ec'/%3E%3C/linearGradient%3E%3ClinearGradient id='k' gradientUnits='userSpaceOnUse' x1='1100' y1='25' x2='1100' y2='777'%3E%3Cstop offset='0' stop-color='%23657da1'/%3E%3Cstop offset='1' stop-color='%23f0f2f6'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' gradientUnits='userSpaceOnUse' x1='1150' y1='25' x2='1150' y2='777'%3E%3Cstop offset='0' stop-color='%235A7194'/%3E%3Cstop offset='1' stop-color='%23FFFFFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg %3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' x='100' width='1100' height='800'/%3E%3Crect fill='url(%23c)' x='200' width='1000' height='800'/%3E%3Crect fill='url(%23d)' x='300' width='900' height='800'/%3E%3Crect fill='url(%23e)' x='400' width='800' height='800'/%3E%3Crect fill='url(%23f)' x='500' width='700' height='800'/%3E%3Crect fill='url(%23g)' x='600' width='600' height='800'/%3E%3Crect fill='url(%23h)' x='700' width='500' height='800'/%3E%3Crect fill='url(%23i)' x='800' width='400' height='800'/%3E%3Crect fill='url(%23j)' x='900' width='300' height='800'/%3E%3Crect fill='url(%23k)' x='1000' width='200' height='800'/%3E%3Crect fill='url(%23l)' x='1100' width='100' height='800'/%3E%3C/g%3E%3C/svg%3E");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -45,12 +45,14 @@ header {
     align-items: center;
 }
 
-.nav-bar>div>p{
+.nav-bar>div>p {
     font-size: 22px;
-    color: #00AEF0;
+    color: #5A7194;
 }
 
-.nav-logo, .nav-bar>div>p:hover, button {
+.nav-logo,
+.nav-bar>div>p:hover,
+button {
     cursor: pointer;
 }
 
@@ -66,7 +68,7 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #00AEF0;
+    background-color: #5A7194;
     width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -90,7 +92,7 @@ header {
     display: block;
 }
 
-.dropdown-content>hr{
+.dropdown-content>hr {
     height: 1px;
     background-color: #ffffff;
     border: none;
@@ -289,35 +291,63 @@ main {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.shortener-input>select{
+    width: 154px;
+    height: 40px;
+    border: none;
+    /* padding: 0 20px; */
+    margin: 0px 20px;
+    color: #5A7194;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #5A7194;
+    text-align: center;
+}
+
+.shortener-input>select>option{
+    border-radius: 8px;
+}
+
 .shortener-input>input {
     /* border: 1px solid red; */
     width: 90%;
-    height: 50px;
+    height: 35px;
+    font-size: 18px;
     border: none;
+    color: #5A7194;
     padding: 5px 20px;
     border-radius: 8px;
     background-color: #ffffff;
+    margin: 10px auto;
 }
 
-.shortener-input>input:focus {
-    outline: none;
+.shortener-input>input:focus, .shortener-input>select:focus {
+    outline: 1px solid #aab4c2;
 }
 
 .shortener-input>button {
     /* border: 1px solid green; */
     width: 154px;
-    height: 50px;
+    height: 45px;
     border: none;
     padding: 0 20px;
     margin: 0px 20px;
     color: #ffffff;
     font-size: 18px;
     border-radius: 8px;
-    background-color: #00AEF0;
+    background-color: #5A7194;
 }
 
 
 /* urls list */
+.url-list-box {
+    width: 93%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: auto;
+}
+
 .url-list {
     /* display: flex;
     justify-content: space-between;
@@ -334,24 +364,24 @@ main {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-::placeholder{
+::placeholder {
     font-size: 15px;
 }
 
-.url-list>hr{
+.url-list>hr {
     color: #c4cbd6;
     background-color: #c4cbd6;
     border: 1px solid #d8d8d8;
 }
 
-.url-list a{
+.url-list a {
     text-decoration: none;
     color: #5a677a;
     padding: 10px 0px;
 }
 
-.url-list a:hover{
-    color: #00AEF0;
+.url-list a:hover {
+    color: #5A7194;
 }
 
 .shortUrl-box {
@@ -360,34 +390,28 @@ main {
     align-items: center;
 }
 
-.shortUrl-box>div{
+.shortUrl-box>div {
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
-.shortUrl-box>div>div>img:active{
+.shortUrl-box>div>div>img:active {
     opacity: 0%;
 }
 
-.shortUrl-box>button {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: 1px solid #00AEF0;
-    width: 150px;
-    height: 50px;
-    /* border: none; */
-    /* padding: 0 20px 0px 20px; */
-    margin: 0px 20px;
+.url-list>button {
+    border: 1px solid #5A7194;
+    width: 100px;
+    height: 30px;
     color: #5a677a;
     font-size: 18px;
-    border-radius: 8px;
+    border-radius: 5px;
     background-color: #ffffff;
 }
 
-.shortUrl-box>button:hover {
-    background-color: #00AEF0;
+.url-list>button:hover {
+    background-color: #5A7194;
     color: #ffffff;
 }
 
@@ -396,7 +420,7 @@ main {
     color: #ffffff;
     border-radius: 8px;
     border: 1px solid #ffffff;
-    background-color: #00AEF0;
+    background-color: #5A7194;
     padding: 10px;
 }
 
@@ -405,10 +429,10 @@ main {
 }
 
 /* prompt box */
-.prompt-box{
+.prompt-box {
     min-height: 75px;
     min-width: 400px;
-    background-color: #00AEF0;
+    background-color: #5A7194;
     display: flex;
     flex-direction: column;
     border-radius: 10px 0px 0px 10px;
@@ -419,22 +443,22 @@ main {
     transition: width 2s ease-in-out 1s;
 }
 
-.prompt-box>div{
+.prompt-box>div {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
     margin: 20px 0px 5px;
 }
 
-.prompt-box>div>button{
+.prompt-box>div>button {
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
     background-color: #ffffff;
 }
 
-.prompt-box>div>button:hover{
+.prompt-box>div>button:hover {
     color: #ffffff;
     border: 1px solid #fff;
-    background-color: #00AEF0;
+    background-color: #5A7194;
 }

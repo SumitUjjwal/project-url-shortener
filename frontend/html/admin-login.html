@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login Page</title>
+    <link rel="stylesheet" href="../style/admin-login.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;1,400&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="nav">
+        <div>
+            <img id="nav_img" src="../admin/resources/nav-bar/lylliput-logo-rmbg-3.png" alt="">
+            <div>
+                <p id="login_page" style="color: #5A7194;">Log in</p>
+                <p id="signup_page" style="color: #5A7194;">Sign up</p>
+            </div>
+        </div>
+    </div>
+    <div id="login_container">
+        <div>
+            <div id="login_img">
+                <img src="../resources/images/admin-login-illustration.jpg" alt="">
+                <!-- <h1>login</h1> -->
+            </div>
+            <div id="login_form">
+                <h1>Login</h1>
+                <hr>
+                <label for="">Admin Email</label><br>
+                <input id="admin_email" type="text" placeholder="Enter Authorized Email" required><br><br>
+                <label for="">Admin Password</label><br>
+                <input id="admin_password" type="password" placeholder="Enter Authorized Password" required><br>
+                <div id="lfp">
+                    <p><input type="checkbox" onclick="myFunctionlogin()">Show Password</p>
+                </div>
+                <button id="admin_login_btn">login</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../script/admin-login.js"></script>

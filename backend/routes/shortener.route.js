@@ -137,7 +137,7 @@ shortRouter.get("/user/:userId", async (req, res) => {
                 }
             }
         ]);
-        console.log(date)
+        // console.log(date)
         res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers });
         // res.json(data);
     } catch (error) {
@@ -145,6 +145,21 @@ shortRouter.get("/user/:userId", async (req, res) => {
         res.json({ "msg": "error getting user details" });
     }
 })
+
+// individual link insight
+// shortRouter.get("/user/link/:id", async (req, res) => {
+//     const shortId = req.params.id;
+//     // const userId = res.locals.userId;
+//     try {
+//         const data = await ShortUrlModel.find({ _id:shortId });
+//         console.log(data)
+//         // res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers });
+//         res.json(data);
+//     } catch (error) {
+//         console.error(error);
+//         res.json({ "msg": "error getting user details" });
+//     }
+// })
 
 shortRouter.get("/:short", async (req, res) => {
     const userAgent = req.headers['user-agent'];
