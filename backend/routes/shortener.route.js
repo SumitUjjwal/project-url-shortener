@@ -171,9 +171,9 @@ shortRouter.get("/:short", async (req, res) => {
     const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' };
     const dateString = date.toLocaleDateString('en-IN', options);
     try {
-        const clientIp = req.ip;
+        const clientIp = req.headers['x-real-ip'] || req.connection.remoteAddress;
         console.log(clientIp);
-        console.log(req.headers['x-real-ip'] || req.connection.remoteAddress);
+        // console.log(req.headers['x-real-ip'] || req.connection.remoteAddress);
         const urlData = await ShortUrlModel.findOne({ short: `${short}` });
         const count = urlData.clicks;
         const id = urlData._id;
