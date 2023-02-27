@@ -36,17 +36,17 @@ userRouter.post("/signup", async (req, res) => {
         const already = await UserModel.findOne({ email })
         console.log(already)
         if (already) {
-            res.json("user already exists")
+            res.json({"msg":"user already exists Please Login!!"})
         }
         else {
             // if (true) {
             bcrypt.hash(pass, 5, async (err, hashpass) => {
                 if (err) {
-                    res.json("error while hashing password")
+                    res.json({"msg":"Error Please try again"})
                 } else {
                     const user = await UserModel.insertMany({ name, pass: hashpass, email })
                     // user.save()
-                    res.json("registered successfully")
+                    res.json({"msg":"Registered Successfully"})
                     // console.log(user)
                 }
             })
@@ -66,7 +66,7 @@ userRouter.post("/login", async (req, res) => {
     } else {
         bcrypt.compare(pass, user.pass, async (err, result) => {
             if (err) {
-                res.json({ "msg": "wrong credential" })
+                res.json({ "msg": "Wrong Credential" })
             } else {
                 if (result) {
                     var normaltoken = jwt.sign({ userId: user._id }, process.env.normalkey, { expiresIn: "1h" });

@@ -90,7 +90,7 @@ async function RegisterFunction(event) {
           })
             .then(res => res.json())
             .then(data => {
-              alert("verify your otp")
+              // alert("Verify your otp")
               localStorage.setItem("keys", JSON.stringify(userObj));
               localStorage.setItem("back", JSON.stringify(data))
               // window.location.href = "../html/otp.html"
@@ -195,25 +195,33 @@ async function RegisterFunction(event) {
                     },
                     body: JSON.stringify(userObj)
                   })
-                    .then(res => res.json())
-                    .then(data => {
-                      // console.log(data)
-                      if (bag == otparr) {
-                        alert("registered successfully")
-                        window.location.href = "../html/login.html"
-                        localStorage.clear()
-                      }
-                      //     else if(data==="registered successfully"){
-                      //  alert("Registered successfully")
-                      // window.location.href="../login.html"
-                      //   }
-                      else if (bag != otparr) {
-                        alert("wrong otp")
-                        window.location.href = "../html/otp.html"
+                  let response = await register_request.json();
+                  // console.log(response)
+                  if(bag == otparr){
+                    alert(response.msg);
+                    window.location.href = "../html/login.html"
+                        localStorage.clear();
+                  }
+                  else if (bag != otparr) {
+                    alert("Wrong OTP");
+                    window.location.href = "../html/otp.html"
 
-                      } else {
-                        window.location.href = "../html/signup.html"
-                      }
+                  } else {
+                    window.location.href = "../html/signup.html"
+                  }
+                    // .then(res => res.json())
+                    // .then(data => {
+                    //   // console.log(data)
+                    //   if (bag == otparr) {
+                    //     alert(data.msg);
+                    //     window.location.href = "../html/login.html"
+                    //     localStorage.clear()
+                    //   }
+                    //   //     else if(data==="registered successfully"){
+                    //   //  alert("Registered successfully")
+                    //   // window.location.href="../login.html"
+                    //   //   }
+                    
 
                       //   else if(data==="registered successfully"){
 
@@ -224,8 +232,8 @@ async function RegisterFunction(event) {
                       //   }
 
                       // alert(data)      
-                    })
-                    .catch(err => console.log(err))
+                    // })
+                    // .catch(err => console.log(err))
                 } catch (error) {
                   alert("Something went wrong. Please try again later.");
                   console.log(error);
