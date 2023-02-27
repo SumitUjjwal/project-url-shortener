@@ -157,7 +157,9 @@ async function RegisterFunction(event) {
               // //////////////
               const otpbutton = document.querySelector("#otpbutton");
               otpbutton.addEventListener("click", fun);
+              
               async function fun(event) {
+                otpbutton.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
                 try {
                   event.preventDefault();
                   // let all_input_tags = document.querySelectorAll("#register input");
@@ -238,6 +240,7 @@ async function RegisterFunction(event) {
                   alert("Something went wrong. Please try again later.");
                   console.log(error);
                 }
+                otpbutton.innerHTML = "Verify";
               }
             })
             .catch(err => console.log(err))
