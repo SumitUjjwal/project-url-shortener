@@ -9,6 +9,7 @@ const url_list = document.getElementById("main-shortener-box");
 const stats = document.getElementById("main-graph-chart");
 const dropdown_content = document.getElementById("dropdown-content");
 const logout_btn = document.getElementById("nav-logout-btn");
+const profile = document.getElementById("nav-element-account");
 
 // overview elements
 const all_links = document.getElementById("all-links");
@@ -74,6 +75,7 @@ function displayStats(userInfo) {
 
     for (let i = 0; i < userInfo.date.length; i++) { date.push(userInfo.date[i]._id); date_wise_clicks.push(userInfo.date[i].count); }
     date.sort((a, b) => { return a - b });
+    console.log("date")
 
     for (let i = 0; i < userInfo.devices.length; i++) { devices.push(userInfo.devices[i]._id); devices_wise_clicks.push(userInfo.devices[i].count); }
 
