@@ -28,7 +28,7 @@ body {
 
 #nav>div>div {
     /* border: 1px solid red; */
-    width: 12%;
+    width: 15%;
     display: flex;
     align-items: center;
     justify-content: space-between;

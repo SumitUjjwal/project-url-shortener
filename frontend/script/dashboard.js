@@ -9,6 +9,7 @@ const url_list = document.getElementById("main-shortener-box");
 const stats = document.getElementById("main-graph-chart");
 const dropdown_content = document.getElementById("dropdown-content");
 const logout_btn = document.getElementById("nav-logout-btn");
+const profile = document.getElementById("nav-element-account");
 
 // overview elements
 const all_links = document.getElementById("all-links");
@@ -19,6 +20,7 @@ const inc_this_month = document.getElementById("inc-this-month");
 // shrink form
 const shrink_form = document.getElementById("shortener-input");
 const shrink_full_url = document.getElementById("full-url");
+const full_url_btn = document.getElementById("full-url-btn");
 
 // stats elements
 const total_click = document.getElementById("total-click-chart");
@@ -73,6 +75,7 @@ function displayStats(userInfo) {
 
     for (let i = 0; i < userInfo.date.length; i++) { date.push(userInfo.date[i]._id); date_wise_clicks.push(userInfo.date[i].count); }
     date.sort((a, b) => { return a - b });
+    console.log("date")
 
     for (let i = 0; i < userInfo.devices.length; i++) { devices.push(userInfo.devices[i]._id); devices_wise_clicks.push(userInfo.devices[i].count); }
 
@@ -332,6 +335,7 @@ function displayStats(userInfo) {
 
 // shrink url
 shrink_form.addEventListener("submit", async (event) => {
+    full_url_btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
     event.preventDefault();
     const full = shrink_full_url.value;
     console.log(full);
@@ -347,7 +351,8 @@ shrink_form.addEventListener("submit", async (event) => {
     const response = await request.json();
     console.log(response);
     // window.location.reload();
-    alertWindow("URL shrinked Successfully!!")
+    alertWindow("URL shrinked Successfully!!");
+    full_url_btn.innerHTML = "Shrink";
 })
 
 // alert box
