@@ -3,9 +3,12 @@ LillyPut is an URL shortener with analysis that not only shortens the URL but al
 
 ## Tech Stacks Used:
 - ### Frontend: 
-`HTML` `CSS` `JavaScript` `Chart.js`
+  `HTML` `CSS` `JavaScript` `Chart.js`
 - ### Backend: 
-`Node.js` `Express.js` `MongoDB`
+  `Node.js` `Express.js` `MongoDB`
+
+## Tools Used:
+  `Visual Studio Code` `NPM` `Vercel` `Render`
 
 ## Deployed Links:
 - Client Side: [https://lillyput.vercel.app/](https://lillyput.vercel.app/)
