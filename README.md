@@ -10,7 +10,7 @@ LillyPut is an URL shortener with analysis that not only shortens the URL but al
 ## Tools Used:
  - ### IDE:
     `Visual Studio Code` 
- - ### External Modules: 
+ - ### External Package Manager: 
     `NPM` 
  - ### Deployment tools:
     `Vercel` `Render`
