@@ -10,15 +10,15 @@ Deployed link: [LillyPut](https://lillyput.vercel.app/)
 
 ## screenshot :
 ### Homepage
-![alt homepage](https://imgur.com/a/dg65JLc)
+![alt homepage](https://i.imgur.com/PE8ostw.png)
 ### Login
-![alt login](https://imgur.com/a/QnURDWq)
+![alt login](https://i.imgur.com/UMKkYbm.png)
 ### Register
-![alt register](https://imgur.com/a/ABtSe9g)
+![alt register](https://i.imgur.com/w5EiMrN.png)
 ### Client Dashboard
-![alt clientDashboard](https://imgur.com/a/YEmljqH)
+![alt clientDashboard](https://i.imgur.com/X69b6ns.png)
 ### Admin Dashboard
-![alt adminDashboard](https://imgur.com/a/JylhNZs)
+![alt adminDashboard](https://i.imgur.com/KGD19Ku.png)
 
 # Server Side
 Deployed link: [LillyPut](https://lillyput.vercel.app/)
