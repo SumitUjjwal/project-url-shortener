@@ -8,7 +8,7 @@ LillyPut is an URL shortener with analysis that not only shortens the URL but al
 `Node.js` `Express.js` `MongoDB`
 
 # Client Side
-Deployed link: [LillyPut](https://lillyput.vercel.app/)
+Deployed link: `https://lillyput.vercel.app/`
 
 ## screenshot :
 - ### Homepage
@@ -23,4 +23,4 @@ Deployed link: [LillyPut](https://lillyput.vercel.app/)
 ![alt adminDashboard](https://i.imgur.com/KGD19Ku.png)
 
 # Server Side
-Deployed link: [LillyPut](https://lillyput.vercel.app/)
+Deployed link: `https://lillyput.onrender.com`
