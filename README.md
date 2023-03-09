@@ -8,7 +8,12 @@ LillyPut is an URL shortener with analysis that not only shortens the URL but al
   `Node.js` `Express.js` `MongoDB`
 
 ## Tools Used:
-  `Visual Studio Code` `NPM` `Vercel` `Render`
+ - ### IDE:
+    `Visual Studio Code` 
+ - ### External Modules: 
+    `NPM` 
+ - ### Deployment tools:
+    `Vercel` `Render`
 
 ## Deployed Links:
 - Client Side: [https://lillyput.vercel.app/](https://lillyput.vercel.app/)
