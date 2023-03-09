@@ -2,24 +2,24 @@
 LillyPut is an URL shortener with analysis that not only shortens the URL but also allows clients to have full anlytical data like location, device, platform, etc.
 
 # Tech Stacks Used
-### Frontend: 
+- ### Frontend: 
 `HTML` `CSS` `JavaScript` `Chart.js`
-### Backend: 
+- ### Backend: 
 `Node.js` `Express.js` `MongoDB`
 
 # Client Side
 Deployed link: [LillyPut](https://lillyput.vercel.app/)
 
 ## screenshot :
-### Homepage
+- ### Homepage
 ![alt homepage](https://i.imgur.com/PE8ostw.png)
-### Login
+- ### Login
 ![alt login](https://i.imgur.com/UMKkYbm.png)
-### Register
+- ### Register
 ![alt register](https://i.imgur.com/w5EiMrN.png)
-### Client Dashboard
+- ### Client Dashboard
 ![alt clientDashboard](https://i.imgur.com/X69b6ns.png)
-### Admin Dashboard
+- ### Admin Dashboard
 ![alt adminDashboard](https://i.imgur.com/KGD19Ku.png)
 
 # Server Side
