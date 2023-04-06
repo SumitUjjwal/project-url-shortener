@@ -370,7 +370,7 @@ main {
     opacity: 0%;
 }
 
-.shortUrl-box>button {
+.shortUrl-box>:nth-child(2) {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -386,12 +386,12 @@ main {
     background-color: #ffffff;
 }
 
-.shortUrl-box>button:hover {
+/* .shortUrl-box>:nth-child(2):hover {
     background-color: #00AEF0;
     color: #ffffff;
-}
+} */
 
-.shortUrl-box>button p {
+.shortUrl-box>:nth-child(2) p {
     /* width: 20px; */
     color: #ffffff;
     border-radius: 8px;
