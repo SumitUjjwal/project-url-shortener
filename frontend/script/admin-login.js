@@ -2,7 +2,7 @@ const baseUrl = "https://lillyput.onrender.com";
 const admin_login_btn = document.getElementById("admin_login_btn");
 
 function myFunctionlogin() {
-    var x = document.getElementById("login_password");
+    var x = document.getElementById("admin_password");
     if (x.type === "password") {
         x.type = "text";
     } else {
