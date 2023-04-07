@@ -211,12 +211,10 @@ async function RegisterFunction(event) {
                   }
                   else if (bag != otparr) {
                     alert("Wrong OTP");
-                    // window.location.href = "../html/otp.html"
-                    // window.location.reload();
-                    // first.innerText = "";
-                    // second.innerText = "";
-                    // third.innerText = "";
-                    // fourth.innerText = "";
+                    document.querySelector("#first").value = null;
+                    document.querySelector("#second").value = null;
+                    document.querySelector("#third").value = null;
+                    document.querySelector("#fourth").value = null;
                   } else {
                     window.location.href = "../html/signup.html"
                   }
