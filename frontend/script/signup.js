@@ -73,13 +73,18 @@ async function RegisterFunction(event) {
       labels[2].innerText = "Password must be at least 8 characters*";
     }
     else if (pass.length >= 8) {
+      const specialChars = ['*', '&', '%', '#', '$', '@', '!'];
       for (let i = 0; i < pass.length; i++) {
-        if (pass[i] == '*' || pass[i] == '&' || pass[i] == '%' || pass[i] == '#' || pass[i] == '$' || pass[i] == '@' || pass[i] == '!') {
+        // if (pass[i] == '*' || pass[i] == '&' || pass[i] == '%' || pass[i] == '#' || pass[i] == '$' || pass[i] == '@' || pass[i] == '!') {
+        if (specialChars.includes(pass[i])) {
           let userObj = {
             name,
             email,
             pass
           };
+
+          labels[2].style.color = "grey";
+          labels[2].innerText = "Password*";
 
           let register_request = await fetch(`${baseUrl}/users/otp`, {
             method: "POST",
@@ -157,7 +162,7 @@ async function RegisterFunction(event) {
               // //////////////
               const otpbutton = document.querySelector("#otpbutton");
               otpbutton.addEventListener("click", fun);
-              
+
               async function fun(event) {
                 otpbutton.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
                 try {
@@ -199,43 +204,47 @@ async function RegisterFunction(event) {
                   })
                   let response = await register_request.json();
                   // console.log(response)
-                  if(bag == otparr){
+                  if (bag == otparr) {
                     alert(response.msg);
                     window.location.href = "../html/login.html"
-                        localStorage.clear();
+                    localStorage.clear();
                   }
                   else if (bag != otparr) {
                     alert("Wrong OTP");
-                    window.location.href = "../html/otp.html"
-
+                    // window.location.href = "../html/otp.html"
+                    // window.location.reload();
+                    // first.innerText = "";
+                    // second.innerText = "";
+                    // third.innerText = "";
+                    // fourth.innerText = "";
                   } else {
                     window.location.href = "../html/signup.html"
                   }
-                    // .then(res => res.json())
-                    // .then(data => {
-                    //   // console.log(data)
-                    //   if (bag == otparr) {
-                    //     alert(data.msg);
-                    //     window.location.href = "../html/login.html"
-                    //     localStorage.clear()
-                    //   }
-                    //   //     else if(data==="registered successfully"){
-                    //   //  alert("Registered successfully")
-                    //   // window.location.href="../login.html"
-                    //   //   }
-                    
+                  // .then(res => res.json())
+                  // .then(data => {
+                  //   // console.log(data)
+                  //   if (bag == otparr) {
+                  //     alert(data.msg);
+                  //     window.location.href = "../html/login.html"
+                  //     localStorage.clear()
+                  //   }
+                  //   //     else if(data==="registered successfully"){
+                  //   //  alert("Registered successfully")
+                  //   // window.location.href="../login.html"
+                  //   //   }
 
-                      //   else if(data==="registered successfully"){
 
-                      // window.location.href="../login.html"
-                      //   }
-                      //   else{
-                      //     window.location.href="../signup.html"
-                      //   }
+                  //   else if(data==="registered successfully"){
 
-                      // alert(data)      
-                    // })
-                    // .catch(err => console.log(err))
+                  // window.location.href="../login.html"
+                  //   }
+                  //   else{
+                  //     window.location.href="../signup.html"
+                  //   }
+
+                  // alert(data)      
+                  // })
+                  // .catch(err => console.log(err))
                 } catch (error) {
                   alert("Something went wrong. Please try again later.");
                   console.log(error);

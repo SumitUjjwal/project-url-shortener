@@ -113,7 +113,7 @@ forgot.addEventListener("click", async () => {
       })
         .then(res => res.json())
         .then(data => {
-          alert("verify your otp")
+          // alert("verify your otp")
           localStorage.setItem("keys", JSON.stringify(userObj));
           localStorage.setItem("back", JSON.stringify(data));
           const login_form = document.getElementById("login_form");
@@ -217,6 +217,7 @@ forgot.addEventListener("click", async () => {
           }
 
           async function funs(event) {
+            document.getElementById("update").innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
             try {
               event.preventDefault();
               let arr = localStorage.getItem("keys")
