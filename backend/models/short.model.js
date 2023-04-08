@@ -34,8 +34,11 @@ const shortUrlSchema = mongoose.Schema({
     browser: [{
         type: String,
         default: "all"
-    }]
-
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 const ShortUrlModel = mongoose.model("shorturl", shortUrlSchema)
