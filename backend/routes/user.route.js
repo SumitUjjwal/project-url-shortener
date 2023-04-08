@@ -133,7 +133,16 @@ userRouter.post("/otppass", mailfun, async (req, res) => {
     }
 })
 
-
+userRouter.delete("/delete/:id", async(req, res) => {
+    const _id = req.params.id;
+    try {
+        const user = await UserModel.findByIdAndDelete({ _id });
+        res.json({ "msg": "User deleted sucessfully", "response": "ok" });
+    } catch (error) {
+        console.log(error);
+        res.json({ "msg": "error in deleting " + error.message })
+    }
+});
 
 
 userRouter.patch("/update", async (req, res) => {
