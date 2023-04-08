@@ -36,8 +36,12 @@ const shortUrlSchema = mongoose.Schema({
         default: "all"
     }],
     createdAt: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: () => {
+            const date = new Date();
+            const month = date.getMonth() + 1;
+            return month.toString();
+        }
     }
 })
 
