@@ -372,9 +372,9 @@ main {
 
 .shortUrl-box>:nth-child(2) {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
-    border: 1px solid #00AEF0;
+    /* border: 1px solid #00AEF0; */
     width: 150px;
     height: 50px;
     /* border: none; */
@@ -382,7 +382,7 @@ main {
     margin: 0px 20px;
     color: #5a677a;
     font-size: 18px;
-    border-radius: 8px;
+    border-radius: 50%;
     background-color: #ffffff;
 }
 

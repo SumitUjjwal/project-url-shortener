@@ -236,7 +236,7 @@ function displayStats(userInfo) {
                             <img id="shortUrl-delete" src="../resources/dashboard/url-list/delete.png" alt=${element._id}>
                         </div>
                     </div>
-                    <div id=${element._id}><span><img id=${element._id} src="../resources/dashboard/overview/link.png" alt=""></span>
+                    <div id=${element._id}>
                         <p id=${element._id}>${element.clicks}</p>Clicks
                     </div>
                 </div>
