@@ -138,8 +138,21 @@ shortRouter.get("/user/:userId", async (req, res) => {
                 }
             }
         ]);
-        // console.log(date)
-        res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers });
+
+        const createdAt = await ShortUrlModel.aggregate([
+            { $match: { userId: userId } },
+            {
+                $unwind: '$createdAt'
+            },
+            {
+                $group: {
+                    _id: '$createdAt',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+        // console.log(createdAt);
+        res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers, createdAt });
         // res.json(data);
     } catch (error) {
         console.error(error);
