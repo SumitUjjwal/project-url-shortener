@@ -151,8 +151,8 @@ shortRouter.get("/user/:userId", async (req, res) => {
                 }
             }
         ]);
-        console.log(createdAt);
-        res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers });
+        // console.log(createdAt);
+        res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers, createdAt });
         // res.json(data);
     } catch (error) {
         console.error(error);
