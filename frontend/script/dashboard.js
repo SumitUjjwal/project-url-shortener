@@ -9,6 +9,7 @@ const url_list = document.getElementById("main-shortener-box");
 const stats = document.getElementById("main-graph-chart");
 const dropdown_content = document.getElementById("dropdown-content");
 const logout_btn = document.getElementById("nav-logout-btn");
+const delete_btn = document.getElementById("nav-delete-btn");
 const profile = document.getElementById("nav-element-account");
 
 // overview elements
@@ -36,7 +37,7 @@ const url_list_box = document.getElementById("url-list-box");
 async function getUserInfo() {
     const response = await fetch(`${baseUrl}/short/user/${userId}`);
     const userInfo = await response.json();
-    console.log(userInfo);
+    // console.log(userInfo);
     displayStats(userInfo);
 }
 getUserInfo();
@@ -63,19 +64,34 @@ logout_btn.addEventListener("click", async() => {
     window.location.href = "../index.html";
 })
 
+delete_btn.addEventListener("click", async() => {
+    const id = localStorage.getItem("user");
+    const request = await fetch(`${baseUrl}/users/delete/${id}`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const response = await request.json();
+    alert(response.msg);
+    window.location.href = "../index.html";
+});
+
 // display data
 function displayStats(userInfo) {
+    console.log(userInfo);
     // graph variables
     let date = [], date_wise_clicks = [];
     let devices = [], devices_wise_clicks = [];
     let platforms = [], platforms_wise_clicks = [];
     let locations = [], locations_wise_clicks = [];
     let browsers = [], browsers_wise_clicks = [];
+    let createdAt = [];
 
 
     for (let i = 0; i < userInfo.date.length; i++) { date.push(userInfo.date[i]._id); date_wise_clicks.push(userInfo.date[i].count); }
     date.sort((a, b) => { return a - b });
-    console.log("date")
+    // console.log("date")
 
     for (let i = 0; i < userInfo.devices.length; i++) { devices.push(userInfo.devices[i]._id); devices_wise_clicks.push(userInfo.devices[i].count); }
 
@@ -85,6 +101,7 @@ function displayStats(userInfo) {
 
     for (let i = 0; i < userInfo.browsers.length; i++) { browsers.push(userInfo.browsers[i]._id); browsers_wise_clicks.push(userInfo.browsers[i].count); }
 
+    // for(let i = 0; i < userInfo.createdAt.length; i++) { createdAt.push(userInfo.createdAt[i]); 
     // overview elements
     all_links.innerText = userInfo.links.length;
 
@@ -102,21 +119,19 @@ function displayStats(userInfo) {
     let thisMonth = date;
     const d = new Date();
     let m = d.getMonth();
-    let count = 0, lastCount = 0;
-    thisMonth.forEach((date) => {
-        let month = date.split("/");
-        console.log(month[1], d)
-        if (month[1] == m + 1) {
-            count++;
+    let this_month_count = 0, inc_this_month_count = 0;
+    userInfo.createdAt.forEach((data) => {
+        console.log(data);
+        if((m+1) == data._id){
+            this_month_count = data.count;
         }
-        else if (month[1] - 1 == m) {
-            lastCount++;
+        if(data._id == m){
+            inc_this_month_count = data.count;
+            console.log("inc_this_month_count", inc_this_month_count)
         }
     })
-    this_month.innerText = count;
-    inc_this_month.innerText = count - lastCount;
-
-
+    this_month.innerText = this_month_count;
+    inc_this_month.innerText = this_month_count - inc_this_month_count || this_month_count;
 
 
     // console.log(userInfo.system[0]._id)
@@ -257,7 +272,7 @@ function displayStats(userInfo) {
     let delete_url_btn_arr = document.querySelectorAll('#shortUrl-delete')
     delete_url_btn_arr.forEach(btn => {
         btn.addEventListener('click', async (e) => {
-            console.log(e.target.alt);
+            // console.log(e.target.alt);
             const id = e.target.alt;
             function confirmWindow() {
                 var box = document.createElement("div");
@@ -288,8 +303,8 @@ function displayStats(userInfo) {
             // let confirmation = confirm("Are you sure you want to delete this link?");
             let confirmation = confirmWindow();
             async function sureDelete() {
-                console.log(confirmation);
-                console.log("sure to delete");
+                // console.log(confirmation);
+                // console.log("sure to delete");
                 const request = await fetch(`${baseUrl}/short/delete/${id}`, {
                     method: "DELETE",
                     headers: {
@@ -298,7 +313,7 @@ function displayStats(userInfo) {
                     }
                 })
                 const response = await request.json();
-                console.log(response);
+                // console.log(response);
                 alertWindow("Link deleted successfully!!");
                 // alert("Link deleted successfully");
                 // window.location.reload();
@@ -338,7 +353,7 @@ shrink_form.addEventListener("submit", async (event) => {
     full_url_btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
     event.preventDefault();
     const full = shrink_full_url.value;
-    console.log(full);
+    // console.log(full);
 
     const request = await fetch(`${baseUrl}/short`, {
         method: "POST",
@@ -349,7 +364,7 @@ shrink_form.addEventListener("submit", async (event) => {
         body: JSON.stringify({ full })
     })
     const response = await request.json();
-    console.log(response);
+    // console.log(response);
     // window.location.reload();
     alertWindow("URL shrinked Successfully!!");
     full_url_btn.innerHTML = "Shrink";
