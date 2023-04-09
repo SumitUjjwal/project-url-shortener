@@ -57,7 +57,7 @@ header {
 .dropdown {
     position: fixed;
     top: 10px;
-    right: 70px;
+    right: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,6 +97,42 @@ header {
     width: 90%;
     margin: auto;
 }
+
+.dropdown-content>form>label{
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.dropdown-content>form>input{
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    font-size: 15px;
+}
+
+.dropdown-content>form>input:focus{
+    border: none;
+    outline: none;
+}
+
+.dropdown-content>form>input[type="submit"] {
+    margin-top: 10px;
+    width: 102%;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #00AEF0;
+    color: #00AEF0;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .dropdown-content>form>input[type="submit"]:active {
+    background-color: #00AEF0;
+    border: 1px solid #fff;
+    color: #fff;
+  }
 
 /* main */
 main {
