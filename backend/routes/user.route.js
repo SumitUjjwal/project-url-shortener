@@ -179,6 +179,26 @@ userRouter.patch("/update", async (req, res) => {
         console.log("something went wrong")
     }
 })
+
+userRouter.patch("/updatePassword/:id", async (req, res) => {
+    const _id = req.params.id;
+    const {pass} = req.body;
+    try {
+        bcrypt.hash(pass, 5, async(err, hashpass) => {
+            if(err){
+                console.log(err);
+                res.json({"error": err});
+            }
+            else{
+                let updateData = await UserModel.findByIdAndUpdate({_id}, {pass: hashpass});
+                res.json({"msg":"Password Updated Successfully"});
+            }
+        })
+    } catch (error) {
+        console.log(error);
+        res.json({"Error": error});
+    } 
+});
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // userRouter.get('/logout', (req, res) => {
