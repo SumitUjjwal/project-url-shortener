@@ -120,7 +120,7 @@ edit_btn.addEventListener("click", async () => {
             let obj = {
                 pass: new_password
             }
-            let request = await fetch(`${baseurl}/users/updatePassword/${id}`,{
+            let request = await fetch(`${baseUrl}/users/updatePassword/${id}`,{
                 method: "PATCH",
                 headers:{
                     "Content-Type": "application/json"
