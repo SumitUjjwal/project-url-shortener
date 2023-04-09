@@ -109,6 +109,7 @@ edit_btn.addEventListener("click", async () => {
     let submit_btn = document.getElementById("submit_btn");
     submit_btn.addEventListener("click", async(e) => {
         e.preventDefault();
+        submit_btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
         // console.log("Please enter your new password")
         let new_password = document.getElementById("new-password").value;
         let confirm_password = document.getElementById("confirm-password").value;
@@ -130,6 +131,7 @@ edit_btn.addEventListener("click", async () => {
             let response = await request.json();
             // console.log(response);
             alert(response.msg);
+            window.location.reload();
         }
         else{
             console.log("false");
