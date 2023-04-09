@@ -263,3 +263,14 @@ forgot.addEventListener("click", async () => {
   }
   forgot.innerHTML = `Forgot Password?`;
 });
+
+
+
+
+
+
+function onSignIn(response) {
+  var credential = response.credential;
+  console.log(credential);
+  // Send the credential to your server to verify the user's identity and create a session
+}
