@@ -97,7 +97,7 @@ async function RegisterFunction(event) {
             .then(data => {
               // alert("Verify your otp")
               localStorage.setItem("keys", JSON.stringify(userObj));
-              localStorage.setItem("back", JSON.stringify(data))
+              localStorage.setItem("back", JSON.stringify(data.OTP))
               // window.location.href = "../html/otp.html"
               const signup_form = document.getElementById("signup_form");
               signup_form.innerHTML = "";
@@ -184,7 +184,7 @@ async function RegisterFunction(event) {
 
                   let arr = localStorage.getItem("keys")
                   let otparr = localStorage.getItem("back")
-                  console.log(otparr)
+                  // console.log(otparr)
                   // let arr=[1,2,3]
                   let p = JSON.parse(arr)
                   let userObj = {
@@ -210,6 +210,7 @@ async function RegisterFunction(event) {
                     localStorage.clear();
                   }
                   else if (bag != otparr) {
+                    // console.log(bag, otparr);
                     alert("Wrong OTP");
                     document.querySelector("#first").value = null;
                     document.querySelector("#second").value = null;
@@ -245,7 +246,7 @@ async function RegisterFunction(event) {
                   // .catch(err => console.log(err))
                 } catch (error) {
                   alert("Something went wrong. Please try again later.");
-                  console.log(error);
+                  // console.log(error);
                 }
                 otpbutton.innerHTML = "Verify";
               }
