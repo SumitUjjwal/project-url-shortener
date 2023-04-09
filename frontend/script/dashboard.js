@@ -1,5 +1,6 @@
 // base url
 const baseUrl = "https://lillyput.onrender.com";
+const baseurl = "http://localhost:2020";
 const userId = localStorage.getItem("user");
 
 // navigation elements
@@ -10,6 +11,7 @@ const stats = document.getElementById("main-graph-chart");
 const dropdown_content = document.getElementById("dropdown-content");
 const logout_btn = document.getElementById("nav-logout-btn");
 const delete_btn = document.getElementById("nav-delete-btn");
+const edit_btn = document.getElementById("nav-edit-btn");
 const profile = document.getElementById("nav-element-account");
 
 // overview elements
@@ -54,32 +56,91 @@ stats_btn.addEventListener("click", () => {
     stats.style.display = "flex";
 })
 
-function dropdown_menu(){
+function dropdown_menu() {
     dropdown_content.style.display = "block";
 }
 
-logout_btn.addEventListener("click", async() => {
+logout_btn.addEventListener("click", async () => {
     // const response = await fetch(`${baseUrl}/users/logout`);
     localStorage.clear();
     window.location.href = "../index.html";
 })
 
-delete_btn.addEventListener("click", async() => {
-    const id = localStorage.getItem("user");
-    const request = await fetch(`${baseUrl}/users/delete/${id}`,{
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
+delete_btn.addEventListener("click", async () => {
+    let confirmation = confirm("Are you sure you want to delete");
+    if (confirmation) {
+        const id = localStorage.getItem("user");
+        const request = await fetch(`${baseUrl}/users/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const response = await request.json();
+        alert(response.msg);
+        window.location.href = "../index.html";
+    }
+    else{
+        window.location.reload();
+    }
+});
+
+edit_btn.addEventListener("click", async () => {
+    console.log("Edit user profile");
+    let dropdown_content = document.getElementById("dropdown-content");
+    dropdown_content.innerHTML = "";
+    dropdown_content.innerHTML = `
+                <button id="back_btn"><</button>
+                <form>
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password" name="new-password" required><br>
+
+                    <label for="confirm-password">Confirm New Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required><br>
+
+                    <input id="submit_btn" type="submit" value="Update">
+                </form>`
+
+    let back_btn = document.getElementById("back_btn");
+    back_btn.addEventListener("click", () => {
+        window.location.reload();
+    });
+
+    let submit_btn = document.getElementById("submit_btn");
+    submit_btn.addEventListener("click", async(e) => {
+        e.preventDefault();
+        // console.log("Please enter your new password")
+        let new_password = document.getElementById("new-password").value;
+        let confirm_password = document.getElementById("confirm-password").value;
+
+        if(new_password == confirm_password){
+            console.log("true");
+            let id = localStorage.getItem("user");
+            console.log(id);
+            let obj = {
+                pass: new_password
+            }
+            let request = await fetch(`${baseurl}/users/updatePassword/${id}`,{
+                method: "PATCH",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(obj)
+            });
+            let response = await request.json();
+            // console.log(response);
+            alert(response.msg);
         }
-    })
-    const response = await request.json();
-    alert(response.msg);
-    window.location.href = "../index.html";
+        else{
+            console.log("false");
+        }
+    });
+
 });
 
 // display data
 function displayStats(userInfo) {
-    console.log(userInfo);
+    // console.log(userInfo);
     // graph variables
     let date = [], date_wise_clicks = [];
     let devices = [], devices_wise_clicks = [];
@@ -121,11 +182,11 @@ function displayStats(userInfo) {
     let m = d.getMonth();
     let this_month_count = 0, inc_this_month_count = 0;
     userInfo.createdAt.forEach((data) => {
-        console.log(data);
-        if((m+1) == data._id){
+        // console.log(data);
+        if ((m + 1) == data._id) {
             this_month_count = data.count;
         }
-        if(data._id == m){
+        if (data._id == m) {
             inc_this_month_count = data.count;
             console.log("inc_this_month_count", inc_this_month_count)
         }
@@ -336,7 +397,7 @@ function displayStats(userInfo) {
             // }
         })
     });
-    
+
     // // get insights of a particular link
     // const click_btn = document.querySelector("#url-list button");
     // click_btn.addEventListener("click", async(e) => {
