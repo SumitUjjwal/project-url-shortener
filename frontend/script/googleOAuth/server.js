@@ -21,8 +21,8 @@ app.use(passport.session());
 
 // Set up Google OAuth strategy
 passport.use(new GoogleStrategy({
-    clientID: '473334704297-84k62o5538rdfjumvg33pmk13di5ibe9.apps.googleusercontent.com',
-    clientSecret: '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',
+    clientID: "",
+    clientSecret: '',
     callbackURL: '/oauth2/redirect/google',
 }, (accessToken, refreshToken, profile, done) => {
     // Save user information to database or session
