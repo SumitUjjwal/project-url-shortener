@@ -61,9 +61,11 @@ function dropdown_menu() {
 }
 
 logout_btn.addEventListener("click", async () => {
-    // const response = await fetch(`${baseUrl}/users/logout`);
-    localStorage.clear();
-    window.location.href = "../index.html";
+    let confirmation = confirm("Are you sure you want to log out?");
+    if (confirmation) {
+        localStorage.clear();
+        window.location.href = "../index.html";
+    }
 })
 
 delete_btn.addEventListener("click", async () => {
@@ -149,7 +151,7 @@ function displayStats(userInfo) {
     let platforms = [], platforms_wise_clicks = [];
     let locations = [], locations_wise_clicks = [];
     let browsers = [], browsers_wise_clicks = [];
-    let createdAt = [];
+    // let createdAt = [];
 
 
     for (let i = 0; i < userInfo.date.length; i++) { date.push(userInfo.date[i]._id); date_wise_clicks.push(userInfo.date[i].count); }

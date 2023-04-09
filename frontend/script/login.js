@@ -115,7 +115,7 @@ forgot.addEventListener("click", async () => {
         .then(data => {
           // alert("verify your otp")
           localStorage.setItem("keys", JSON.stringify(userObj));
-          localStorage.setItem("back", JSON.stringify(data));
+          localStorage.setItem("back", JSON.stringify(data.OTP));
           const login_form = document.getElementById("login_form");
           login_form.innerHTML = "";
           login_form.innerHTML = `
