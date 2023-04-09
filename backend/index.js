@@ -1,39 +1,43 @@
 const express = require('express');
 const { connection } = require("./config/db");
-const {shortRouter} = require("./routes/shortener.route");
-const {adminRouter} = require("./routes/admin.route");
+const { shortRouter } = require("./routes/shortener.route");
+const { adminRouter } = require("./routes/admin.route");
+// const { authRouter } = require("./routes/oAuth.route");
+// var session = require('express-session');
+// var passport = require('passport');
+// var SQLiteStore = require('connect-sqlite3')(session);
 
 require("dotenv").config();
 
 
 
 const PORT = process.env.PORT;
-const cors = require("cors");//
+const cors = require("cors");
 const clientDevice = require("express-device");
-const useragent = require('express-useragent');    
+const useragent = require('express-useragent');
 
-const app = express();//
-app.use(cors());//
-const cookieParser=require('cookie-parser')
+const app = express();
+app.use(cors());
+const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 app.use(express.json())
 app.use(clientDevice.capture());
 app.use(useragent.express());
 
 
-
 app.get('/', (req, res) => { console.log(req.ip); res.json({ "msg": "Welcome to Lylliput! on your " + req.device.type.toUpperCase() }) });
 
-const {userRouter}=require("./routes/user.route")
-app.use("/users",userRouter)
+const { userRouter } = require("./routes/user.route")
+app.use("/users", userRouter);
+
+// app.use("/", authRouter);
 
 app.use("/short", shortRouter);
 
-const {gitAuth}=require("./middlewares/git.auth")
-app.use("/",gitAuth)
+// const { gitAuth } = require("./middlewares/git.auth")
+// app.use("/", gitAuth)
 
-const {authenticate}=require("./middlewares/authenticate.middle")
-// app.use(authenticate)
+const { authenticate } = require("./middlewares/authenticate.middle")
 app.use("/short", shortRouter);
 app.use("/admin", adminRouter);
 
@@ -54,14 +58,14 @@ app.use("/admin", adminRouter);
 // app.get("/auth/github",async(req,res)=>{
 //     const {code}=req.query
 //     console.log(code)
-   
+
 //     const accesstoken=await fetch("https://github.com/login/oauth/access_token",{
 //         method:"POST",
 //         headers:{
 //        "content-type":"application/json",
 //        Accept:"application/json"
 //         },
-    
+
 //     body:JSON.stringify({
 //         client_id:CLIENT_ID,
 //         client_secret:CLIENT_SECRET,
@@ -70,7 +74,7 @@ app.use("/admin", adminRouter);
 //  }).then((res)=>res.json())
 //  console.log(accesstoken)
 
- 
+
 //  const userDetails=await fetch("https://api.github.com/user",{
 //     headers:{
 //     Authorization:`Bearer ${accesstoken.access_token}`
@@ -103,4 +107,4 @@ app.listen(PORT, async () => {
               console.log("Failed while connecting to Database");
               console.log(error);
        }
-})
+});
