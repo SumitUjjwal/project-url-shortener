@@ -34,7 +34,7 @@
     }
 }
 
-@media (max-width: 1300px){
+@media (max-width: 1900px){
     /* graph and charts */
     .main-graph-chart>div {
         flex-direction: column;

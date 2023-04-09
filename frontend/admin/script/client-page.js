@@ -96,22 +96,39 @@ function displayStats(userInfo) {
         stats.style.display = "none";
     }
 
+    // let thisMonth = date;
+    // const d = new Date();
+    // let m = d.getMonth();
+    // let count = 0, lastCount = 0;
+    // thisMonth.forEach((date) => {
+    //     let month = date.split("/");
+    //     console.log(month[1], d)
+    //     if (month[1] == m + 1) {
+    //         count++;
+    //     }
+    //     else if (month[1] - 1 == m) {
+    //         lastCount++;
+    //     }
+    // })
+    // this_month.innerText = count;
+    // inc_this_month.innerText = count - lastCount;
+
     let thisMonth = date;
     const d = new Date();
     let m = d.getMonth();
-    let count = 0, lastCount = 0;
-    thisMonth.forEach((date) => {
-        let month = date.split("/");
-        console.log(month[1], d)
-        if (month[1] == m + 1) {
-            count++;
+    let this_month_count = 0, inc_this_month_count = 0;
+    userInfo.createdAt.forEach((data) => {
+        // console.log(data);
+        if ((m + 1) == data._id) {
+            this_month_count = data.count;
         }
-        else if (month[1] - 1 == m) {
-            lastCount++;
+        if (data._id == m) {
+            inc_this_month_count = data.count;
+            console.log("inc_this_month_count", inc_this_month_count)
         }
     })
-    this_month.innerText = count;
-    inc_this_month.innerText = count - lastCount;
+    this_month.innerText = this_month_count;
+    inc_this_month.innerText = this_month_count - inc_this_month_count || this_month_count;
 
 
 

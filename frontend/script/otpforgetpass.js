@@ -52,8 +52,8 @@ async function fun(event) {
     let jhola = (bag)
 
     let otparr = localStorage.getItem("back")
-    console.log(otparr)
-    if (bag == otparr) {
+    // console.log(otparr)
+    if (bag == otparr.OTP) {
       document.querySelector("body").innerHTML = ""
       document.querySelector("body").innerHTML = `  <input id="upass"  type="text" placeholder="enter updated password" />
     <button  id="update">Updated Password</button>`

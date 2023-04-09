@@ -36,7 +36,7 @@ const url_list_box = document.getElementById("url-list-box");
 async function getUserInfo() {
     const response = await fetch(`${baseUrl}/admin/getUsersInfo/`);
     const userInfo = await response.json();
-    console.log(userInfo);
+    // console.log(userInfo);
     displayStats(userInfo);
 }
 getUserInfo();
@@ -57,9 +57,11 @@ function dropdown_menu() {
 }
 
 logout_btn.addEventListener("click", async () => {
-    // const response = await fetch(`${baseUrl}/users/logout`);
-    localStorage.clear();
-    window.location.href = "../index.html";
+    let confirmation = confirm("Are you sure you want to log out?");
+    if (confirmation) {
+        localStorage.clear();
+        window.location.href = "../index.html";
+    }
 })
 
 // display data
@@ -103,7 +105,7 @@ function displayStats(userInfo) {
     let count = 0, lastCount = 0;
     thisMonth.forEach((date) => {
         let month = date.split("/");
-        console.log(month[1], d)
+        // console.log(month[1], d)
         if (month[1] == m + 1) {
             count++;
         }
@@ -112,7 +114,7 @@ function displayStats(userInfo) {
         }
     })
     this_month.innerText = userInfo.data.length;
-    inc_this_month.innerText = count - lastCount;
+    // inc_this_month.innerText = count - lastCount;
 
 
 
