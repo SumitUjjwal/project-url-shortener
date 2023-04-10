@@ -46,7 +46,10 @@ form .input-field {
 }
 .input-field input {
   height: 45px;
-  width: 42px;
+  /* multiple otp input box */
+  /* width: 42px; */
+  /* single otp input box */
+  width: 200px; 
   border-radius: 6px;
   outline: none;
   font-size: 1.125rem;

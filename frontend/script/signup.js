@@ -99,65 +99,103 @@ async function RegisterFunction(event) {
               localStorage.setItem("keys", JSON.stringify(userObj));
               localStorage.setItem("back", JSON.stringify(data.OTP))
               // window.location.href = "../html/otp.html"
+
+// multiple otp input box              
+              // const signup_form = document.getElementById("signup_form");
+              // signup_form.innerHTML = "";
+              // signup_form.innerHTML = `
+              //   <div class="container">
+              //   <header>
+              //     <i class="bx bxs-check-shield"></i>
+              //   </header>
+              //   <h4>Enter OTP Code</h4>
+              //   <form action="#">
+              //     <div class="input-field">
+              //       <input id="first" type="number" />
+              //       <input id="second" type="number" disabled />
+              //       <input id="third" type="number" disabled />
+              //       <input id="fourth" type="number" disabled />
+              //     </div>
+              //     <button id="otpbutton">Verify OTP</button>
+              //   </form>
+              // </div>
+              //   `
+              // // document.head.innerHTML += '<script src="../script/otp.js" defer></script>';
+              // document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
+              // // alert(data)   
+              // let url = "https://lillyput.onrender.com"
+              // const inputs = document.querySelectorAll("input"),
+              //   button = document.querySelector("button");
+
+
+              // inputs.forEach((input, index1) => {
+              //   input.addEventListener("keyup", (e) => {
+              //     const currentInput = input,
+              //       nextInput = input.nextElementSibling,
+              //       prevInput = input.previousElementSibling;
+              //     if (currentInput.value.length > 1) {
+              //       currentInput.value = "";
+              //       return;
+              //     }
+              //     if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+              //       nextInput.removeAttribute("disabled");
+              //       nextInput.focus();
+              //     }
+
+              //     if (e.key === "Backspace") {
+
+              //       inputs.forEach((input, index2) => {
+              //         if (index1 <= index2 && prevInput) {
+              //           input.setAttribute("disabled", true);
+              //           input.value = "";
+              //           prevInput.focus();
+              //         }
+              //       });
+              //     }
+              //     if (!inputs[3].disabled && inputs[3].value !== "") {
+              //       button.classList.add("active");
+              //       return;
+              //     }
+              //     button.classList.remove("active");
+              //   });
+              // });
+              // window.addEventListener("load", () => inputs[0].focus());
+
+// single otp input box
               const signup_form = document.getElementById("signup_form");
               signup_form.innerHTML = "";
               signup_form.innerHTML = `
-                <div class="container">
-                <header>
-                  <i class="bx bxs-check-shield"></i>
-                </header>
-                <h4>Enter OTP Code</h4>
-                <form action="#">
-                  <div class="input-field">
-                    <input id="first" type="number" />
-                    <input id="second" type="number" disabled />
-                    <input id="third" type="number" disabled />
-                    <input id="fourth" type="number" disabled />
-                  </div>
-                  <button id="otpbutton">Verify OTP</button>
-                </form>
+              <div class="container">
+              <header>
+                <i class="bx bxs-check-shield"></i>
+              </header>
+              <h4>Enter OTP Code</h4>
+              <form action="#">
+                <div class="input-field">
+                  <input id="otp" type="number" maxlength="4" />
+                </div>
+                <button id="otpbutton">Verify OTP</button>
+              </form>
               </div>
-                `
-              // document.head.innerHTML += '<script src="../script/otp.js" defer></script>';
+            `
               document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
-              // alert(data)   
               let url = "https://lillyput.onrender.com"
-              const inputs = document.querySelectorAll("input"),
-                button = document.querySelector("button");
+              const otpInput = document.getElementById("otp");
+              const button = document.querySelector("button");
 
-
-              inputs.forEach((input, index1) => {
-                input.addEventListener("keyup", (e) => {
-                  const currentInput = input,
-                    nextInput = input.nextElementSibling,
-                    prevInput = input.previousElementSibling;
-                  if (currentInput.value.length > 1) {
-                    currentInput.value = "";
-                    return;
-                  }
-                  if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
-                    nextInput.removeAttribute("disabled");
-                    nextInput.focus();
-                  }
-
-                  if (e.key === "Backspace") {
-
-                    inputs.forEach((input, index2) => {
-                      if (index1 <= index2 && prevInput) {
-                        input.setAttribute("disabled", true);
-                        input.value = "";
-                        prevInput.focus();
-                      }
-                    });
-                  }
-                  if (!inputs[3].disabled && inputs[3].value !== "") {
-                    button.classList.add("active");
-                    return;
-                  }
+              otpInput.addEventListener("keyup", (e) => {
+                const otpValue = otpInput.value;
+                if (otpValue.length > 4) {
+                  otpInput.value = otpValue.slice(0, 4);
+                }
+                if (!isNaN(otpValue) && otpValue.length === 4) {
+                  button.classList.add("active");
+                } else {
                   button.classList.remove("active");
-                });
+                }
               });
-              window.addEventListener("load", () => inputs[0].focus());
+              window.addEventListener("load", () => otpInput.focus());
+
 
               // //////////////
               const otpbutton = document.querySelector("#otpbutton");
@@ -167,20 +205,22 @@ async function RegisterFunction(event) {
                 otpbutton.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
                 try {
                   event.preventDefault();
-                  // let all_input_tags = document.querySelectorAll("#register input");
-                  let first = document.querySelector("#first").value;
-                  let second = document.querySelector("#second").value;
-                  let third = document.querySelector("#third").value;
-                  let fourth = document.querySelector("#fourth").value;
-                  // let userObj = {
-                  //     name,
-                  //     email,
-                  //    pass
-                  // };
-                  let bag = ""
-                  bag += first + second + third + fourth
-                  let jhola = (bag)
-                  // console.log(jhola)
+                  // let first = document.querySelector("#first").value;
+                  // let second = document.querySelector("#second").value;
+                  // let third = document.querySelector("#third").value;
+                  // let fourth = document.querySelector("#fourth").value;
+                  // // let userObj = {
+                  // //     name,
+                  // //     email,
+                  // //    pass
+                  // // };
+                  // let bag = ""
+                  // bag += first + second + third + fourth
+                  // let jhola = (bag)
+                  // // console.log(jhola)
+
+                  let bag = document.getElementById("otp").value;
+                  let jhola = (bag);
 
                   let arr = localStorage.getItem("keys")
                   let otparr = localStorage.getItem("back")
