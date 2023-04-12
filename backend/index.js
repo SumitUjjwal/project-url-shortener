@@ -2,7 +2,7 @@ const express = require('express');
 const { connection } = require("./config/db");
 const { shortRouter } = require("./routes/shortener.route");
 const { adminRouter } = require("./routes/admin.route");
-// const { authRouter } = require("./routes/oAuth.route");
+const { authRouter } = require("./routes/oAuth.route");
 // var session = require('express-session');
 // var passport = require('passport');
 // var SQLiteStore = require('connect-sqlite3')(session);
@@ -25,12 +25,12 @@ app.use(clientDevice.capture());
 app.use(useragent.express());
 
 
-app.get('/', (req, res) => { console.log(req.ip); res.json({ "msg": "Welcome to Lylliput! on your " + req.device.type.toUpperCase() }) });
+// app.get('/', (req, res) => { console.log(req.ip); res.json({ "msg": "Welcome to Lylliput! on your " + req.device.type.toUpperCase() }) });
 
 const { userRouter } = require("./routes/user.route")
 app.use("/users", userRouter);
 
-// app.use("/", authRouter);
+app.use("/", authRouter);
 
 app.use("/short", shortRouter);
 

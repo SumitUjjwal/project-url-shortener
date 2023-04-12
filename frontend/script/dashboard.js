@@ -1,6 +1,6 @@
 // base url
 const baseUrl = "https://lillyput.onrender.com";
-const baseurl = "http://localhost:2020";
+// const baseurl = "http://localhost:2020";
 const userId = localStorage.getItem("user");
 
 // navigation elements
@@ -35,12 +35,35 @@ const browser_click = document.getElementById("browser-click-chart");
 // url list elements
 const url_list_box = document.getElementById("url-list-box");
 
+
+// Google oauth
+// const url = window.location.href;
+// let user = url.split("?")[1].split("=")[1];
+// localStorage.setItem("user", user);
+
+
 // making a get request to server for getting user information
 async function getUserInfo() {
-    const response = await fetch(`${baseUrl}/short/user/${userId}`);
-    const userInfo = await response.json();
-    // console.log(userInfo);
-    displayStats(userInfo);
+    const url = window.location.href;
+    let userid = url.split("?")[1];
+    let user;
+    if (userid) {
+        user = userid.split("=")[1];
+    }
+    if (user) {
+        localStorage.setItem("user", user);
+        let userId = user;
+        const response = await fetch(`${baseUrl}/short/user/${userId}`);
+        const userInfo = await response.json();
+        // console.log(userInfo);
+        displayStats(userInfo);
+    }
+    else {
+        const response = await fetch(`${baseUrl}/short/user/${userId}`);
+        const userInfo = await response.json();
+        // console.log(userInfo);
+        displayStats(userInfo);
+    }
 }
 getUserInfo();
 
@@ -82,7 +105,7 @@ delete_btn.addEventListener("click", async () => {
         alert(response.msg);
         window.location.href = "../index.html";
     }
-    else{
+    else {
         window.location.reload();
     }
 });
@@ -109,23 +132,23 @@ edit_btn.addEventListener("click", async () => {
     });
 
     let submit_btn = document.getElementById("submit_btn");
-    submit_btn.addEventListener("click", async(e) => {
+    submit_btn.addEventListener("click", async (e) => {
         e.preventDefault();
         submit_btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
         // console.log("Please enter your new password")
         let new_password = document.getElementById("new-password").value;
         let confirm_password = document.getElementById("confirm-password").value;
 
-        if(new_password == confirm_password){
+        if (new_password == confirm_password) {
             console.log("true");
             let id = localStorage.getItem("user");
             console.log(id);
             let obj = {
                 pass: new_password
             }
-            let request = await fetch(`${baseUrl}/users/updatePassword/${id}`,{
+            let request = await fetch(`${baseUrl}/users/updatePassword/${id}`, {
                 method: "PATCH",
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(obj)
@@ -135,7 +158,7 @@ edit_btn.addEventListener("click", async () => {
             alert(response.msg);
             window.location.reload();
         }
-        else{
+        else {
             console.log("false");
         }
     });
