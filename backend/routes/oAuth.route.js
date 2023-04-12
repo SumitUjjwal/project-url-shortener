@@ -126,9 +126,7 @@ authRouter.get(
   async function (req, res) {
     let user = req.user;
     console.log(user);
-    var userEmail = user.email;
-    let findUser = await UserModel.findOne({ userEmail });
-    let id = findUser._id;
+    let id = user._id;
     res.redirect(
       `https://lillyput.vercel.app/html/dashboard.html?user=${id}`
     );
