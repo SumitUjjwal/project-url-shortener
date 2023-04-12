@@ -1,5 +1,4 @@
 const express = require('express');
-// const { client } = require("../services/redis-client");
 const { ShortUrlModel } = require("../models/short.model");
 const ip = require('ip');
 const { SuperfaceClient } = require('@superfaceai/one-sdk');
@@ -11,12 +10,9 @@ const shortRouter = express.Router();
 shortRouter.use(express.json());
 
 shortRouter.post("/", async (req, res) => {
-    // console.log(req.headers);
     const full = req.body.full;
-    // const userId = res.locals.userId;
     const userId = req.headers.userid;
     console.log(userId, full);
-    // res.json({userId, full});
     try {
         const shorturl = new ShortUrlModel({ full, userId });
         await shorturl.save();
@@ -31,7 +27,6 @@ shortRouter.post("/", async (req, res) => {
 
 shortRouter.get("/user/:userId", async (req, res) => {
     const userId = req.params.userId;
-    // const userId = res.locals.userId;
     try {
         const data = await ShortUrlModel.find({ userId });
 
@@ -151,29 +146,12 @@ shortRouter.get("/user/:userId", async (req, res) => {
                 }
             }
         ]);
-        // console.log(createdAt);
         res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers, createdAt });
-        // res.json(data);
     } catch (error) {
         console.error(error);
         res.json({ "msg": "error getting user details" });
     }
 })
-
-// individual link insight
-// shortRouter.get("/user/link/:id", async (req, res) => {
-//     const shortId = req.params.id;
-//     // const userId = res.locals.userId;
-//     try {
-//         const data = await ShortUrlModel.find({ _id:shortId });
-//         console.log(data)
-//         // res.json({ data, links, fullLinks, clicks, date, devices, location, system, browsers });
-//         res.json(data);
-//     } catch (error) {
-//         console.error(error);
-//         res.json({ "msg": "error getting user details" });
-//     }
-// })
 
 shortRouter.get("/:short", async (req, res) => {
     const userAgent = req.headers['user-agent'];
@@ -192,14 +170,13 @@ shortRouter.get("/:short", async (req, res) => {
         console.log(typeof(Ip), Ip);
         const clientIp = Ip.split(",");
         console.log(clientIp);
-        // console.log(req.headers['x-real-ip'] || req.connection.remoteAddress);
         const urlData = await ShortUrlModel.findOne({ short: `${short}` });
         const count = urlData.clicks;
         const id = urlData._id;
 
         const updateCount = await ShortUrlModel.findByIdAndUpdate(id, { clicks: count + 1 });
         await ShortUrlModel.findByIdAndUpdate(id, { $push: {devices: clientDevice, platform: clientPlatform, date: dateString, browser: browser } });
-        // location from IP
+
         const profile = await sdk.getProfile('address/ip-geolocation@1.0.1');
         const result = await profile
             .getUseCase('IpGeolocation')
@@ -215,18 +192,13 @@ shortRouter.get("/:short", async (req, res) => {
             });
         try {
             const data = result.unwrap();
-            // data.addressRegion = "private";
             console.log(clientIp, data.addressRegion, browser, dateString, clientDevice, clientPlatform);
             await ShortUrlModel.findByIdAndUpdate(id, { $push: { regions: data.addressRegion } });
-            // await ShortUrlModel.findByIdAndUpdate(id, { $push: { devices: clientDevice} });
             console.log("Updated")
-            // res.send(data.addressRegion || null);
         } catch (error) {
             console.log(error);
         }
         res.redirect(urlData.full);
-        // const data = await ShortUrlModel.findOne({ id });
-        // res.json({ "msg": `getting full url: ${data}`, "response": "ok" });
     } catch (error) {
         console.error(error);
         res.json({ "msg": "error getting full url", error: error.message });
@@ -240,7 +212,7 @@ shortRouter.delete("/delete/:id", async (req, res) => {
         res.json({ "msg": "link deleted sucessfully", "response": "ok" });
     } catch (error) {
         console.log(error);
-        res.json({ "msg": "error in deleting link " + error.message })
+        res.json({ "msg": "error in deleting link " + error.message });
     }
 })
 

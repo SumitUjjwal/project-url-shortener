@@ -1,6 +1,5 @@
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 
-const cookieParser = require("cookie-parser")
 let mailfun = (req, res, next) => {
   const { email } = req.body
   const transporter = nodemailer.createTransport({
