@@ -90,9 +90,8 @@ var GoogleStrategy = require("passport-google-oauth20").Strategy;
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        "1023529029465-dsrlbr57hi82leb00b81e9mjadlbp8o5.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientID:"473334704297-84k62o5538rdfjumvg33pmk13di5ibe9.apps.googleusercontent.com",
+      clientSecret: "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",
       callbackURL: "https://lillyput.onrender.com/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, cb) {
