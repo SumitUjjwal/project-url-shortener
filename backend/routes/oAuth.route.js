@@ -127,6 +127,7 @@ authRouter.get(
     let user = req.user;
     console.log(user);
     let id = user._id;
+    console.log(`https://lillyput.vercel.app/html/dashboard.html?user=${id}`);
     res.redirect(
       `https://lillyput.vercel.app/html/dashboard.html?user=${id}`
     );
