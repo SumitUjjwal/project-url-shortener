@@ -17,7 +17,6 @@ const ADMIN_REFRESH_TOKEN_SECRET_KEY = process.env.REFRESH_TOKEN_SECRET_KEY;
 const ADMIN_REFRESH_TOKEN_EXPIRE_TIME = process.env.REFRESH_TOKEN_EXPIRE_TIME;
 
 adminRouter.get("/", async (req, res) => {
-    // res.send("accessing admin");
     const searchCategory = req.query.category;
     const searchTerm = req.query.term;
     console.log(searchCategory, searchTerm)

@@ -1,7 +1,6 @@
 // base url
 const baseUrl = "https://lillyput.onrender.com";
 // const baseurl = "http://localhost:2020";
-const userId = localStorage.getItem("user");
 
 // navigation elements
 const url_list_btn = document.getElementById("nav-element-urls");
@@ -35,11 +34,6 @@ const browser_click = document.getElementById("browser-click-chart");
 // url list elements
 const url_list_box = document.getElementById("url-list-box");
 
-
-// Google oauth
-// const url = window.location.href;
-// let user = url.split("?")[1].split("=")[1];
-// localStorage.setItem("user", user);
 
 
 // making a get request to server for getting user information
@@ -167,19 +161,16 @@ edit_btn.addEventListener("click", async () => {
 
 // display data
 function displayStats(userInfo) {
-    // console.log(userInfo);
     // graph variables
     let date = [], date_wise_clicks = [];
     let devices = [], devices_wise_clicks = [];
     let platforms = [], platforms_wise_clicks = [];
     let locations = [], locations_wise_clicks = [];
     let browsers = [], browsers_wise_clicks = [];
-    // let createdAt = [];
 
 
     for (let i = 0; i < userInfo.date.length; i++) { date.push(userInfo.date[i]._id); date_wise_clicks.push(userInfo.date[i].count); }
     date.sort((a, b) => { return a - b });
-    // console.log("date")
 
     for (let i = 0; i < userInfo.devices.length; i++) { devices.push(userInfo.devices[i]._id); devices_wise_clicks.push(userInfo.devices[i].count); }
 
@@ -189,7 +180,6 @@ function displayStats(userInfo) {
 
     for (let i = 0; i < userInfo.browsers.length; i++) { browsers.push(userInfo.browsers[i]._id); browsers_wise_clicks.push(userInfo.browsers[i].count); }
 
-    // for(let i = 0; i < userInfo.createdAt.length; i++) { createdAt.push(userInfo.createdAt[i]); 
     // overview elements
     all_links.innerText = userInfo.links.length;
 
@@ -209,7 +199,6 @@ function displayStats(userInfo) {
     let m = d.getMonth();
     let this_month_count = 0, inc_this_month_count = 0;
     userInfo.createdAt.forEach((data) => {
-        // console.log(data);
         if ((m + 1) == data._id) {
             this_month_count = data.count;
         }
@@ -222,7 +211,6 @@ function displayStats(userInfo) {
     inc_this_month.innerText = this_month_count - inc_this_month_count || this_month_count;
 
 
-    // console.log(userInfo.system[0]._id)
     let xValues = date;
     new Chart(total_click, {
         type: "line",
@@ -360,7 +348,6 @@ function displayStats(userInfo) {
     let delete_url_btn_arr = document.querySelectorAll('#shortUrl-delete')
     delete_url_btn_arr.forEach(btn => {
         btn.addEventListener('click', async (e) => {
-            // console.log(e.target.alt);
             const id = e.target.alt;
             function confirmWindow() {
                 var box = document.createElement("div");
@@ -376,9 +363,7 @@ function displayStats(userInfo) {
                 };
                 cancel.onclick = function () { document.body.removeChild(box) }
                 var text = document.createTextNode("Are you sure you want to delete this link?");
-                // var input = document.createElement("textarea");
                 box.appendChild(text);
-                // box.appendChild(input);
                 div.appendChild(ok);
                 div.appendChild(cancel);
                 box.appendChild(div);
@@ -388,11 +373,8 @@ function displayStats(userInfo) {
                 box.style.top = "200px";
                 document.body.appendChild(box);
             }
-            // let confirmation = confirm("Are you sure you want to delete this link?");
             let confirmation = confirmWindow();
             async function sureDelete() {
-                // console.log(confirmation);
-                // console.log("sure to delete");
                 const request = await fetch(`${baseUrl}/short/delete/${id}`, {
                     method: "DELETE",
                     headers: {
@@ -401,39 +383,10 @@ function displayStats(userInfo) {
                     }
                 })
                 const response = await request.json();
-                // console.log(response);
                 alertWindow("Link deleted successfully!!");
-                // alert("Link deleted successfully");
-                // window.location.reload();
             }
-            // if (confirmation) {
-            //     console.log("sure to delete");
-            //     const request = await fetch(`${baseUrl}/short/delete/${id}`, {
-            //         method: "DELETE",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //             "userId": userId
-            //         }
-            //     })
-            //     const response = await request.json();
-            //     console.log(response);
-            //     alert("Link deleted successfully");
-            //     window.location.reload();
-            // } else {
-            //     console.log("Not sure");
-            // }
         })
     });
-
-    // // get insights of a particular link
-    // const click_btn = document.querySelector("#url-list button");
-    // click_btn.addEventListener("click", async(e) => {
-    //     let shortId = e.target.id;
-    //     const response = await fetch(`${baseUrl}/short/user/link/${shortId}`);
-    //     const userInfo = await response.json();
-    //     console.log(userInfo);
-    //     // displayStats(userInfo);  
-    // })
 }
 
 // shrink url
@@ -441,7 +394,6 @@ shrink_form.addEventListener("submit", async (event) => {
     full_url_btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i>`;
     event.preventDefault();
     const full = shrink_full_url.value;
-    // console.log(full);
 
     const request = await fetch(`${baseUrl}/short`, {
         method: "POST",
@@ -453,7 +405,6 @@ shrink_form.addEventListener("submit", async (event) => {
     })
     const response = await request.json();
     console.log(response);
-    // window.location.reload();
     alertWindow("URL shrinked Successfully!!");
     full_url_btn.innerHTML = "Shrink";
 })
@@ -464,25 +415,17 @@ function alertWindow(msg) {
     box.className = "prompt-box";
     var div = document.createElement("div");
     var ok = document.createElement("button");
-    // var cancel = document.createElement("button");
     ok.innerHTML = "OK";
-    // cancel.innerHTML = "Cancel";
     ok.onclick = function () {
-        // sureDelete();
         window.location.reload();
         document.body.removeChild(box);
     };
-    // cancel.onclick = function() { document.body.removeChild(box) }
     var text = document.createTextNode(msg);
-    // var input = document.createElement("textarea");
     box.appendChild(text);
-    // box.appendChild(input);
     div.appendChild(ok);
-    // div.appendChild(cancel);
     box.appendChild(div);
 
     box.style.position = "fixed";
-    // box.style.right = (window.innerWidth / 2);
     box.style.right = "0px"
     box.style.top = "200px";
     document.body.appendChild(box);

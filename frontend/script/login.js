@@ -28,7 +28,6 @@ function login_page() {
 }
 
 
-////////////////////
 const login = document.querySelector("#login_btn");
 login.addEventListener("click", func);
 async function func(event) {
@@ -41,7 +40,6 @@ async function func(event) {
       label.style.color = "grey";
     });
     if (!email && !pass) {
-      // alert("Please fill all fields")
       labels.forEach(label => {
         label.style.color = "red";
       });
@@ -52,12 +50,12 @@ async function func(event) {
     else if (!pass) {
       labels[1].style.color = "red";
     }
-    else{
+    else {
       let userObj = {
         email,
         pass
       };
-  
+
       let register_request = await fetch(`${baseUrl}/users/login`, {
         method: "POST",
         headers: {
@@ -67,8 +65,6 @@ async function func(event) {
       })
         .then(res => res.json())
         .then(data => {
-          // console.log(data)
-  
           if (data.msg == "logged in successfully") {
             alert(data.msg)
             localStorage.setItem("user", data.id);
@@ -117,71 +113,71 @@ forgot.addEventListener("click", async () => {
           localStorage.setItem("keys", JSON.stringify(userObj));
           localStorage.setItem("back", JSON.stringify(data.OTP));
 
-// multiple otp input box   
-        //   const login_form = document.getElementById("login_form");
-        //   login_form.innerHTML = "";
-        //   login_form.innerHTML = `
-        //   <div class="container">
-        //   <header>
-        //     <i class="bx bxs-check-shield"></i>
-        //   </header>
-        //   <h4>Enter OTP Code</h4>
-        //   <form action="#">
-        //     <div class="input-field">
-        //       <input id="first" type="number" />
-        //       <input id="second" type="number" disabled />
-        //       <input id="third" type="number" disabled />
-        //       <input id="fourth" type="number" disabled />
-        //     </div>
-        //     <button id="otpbutton">Verify OTP</button>
-        //   </form>
-        // </div>
-        //   `
-        //   // document.head.innerHTML += '<script src="../script/otp.js" defer></script>';
-        //   document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
-        //   let url = "https://lillyput.onrender.com"
-        //   const inputs = document.querySelectorAll("input"),
-        //     button = document.querySelector("button");
+          // multiple otp input box   
+          //   const login_form = document.getElementById("login_form");
+          //   login_form.innerHTML = "";
+          //   login_form.innerHTML = `
+          //   <div class="container">
+          //   <header>
+          //     <i class="bx bxs-check-shield"></i>
+          //   </header>
+          //   <h4>Enter OTP Code</h4>
+          //   <form action="#">
+          //     <div class="input-field">
+          //       <input id="first" type="number" />
+          //       <input id="second" type="number" disabled />
+          //       <input id="third" type="number" disabled />
+          //       <input id="fourth" type="number" disabled />
+          //     </div>
+          //     <button id="otpbutton">Verify OTP</button>
+          //   </form>
+          // </div>
+          //   `
+          //   // document.head.innerHTML += '<script src="../script/otp.js" defer></script>';
+          //   document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
+          //   let url = "https://lillyput.onrender.com"
+          //   const inputs = document.querySelectorAll("input"),
+          //     button = document.querySelector("button");
 
 
-        //   inputs.forEach((input, index1) => {
-        //     input.addEventListener("keyup", (e) => {
-        //       const currentInput = input,
-        //         nextInput = input.nextElementSibling,
-        //         prevInput = input.previousElementSibling;
-        //       if (currentInput.value.length > 1) {
-        //         currentInput.value = "";
-        //         return;
-        //       }
-        //       if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
-        //         nextInput.removeAttribute("disabled");
-        //         nextInput.focus();
-        //       }
+          //   inputs.forEach((input, index1) => {
+          //     input.addEventListener("keyup", (e) => {
+          //       const currentInput = input,
+          //         nextInput = input.nextElementSibling,
+          //         prevInput = input.previousElementSibling;
+          //       if (currentInput.value.length > 1) {
+          //         currentInput.value = "";
+          //         return;
+          //       }
+          //       if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+          //         nextInput.removeAttribute("disabled");
+          //         nextInput.focus();
+          //       }
 
-        //       if (e.key === "Backspace") {
+          //       if (e.key === "Backspace") {
 
-        //         inputs.forEach((input, index2) => {
-        //           if (index1 <= index2 && prevInput) {
-        //             input.setAttribute("disabled", true);
-        //             input.value = "";
-        //             prevInput.focus();
-        //           }
-        //         });
-        //       }
-        //       if (!inputs[3].disabled && inputs[3].value !== "") {
-        //         button.classList.add("active");
-        //         return;
-        //       }
-        //       button.classList.remove("active");
-        //     });
-        //   });
-        //   window.addEventListener("load", () => inputs[0].focus());
+          //         inputs.forEach((input, index2) => {
+          //           if (index1 <= index2 && prevInput) {
+          //             input.setAttribute("disabled", true);
+          //             input.value = "";
+          //             prevInput.focus();
+          //           }
+          //         });
+          //       }
+          //       if (!inputs[3].disabled && inputs[3].value !== "") {
+          //         button.classList.add("active");
+          //         return;
+          //       }
+          //       button.classList.remove("active");
+          //     });
+          //   });
+          //   window.addEventListener("load", () => inputs[0].focus());
 
 
-// single otp input box
-const login_form = document.getElementById("login_form");
-login_form.innerHTML = "";
-login_form.innerHTML = `
+          // single otp input box
+          const login_form = document.getElementById("login_form");
+          login_form.innerHTML = "";
+          login_form.innerHTML = `
 <div class="container">
 <header>
   <i class="bx bxs-check-shield"></i>
@@ -195,26 +191,25 @@ login_form.innerHTML = `
 </form>
 </div>
 `
-document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
-let url = "https://lillyput.onrender.com"
-const otpInput = document.getElementById("otp");
-const button = document.querySelector("button");
+          document.head.innerHTML += '<link rel="stylesheet" href="../style/otp.css" />';
+          let url = "https://lillyput.onrender.com"
+          const otpInput = document.getElementById("otp");
+          const button = document.querySelector("button");
 
-otpInput.addEventListener("keyup", (e) => {
-  const otpValue = otpInput.value;
-  if (otpValue.length > 4) {
-    otpInput.value = otpValue.slice(0, 4);
-  }
-  if (!isNaN(otpValue) && otpValue.length === 4) {
-    button.classList.add("active");
-  } else {
-    button.classList.remove("active");
-  }
-});
-window.addEventListener("load", () => otpInput.focus());
+          otpInput.addEventListener("keyup", (e) => {
+            const otpValue = otpInput.value;
+            if (otpValue.length > 4) {
+              otpInput.value = otpValue.slice(0, 4);
+            }
+            if (!isNaN(otpValue) && otpValue.length === 4) {
+              button.classList.add("active");
+            } else {
+              button.classList.remove("active");
+            }
+          });
+          window.addEventListener("load", () => otpInput.focus());
 
 
-          // //////////////
           const otpbutton = document.querySelector("#otpbutton");
           otpbutton.addEventListener("click", fun);
           async function fun(event) {
@@ -266,9 +261,9 @@ window.addEventListener("load", () => otpInput.focus());
 
               let updatedpass = document.querySelector("#upass").value;
               let confirmPass = document.querySelector("#cpass").value;
-              if(updatedpass != confirmPass) {
+              if (updatedpass != confirmPass) {
                 alert("Password mismatch. Please try again.");
-              }else{
+              } else {
                 let obj = {
                   email: d.email,
                   pass: updatedpass
@@ -289,7 +284,7 @@ window.addEventListener("load", () => otpInput.focus());
                   })
                   .catch(err => console.log(err))
               }
-              
+
             } catch (error) {
               alert("Something went wrong. Please try again later.");
               console.log(error);
