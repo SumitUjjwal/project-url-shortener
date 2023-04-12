@@ -153,6 +153,28 @@ hr {
     text-decoration: underline;
 }
 
+.google-btn {
+    width: 93.2%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #666;
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-btn:hover {
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.google-btn img {
+    margin-right: 10px;
+}
+
 #continue_div_login {
     width: 100%;
     text-align: center;
@@ -195,7 +217,7 @@ hr {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-label{
+label {
     color: #5A7194;
 }
 
