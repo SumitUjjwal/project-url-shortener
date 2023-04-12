@@ -397,7 +397,7 @@ function displayStats(userInfo) {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
-                        "userId": userId
+                        "userId": localStorage.getItem("user")
                     }
                 })
                 const response = await request.json();
@@ -447,12 +447,12 @@ shrink_form.addEventListener("submit", async (event) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "userId": userId
+            "userId": localStorage.getItem("user")
         },
         body: JSON.stringify({ full })
     })
     const response = await request.json();
-    // console.log(response);
+    console.log(response);
     // window.location.reload();
     alertWindow("URL shrinked Successfully!!");
     full_url_btn.innerHTML = "Shrink";
