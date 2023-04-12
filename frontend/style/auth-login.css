@@ -5,6 +5,10 @@ body {
     background-size: cover;
 }
 
+*{
+    text-decoration: none;
+}
+
 #login_container {
     height: 100vh;
     display: flex;
