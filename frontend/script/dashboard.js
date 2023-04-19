@@ -53,6 +53,7 @@ async function getUserInfo() {
         displayStats(userInfo);
     }
     else {
+        let userId = localStorage.getItem("user");
         const response = await fetch(`${baseUrl}/short/user/${userId}`);
         const userInfo = await response.json();
         // console.log(userInfo);
